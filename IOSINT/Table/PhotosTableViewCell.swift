@@ -12,7 +12,7 @@ protocol ButtonDelegate {
 }
 class PhotosTableViewCell: UITableViewCell {
     
-    var delegate:ButtonDelegate?
+    var delegate: ButtonDelegate?
     
     struct ViewModel {
         let title: String
@@ -48,7 +48,6 @@ class PhotosTableViewCell: UITableViewCell {
         stackView.clipsToBounds = true
         stackView.spacing = 8
         stackView.alignment = .fill
-        //stackView.backgroundColor = .blue
         stackView.distribution = .fillProportionally
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -125,14 +124,8 @@ class PhotosTableViewCell: UITableViewCell {
             
 
             self.ImagePerson1.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-     
-
             self.ImagePerson2.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-
-
             self.ImagePerson3.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-
-
             self.ImagePerson4.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
 
 
