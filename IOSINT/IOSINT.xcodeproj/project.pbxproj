@@ -11,7 +11,6 @@
 		6D7000D7293F50EB003DFBBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000D6293F50EB003DFBBF /* SceneDelegate.swift */; };
 		6D7000DE293F50EC003DFBBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7000DD293F50EC003DFBBF /* Assets.xcassets */; };
 		6D7000EE293F51EA003DFBBF /* ProfileTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000ED293F51EA003DFBBF /* ProfileTableHeaderView.swift */; };
-		6D7000F0293F51F8003DFBBF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000EF293F51F8003DFBBF /* Post.swift */; };
 		6D7000F2293F5207003DFBBF /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000F1293F5207003DFBBF /* Photos.swift */; };
 		6D7000F4293F521F003DFBBF /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000F3293F521F003DFBBF /* PhotosCollectionViewCell.swift */; };
 		6D7000F6293F5235003DFBBF /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000F5293F5235003DFBBF /* PhotosTableViewCell.swift */; };
@@ -20,7 +19,52 @@
 		6D7000FC293F5275003DFBBF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000FB293F5275003DFBBF /* ProfileViewController.swift */; };
 		6D7000FE293F5287003DFBBF /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000FD293F5287003DFBBF /* FeedViewController.swift */; };
 		6D700100293F529B003DFBBF /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000FF293F529B003DFBBF /* LogInViewController.swift */; };
+		6D70010A293FB768003DFBBF /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = 6D700109293FB768003DFBBF /* StorageService.docc */; };
+		6D700110293FB768003DFBBF /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D700106293FB768003DFBBF /* StorageService.framework */; };
+		6D700117293FB768003DFBBF /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D700116293FB768003DFBBF /* StorageServiceTests.swift */; };
+		6D700118293FB768003DFBBF /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D700108293FB768003DFBBF /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6D70011B293FB768003DFBBF /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D700106293FB768003DFBBF /* StorageService.framework */; };
+		6D70011C293FB768003DFBBF /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D700106293FB768003DFBBF /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6D700124293FB7A2003DFBBF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000EF293F51F8003DFBBF /* Post.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D700111293FB768003DFBBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7000C9293F50EB003DFBBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D700105293FB768003DFBBF;
+			remoteInfo = StorageService;
+		};
+		6D700113293FB768003DFBBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7000C9293F50EB003DFBBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D7000D0293F50EB003DFBBF;
+			remoteInfo = IOSINT;
+		};
+		6D700119293FB768003DFBBF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7000C9293F50EB003DFBBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D700105293FB768003DFBBF;
+			remoteInfo = StorageService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6D70011D293FB768003DFBBF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6D70011C293FB768003DFBBF /* StorageService.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6D7000D1293F50EB003DFBBF /* IOSINT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSINT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +82,11 @@
 		6D7000FB293F5275003DFBBF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6D7000FD293F5287003DFBBF /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		6D7000FF293F529B003DFBBF /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		6D700106293FB768003DFBBF /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D700108293FB768003DFBBF /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
+		6D700109293FB768003DFBBF /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
+		6D70010F293FB768003DFBBF /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D700116293FB768003DFBBF /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +94,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D70011B293FB768003DFBBF /* StorageService.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D700103293FB768003DFBBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D70010C293FB768003DFBBF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D700110293FB768003DFBBF /* StorageService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +125,8 @@
 				6D7000E9293F516F003DFBBF /* Collections */,
 				6D7000E8293F515E003DFBBF /* Screens */,
 				6D7000D3293F50EB003DFBBF /* IOSINT */,
+				6D700107293FB768003DFBBF /* StorageService */,
+				6D700115293FB768003DFBBF /* StorageServiceTests */,
 				6D7000D2293F50EB003DFBBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				6D7000D1293F50EB003DFBBF /* IOSINT.app */,
+				6D700106293FB768003DFBBF /* StorageService.framework */,
+				6D70010F293FB768003DFBBF /* StorageServiceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -114,7 +183,6 @@
 		6D7000EB293F518F003DFBBF /* Structs */ = {
 			isa = PBXGroup;
 			children = (
-				6D7000EF293F51F8003DFBBF /* Post.swift */,
 				6D7000F1293F5207003DFBBF /* Photos.swift */,
 			);
 			path = Structs;
@@ -128,7 +196,36 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		6D700107293FB768003DFBBF /* StorageService */ = {
+			isa = PBXGroup;
+			children = (
+				6D7000EF293F51F8003DFBBF /* Post.swift */,
+				6D700108293FB768003DFBBF /* StorageService.h */,
+				6D700109293FB768003DFBBF /* StorageService.docc */,
+			);
+			path = StorageService;
+			sourceTree = "<group>";
+		};
+		6D700115293FB768003DFBBF /* StorageServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				6D700116293FB768003DFBBF /* StorageServiceTests.swift */,
+			);
+			path = StorageServiceTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		6D700101293FB768003DFBBF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D700118293FB768003DFBBF /* StorageService.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		6D7000D0293F50EB003DFBBF /* IOSINT */ = {
@@ -138,15 +235,54 @@
 				6D7000CD293F50EB003DFBBF /* Sources */,
 				6D7000CE293F50EB003DFBBF /* Frameworks */,
 				6D7000CF293F50EB003DFBBF /* Resources */,
+				6D70011D293FB768003DFBBF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6D70011A293FB768003DFBBF /* PBXTargetDependency */,
 			);
 			name = IOSINT;
 			productName = IOSINT;
 			productReference = 6D7000D1293F50EB003DFBBF /* IOSINT.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6D700105293FB768003DFBBF /* StorageService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D700122293FB768003DFBBF /* Build configuration list for PBXNativeTarget "StorageService" */;
+			buildPhases = (
+				6D700101293FB768003DFBBF /* Headers */,
+				6D700102293FB768003DFBBF /* Sources */,
+				6D700103293FB768003DFBBF /* Frameworks */,
+				6D700104293FB768003DFBBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StorageService;
+			productName = StorageService;
+			productReference = 6D700106293FB768003DFBBF /* StorageService.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6D70010E293FB768003DFBBF /* StorageServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D700123293FB768003DFBBF /* Build configuration list for PBXNativeTarget "StorageServiceTests" */;
+			buildPhases = (
+				6D70010B293FB768003DFBBF /* Sources */,
+				6D70010C293FB768003DFBBF /* Frameworks */,
+				6D70010D293FB768003DFBBF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D700112293FB768003DFBBF /* PBXTargetDependency */,
+				6D700114293FB768003DFBBF /* PBXTargetDependency */,
+			);
+			name = StorageServiceTests;
+			productName = StorageServiceTests;
+			productReference = 6D70010F293FB768003DFBBF /* StorageServiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -160,6 +296,13 @@
 				TargetAttributes = {
 					6D7000D0293F50EB003DFBBF = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					6D700105293FB768003DFBBF = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					6D70010E293FB768003DFBBF = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 6D7000D0293F50EB003DFBBF;
 					};
 				};
 			};
@@ -177,6 +320,8 @@
 			projectRoot = "";
 			targets = (
 				6D7000D0293F50EB003DFBBF /* IOSINT */,
+				6D700105293FB768003DFBBF /* StorageService */,
+				6D70010E293FB768003DFBBF /* StorageServiceTests */,
 			);
 		};
 /* End PBXProject section */
@@ -187,6 +332,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D7000DE293F50EC003DFBBF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D700104293FB768003DFBBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D70010D293FB768003DFBBF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,12 +366,46 @@
 				6D7000FE293F5287003DFBBF /* FeedViewController.swift in Sources */,
 				6D700100293F529B003DFBBF /* LogInViewController.swift in Sources */,
 				6D7000F2293F5207003DFBBF /* Photos.swift in Sources */,
-				6D7000F0293F51F8003DFBBF /* Post.swift in Sources */,
 				6D7000F4293F521F003DFBBF /* PhotosCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6D700102293FB768003DFBBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D70010A293FB768003DFBBF /* StorageService.docc in Sources */,
+				6D700124293FB7A2003DFBBF /* Post.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D70010B293FB768003DFBBF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D700117293FB768003DFBBF /* StorageServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D700112293FB768003DFBBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D700105293FB768003DFBBF /* StorageService */;
+			targetProxy = 6D700111293FB768003DFBBF /* PBXContainerItemProxy */;
+		};
+		6D700114293FB768003DFBBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D7000D0293F50EB003DFBBF /* IOSINT */;
+			targetProxy = 6D700113293FB768003DFBBF /* PBXContainerItemProxy */;
+		};
+		6D70011A293FB768003DFBBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D700105293FB768003DFBBF /* StorageService */;
+			targetProxy = 6D700119293FB768003DFBBF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6D7000E3293F50EC003DFBBF /* Debug */ = {
@@ -332,6 +525,7 @@
 		6D7000E6293F50EC003DFBBF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -359,6 +553,7 @@
 		6D7000E7293F50EC003DFBBF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -383,6 +578,124 @@
 			};
 			name = Release;
 		};
+		6D70011E293FB768003DFBBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.StorageService;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6D70011F293FB768003DFBBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = (
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.StorageService;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = auto;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6D700120293FB768003DFBBF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.StorageServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSINT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IOSINT";
+			};
+			name = Debug;
+		};
+		6D700121293FB768003DFBBF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.StorageServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSINT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IOSINT";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -400,6 +713,24 @@
 			buildConfigurations = (
 				6D7000E6293F50EC003DFBBF /* Debug */,
 				6D7000E7293F50EC003DFBBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D700122293FB768003DFBBF /* Build configuration list for PBXNativeTarget "StorageService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D70011E293FB768003DFBBF /* Debug */,
+				6D70011F293FB768003DFBBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6D700123293FB768003DFBBF /* Build configuration list for PBXNativeTarget "StorageServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D700120293FB768003DFBBF /* Debug */,
+				6D700121293FB768003DFBBF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
