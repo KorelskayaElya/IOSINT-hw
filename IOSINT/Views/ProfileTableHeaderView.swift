@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
@@ -17,7 +18,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         let image: UIImage?
     }
     
-    private lazy var avatarIimageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "cat_image")
@@ -82,7 +83,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }
 
     func setup(with viewModel: ViewModel) {
-        self.avatarIimageView.image = UIImage(named: "cat_image")
+        self.avatarImageView.image = UIImage(named: "cat_image")
         self.nameLabel.text = viewModel.name
         self.nameLabel.font = UIFont(name: "Courier New", size: 18)
         self.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
@@ -92,39 +93,41 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }
     
     private func setupView() {
-        self.addSubview(self.avatarIimageView)
+        self.addSubview(self.avatarImageView)
         self.addSubview(self.button)
         self.addSubview(self.nameLabel)
         self.addSubview(self.descriptionLabel)
         self.addSubview(self.textField)
    }
     private func contraints() {
-        NSLayoutConstraint.activate([
-        //картинка
-        avatarIimageView.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
-        avatarIimageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        avatarIimageView.widthAnchor.constraint(equalToConstant: 110),
-        avatarIimageView.heightAnchor.constraint(equalToConstant: 110),
-        //кнопка
-        button.topAnchor.constraint(equalTo: self.avatarIimageView.bottomAnchor,constant: 35),
-        button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        button.heightAnchor.constraint(equalToConstant: 50),
-        button.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -16),
-        //лейбл hipster cat
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 27),
-        nameLabel.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 140),
-        nameLabel.widthAnchor.constraint(equalToConstant: 217),
-        nameLabel.heightAnchor.constraint(equalToConstant: 20),
-        //лейбл со статусом
-        descriptionLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 70),
-        descriptionLabel.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 140),
-        descriptionLabel.heightAnchor.constraint(equalToConstant: 20),
-        //поле для ввода статуса
-        textField.topAnchor.constraint(equalTo: self.topAnchor,constant: 110),
-        textField.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 136),
-        textField.heightAnchor.constraint(equalToConstant: 40),
-        textField.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -16)
-        ])
+        avatarImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.width.height.equalTo(110)
+        }
+        button.snp.makeConstraints { make in
+            make.top.equalTo(avatarImageView.snp.bottom).offset(16)
+            make.leading.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(50)
+        }
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(27)
+            make.leading.equalTo(avatarImageView.snp.leading).offset(140)
+            make.width.equalTo(217)
+            make.height.equalTo(20)
+        }
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(70)
+            make.leading.equalTo(avatarImageView.snp.leading).offset(140)
+            make.height.equalTo(20)
+        }
+        textField.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(96)
+            make.leading.equalTo(avatarImageView.snp.leading).offset(136)
+            make.height.equalTo(40)
+            make.trailing.equalToSuperview().inset(16)
+        }
     }
 
     @objc func buttonPressed() {

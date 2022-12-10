@@ -7,7 +7,10 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
+
 class PostTableViewCell: UITableViewCell {
+    
     private lazy var myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -34,8 +37,6 @@ class PostTableViewCell: UITableViewCell {
         return decriptionLabel
     }()
     
-    
-    
     private lazy var labelLikes: UILabel = {
         let label = UILabel()
         label.contentMode = .scaleAspectFit
@@ -48,6 +49,7 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
@@ -64,9 +66,10 @@ class PostTableViewCell: UITableViewCell {
         self.labelViews.text = String("Views:\(post.views)")
         self.decriptionLabel.textColor = .darkGray
         self.myImageView.image = UIImage(named:"\(post.image)")
+        ImageProcessor().processImage(sourceImage: UIImage(named:post.image)!, filter: .chrome) { image in  myImageView.image = image
+        }
         self.titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
     }
-    
     
     
     private func setupView() {
@@ -81,8 +84,7 @@ class PostTableViewCell: UITableViewCell {
             self.myImageView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             self.myImageView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
             self.myImageView.widthAnchor.constraint(equalTo: self.widthAnchor),
-            self.myImageView.heightAnchor.constraint(equalToConstant:450),
-            
+            self.myImageView.heightAnchor.constraint(equalToConstant: 450),
             
             self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 16),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
