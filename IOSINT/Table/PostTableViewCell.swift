@@ -6,9 +6,8 @@
 //
 
 import UIKit
-
+import StorageService
 class PostTableViewCell: UITableViewCell {
-    
     private lazy var myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
