@@ -9,6 +9,9 @@ import UIKit
 import StorageService
 class ProfileViewController: UIViewController {
     let GroupSection = ["Photos","---"]
+    
+    var newUser: User? = nil
+    
 
     public var post: [Post] = [Post(author: "netflix.com", description: "С 2013 года Netflix производит собственные фильмы и сериалы, в том числе и анимационные, а также телепрограммы. В 2016 году компания выпустила 126 оригинальных сериалов и фильмов — больше, чем любой другой сетевой или кабельный канал.", image: "image1", likes: 13, views: 13),
                                 Post(author: "kinopoisk.ru", description: "Дом Gucci (2021) Бесцеремонная простолюдинка переворачивает модную империю вверх дном. Скандальная драма Ридли Скотта.", image: "image2", likes: 1345, views: 190),
@@ -72,10 +75,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
         if section == 0 {
             guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "HeaderView") as? ProfileTableHeaderView
             else { return nil }
+            if let newUser = newUser {
+                headerView.setup(fullName: newUser.fullName, avatarImage: newUser.avatarImage, status: newUser.status)
+            }
 
-            let viewModel = ProfileTableHeaderView.ViewModel(name: "Hipster Cat", description: "Waiting for smth...", image: nil)
-            headerView.setup(with: viewModel)
-            print(section)
+//            let viewModel = ProfileTableHeaderView.ViewModel(name: "Hipster Cat", description: "Waiting for smth...", image: nil)
+//            headerView.setup(with: viewModel)
+//            print(section)
             return headerView
         }
         return nil

@@ -11,13 +11,13 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText : String = ""
     
-    struct ViewModel {
-        let name: String
-        let description: String
-        let image: UIImage?
-    }
+//    struct ViewModel {
+//        let name: String
+//        let description: String
+//        let image: UIImage?
+//    }
     
-    private lazy var avatarIimageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "cat_image")
@@ -81,18 +81,27 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(with viewModel: ViewModel) {
-        self.avatarIimageView.image = UIImage(named: "cat_image")
-        self.nameLabel.text = viewModel.name
-        self.nameLabel.font = UIFont(name: "Courier New", size: 18)
-        self.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        self.descriptionLabel.text = viewModel.description
-        self.descriptionLabel.textColor = .darkGray
-        self.descriptionLabel.font = UIFont(name: "Courier New", size: 14)
+//    func setup(with viewModel: ViewModel) {
+//        self.avatarImageView.image = UIImage(named: "cat_image")
+//        self.nameLabel.text = viewModel.name
+//        self.nameLabel.font = UIFont(name: "Courier New", size: 18)
+//        self.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+//        self.descriptionLabel.text = viewModel.description
+//        self.descriptionLabel.textColor = .darkGray
+//        self.descriptionLabel.font = UIFont(name: "Courier New", size: 14)
+//    }
+    func setup(fullName: String, avatarImage: UIImage, status: String) {
+        nameLabel.text = fullName
+        avatarImageView.image = avatarImage
+        descriptionLabel.text = status
+        descriptionLabel.textColor = .darkGray
+        descriptionLabel.font = UIFont(name: "Courier New", size: 14)
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        nameLabel.font = UIFont(name: "Courier New", size: 18)
     }
     
     private func setupView() {
-        self.addSubview(self.avatarIimageView)
+        self.addSubview(self.avatarImageView)
         self.addSubview(self.button)
         self.addSubview(self.nameLabel)
         self.addSubview(self.descriptionLabel)
@@ -101,27 +110,27 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     private func contraints() {
         NSLayoutConstraint.activate([
         //картинка
-        avatarIimageView.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
-        avatarIimageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-        avatarIimageView.widthAnchor.constraint(equalToConstant: 110),
-        avatarIimageView.heightAnchor.constraint(equalToConstant: 110),
+        avatarImageView.topAnchor.constraint(equalTo: self.topAnchor,constant: 16),
+        avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+        avatarImageView.widthAnchor.constraint(equalToConstant: 110),
+        avatarImageView.heightAnchor.constraint(equalToConstant: 110),
         //кнопка
-        button.topAnchor.constraint(equalTo: self.avatarIimageView.bottomAnchor,constant: 35),
+        button.topAnchor.constraint(equalTo: self.avatarImageView.bottomAnchor,constant: 35),
         button.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
         button.heightAnchor.constraint(equalToConstant: 50),
         button.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -16),
         //лейбл hipster cat
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 27),
-        nameLabel.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 140),
+        nameLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.leadingAnchor, constant: 140),
         nameLabel.widthAnchor.constraint(equalToConstant: 217),
         nameLabel.heightAnchor.constraint(equalToConstant: 20),
         //лейбл со статусом
         descriptionLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 70),
-        descriptionLabel.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 140),
+        descriptionLabel.leadingAnchor.constraint(equalTo: self.avatarImageView.leadingAnchor, constant: 140),
         descriptionLabel.heightAnchor.constraint(equalToConstant: 20),
         //поле для ввода статуса
         textField.topAnchor.constraint(equalTo: self.topAnchor,constant: 110),
-        textField.leadingAnchor.constraint(equalTo: self.avatarIimageView.leadingAnchor, constant: 136),
+        textField.leadingAnchor.constraint(equalTo: self.avatarImageView.leadingAnchor, constant: 136),
         textField.heightAnchor.constraint(equalToConstant: 40),
         textField.trailingAnchor.constraint(equalTo: self.trailingAnchor,constant: -16)
         ])
@@ -129,7 +138,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
 
     @objc func buttonPressed() {
         let status : String? = self.descriptionLabel.text
-        print(status ?? "hi")
+        print(status ?? "")
         descriptionLabel.text = self.statusText
         
     }
