@@ -176,9 +176,22 @@ class LogInViewController: UIViewController {
         notification.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc private func buttonPressLog(){
-        let newViewController = ProfileViewController()
-        self.navigationController?.pushViewController(newViewController, animated: true)
+    @objc private func buttonPressLog() {
+        #if DEBUG
+        let loginService = CurrentUserService().checkLogin(login: loginTextField.text!, password: passwordTextField.text!)
+        #else
+        let loginService = TestUserService().checkLogin(login: loginTextField.text!, password: passwordTextField.text!)
+        #endif
+        if let checkUser = loginService {
+            let newViewController = ProfileViewController()
+            newViewController.newUser = checkUser
+            self.navigationController?.pushViewController(newViewController, animated: true)
+        } else {
+            let alert = UIAlertController(title: "", message: "Please, enter correct login or password", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            self.present(alert,animated: true)
+        }
     }
 }
+
 

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = UIWindow(windowScene: windowScene)
         //1 навигационный контроллер
-        let navController = UINavigationController(rootViewController: ProfileViewController())
+        let navController = UINavigationController(rootViewController: LogInViewController())
         //2 навигационный контроллер
         let secondItemController = FeedViewController()
         //создание панели вкладок
