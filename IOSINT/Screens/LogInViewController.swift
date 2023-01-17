@@ -9,6 +9,9 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    var logInDelegate: LogInViewControllerDelegate?
+    static var loginFactoryDelegate: LogInFactory?
+    
     private func setupView() {
         view.backgroundColor = .white
         self.view.addSubview(self.scrollView)
@@ -178,13 +181,16 @@ class LogInViewController: UIViewController {
     
     @objc private func buttonPressLog() {
         #if DEBUG
-        let loginService = CurrentUserService().checkLogin(login: loginTextField.text!, password: passwordTextField.text!)
+        guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
+           return }
         #else
-        let loginService = TestUserService().checkLogin(login: loginTextField.text!, password: passwordTextField.text!)
+        guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
+           return }
         #endif
-        if let checkUser = loginService {
+        if checkResults {
+            guard let user = Checker.shared.user else { return }
             let newViewController = ProfileViewController()
-            newViewController.newUser = checkUser
+            newViewController.newUser = user
             self.navigationController?.pushViewController(newViewController, animated: true)
         } else {
             let alert = UIAlertController(title: "", message: "Please, enter correct login or password", preferredStyle: .alert)
