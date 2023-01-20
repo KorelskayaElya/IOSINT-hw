@@ -23,6 +23,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         //создание панели вкладок
         let tabBarController = UITabBarController()
         
+        
+        let factory = MyLoginFactory()
+        let logInInspector = factory.makeLoginInspector()
+        let loginVC = LogInViewController()
+        loginVC.logInDelegate = logInInspector
+        
+        LogInViewController.loginFactoryDelegate = MyLoginFactory()
+        
         tabBarController.viewControllers = [
             secondItemController, navController
         ]
@@ -37,8 +45,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             : UIImage(systemName: "person.fill")
            
         }
+       
         self.window?.rootViewController = tabBarController
         self.window?.makeKeyAndVisible()
+        
+         
     }
 
 

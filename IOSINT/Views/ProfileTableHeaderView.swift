@@ -11,12 +11,6 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private var statusText : String = ""
     
-//    struct ViewModel {
-//        let name: String
-//        let description: String
-//        let image: UIImage?
-//    }
-    
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill

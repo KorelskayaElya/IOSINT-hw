@@ -26,6 +26,10 @@
 		6D70011B293FB768003DFBBF /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D700106293FB768003DFBBF /* StorageService.framework */; };
 		6D70011C293FB768003DFBBF /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6D700106293FB768003DFBBF /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6D700124293FB7A2003DFBBF /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000EF293F51F8003DFBBF /* Post.swift */; };
+		6D7E505A2974462C0007CF3D /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E50592974462C0007CF3D /* Checker.swift */; };
+		6D7E505C2975AC940007CF3D /* LogInInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E505B2975AC940007CF3D /* LogInInspector.swift */; };
+		6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */; };
+		6D7E5060297729A00007CF3D /* LogInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E505F297729A00007CF3D /* LogInFactory.swift */; };
 		6DBA908A2951552D00455F10 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBA90892951552D00455F10 /* User.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +92,10 @@
 		6D700109293FB768003DFBBF /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		6D70010F293FB768003DFBBF /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D700116293FB768003DFBBF /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		6D7E50592974462C0007CF3D /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
+		6D7E505B2975AC940007CF3D /* LogInInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInInspector.swift; sourceTree = "<group>"; };
+		6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerDelegate.swift; sourceTree = "<group>"; };
+		6D7E505F297729A00007CF3D /* LogInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFactory.swift; sourceTree = "<group>"; };
 		6DBA90892951552D00455F10 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -221,6 +229,10 @@
 			isa = PBXGroup;
 			children = (
 				6DBA90892951552D00455F10 /* User.swift */,
+				6D7E50592974462C0007CF3D /* Checker.swift */,
+				6D7E505B2975AC940007CF3D /* LogInInspector.swift */,
+				6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */,
+				6D7E505F297729A00007CF3D /* LogInFactory.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -303,7 +315,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					6D7000D0293F50EB003DFBBF = {
 						CreatedOnToolsVersion = 14.1;
@@ -367,17 +379,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */,
 				6D7000FA293F5262003DFBBF /* PhotosViewController.swift in Sources */,
 				6D7000D5293F50EB003DFBBF /* AppDelegate.swift in Sources */,
 				6D7000FC293F5275003DFBBF /* ProfileViewController.swift in Sources */,
 				6D7000F6293F5235003DFBBF /* PhotosTableViewCell.swift in Sources */,
 				6D7000D7293F50EB003DFBBF /* SceneDelegate.swift in Sources */,
 				6D7000F8293F524C003DFBBF /* PostTableViewCell.swift in Sources */,
+				6D7E505A2974462C0007CF3D /* Checker.swift in Sources */,
+				6D7E505C2975AC940007CF3D /* LogInInspector.swift in Sources */,
 				6D7000EE293F51EA003DFBBF /* ProfileTableHeaderView.swift in Sources */,
 				6D7000FE293F5287003DFBBF /* FeedViewController.swift in Sources */,
 				6DBA908A2951552D00455F10 /* User.swift in Sources */,
 				6D700100293F529B003DFBBF /* LogInViewController.swift in Sources */,
 				6D7000F2293F5207003DFBBF /* Photos.swift in Sources */,
+				6D7E5060297729A00007CF3D /* LogInFactory.swift in Sources */,
 				6D7000F4293F521F003DFBBF /* PhotosCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -595,6 +611,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -632,6 +649,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -670,6 +688,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
@@ -692,6 +711,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
