@@ -6,10 +6,15 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: UIViewController {
     
-    var viewPhotoModel = ViewPhotoModel.addPhotos()
+    //var viewPhotoModel = ViewPhotoModel.addPhotos()
+    // создаем пустой массив
+    private var recivedImages: [UIImage] = []
+    // создаем экземпляр класса ImagePublisherFacade
+    private let imageFasade = ImagePublisherFacade()
     
     private lazy var flowLayout : UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -34,9 +39,23 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
+        // добавляем подписку на изменения
+        self.setupObserver()
         self.setupNavigationBar()
         }
     
+    private func setupObserver() {
+        var photo: [UIImage] = []
+        // подписываемся на изменения
+        imageFasade.subscribe(self)
+        ViewModel.photos.forEach {i in photo.append(UIImage(named: i)!)}
+        // наполнение коллекции изображениями
+        imageFasade.addImagesWithTimer(time: 0.7, repeat: 35, userImages: photo)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        // отписываемся
+        imageFasade.removeSubscription(for: self)
+    }
     private func setupView() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.collection)
@@ -61,18 +80,24 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource,  UICollectionViewDelegate {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewPhotoModel.count
+        return recivedImages.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotosCollectionViewCell", for: indexPath) as? PhotosCollectionViewCell else {
             let mycell = collectionView.dequeueReusableCell(withReuseIdentifier: "DefaultCell", for: indexPath)
             return mycell
         }
-        myCell.setupCell(with: viewPhotoModel[indexPath.row])
+        let imageName = recivedImages[indexPath.row]
+        myCell.setupCell(with: imageName)
         return myCell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("User tapped on item \(indexPath.row)")
     }
 }
-
+extension PhotosViewController: ImageLibrarySubscriber {
+    func receive(images: [UIImage]) {
+        recivedImages = images
+        collection.reloadData()
+    }
+}

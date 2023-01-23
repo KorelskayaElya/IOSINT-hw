@@ -17,13 +17,18 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return images
     }()
     
-    func setupCell(with viewPhotoModel: ViewPhotoModel){
-        self.photosItems.image = viewPhotoModel.imageName
+//    func setupCell(with viewPhotoModel: ViewPhotoModel){
+//        self.photosItems.image = viewPhotoModel.imageName
+//    }
+    func setupCell(with imageName: UIImage) {
+        photosItems.image = imageName
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
-       }
+    }
+    
     required init? (coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -36,6 +41,13 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             self.photosItems.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
+    // готовит ячейку к перееиспользованию
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photosItems.image = nil
+    }
+        
+   
     
 }
 
