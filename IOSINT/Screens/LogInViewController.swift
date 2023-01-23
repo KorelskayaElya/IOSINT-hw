@@ -78,6 +78,7 @@ class LogInViewController: UIViewController {
         textField.backgroundColor = .systemGray6
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
+        textField.text = "123"
         textField.placeholder = " Email of phone"
         return textField
     }()
@@ -93,6 +94,7 @@ class LogInViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
+        textField.text = "123"
         textField.placeholder = " Password"
         return textField
     }()
@@ -180,13 +182,13 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func buttonPressLog() {
-        #if DEBUG
-        guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
-           return }
-        #else
-        guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
-           return }
-        #endif
+    #if DEBUG
+            guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
+                return }
+    #else
+            guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
+                   return }
+    #endif
         if checkResults {
             guard let user = Checker.shared.user else { return }
             let newViewController = ProfileViewController()
@@ -197,7 +199,7 @@ class LogInViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             self.present(alert,animated: true)
         }
-    }
+        }
 }
-
-
+    
+    
