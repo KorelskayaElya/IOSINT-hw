@@ -11,12 +11,17 @@ class ProfileViewController: UIViewController {
     let GroupSection = ["Photos","---"]
     
     var newUser: User? = nil
-    
-
-    public var post: [Post] = [Post(author: "netflix.com", description: "С 2013 года Netflix производит собственные фильмы и сериалы, в том числе и анимационные, а также телепрограммы. В 2016 году компания выпустила 126 оригинальных сериалов и фильмов — больше, чем любой другой сетевой или кабельный канал.", image: "image1", likes: 13, views: 13),
-                                Post(author: "kinopoisk.ru", description: "Дом Gucci (2021) Бесцеремонная простолюдинка переворачивает модную империю вверх дном. Скандальная драма Ридли Скотта.", image: "image2", likes: 1345, views: 190),
-                                Post(author: "Fresco by Michelangelo.com", description: "«Сотворение Адама» (Сикстинская капелла, Ватикан, Рим, 1508–1512) – четвертая из девяти центральных композиций цикла фресок на тему сотворения мира, заказанных Микеланджело Буонарроти для украшения потолка Сикстинской капеллы папой Юлием II.", image: "image3", likes: 25, views: 19),
-                                Post(author: "sunset.com", description: "Невероятно красивое зрелище – закат солнца. Когда солнце, такое близкое, большое, багряно-красное, фантастически красивое, прощаясь с летним днем, ласково дарит последние теплые лучи. И это самое романтичное время суток, которое рождает легенды, обладающие притягивающим волшебством.", image: "image4", likes: 130, views: 109)]
+    weak var coordinator: ProfileCoordinator?
+    private var images = [Post]()
+    // обновление информации
+    var viewModel: ProfileViewModel! {
+        didSet {
+            self.viewModel.userChange = { [ weak self ] viewModel in
+                self?.newUser = viewModel.user ?? nil
+                self?.images = viewModel.images ?? []
+            }
+        }
+    }
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -68,8 +73,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, ButtonDelegate {
     func didTapButton(sender: UIButton) {
-        let newViewController = PhotosViewController()
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        coordinator?.goToPhotosViewController()
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -78,10 +82,6 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
             if let newUser = newUser {
                 headerView.setup(fullName: newUser.fullName, avatarImage: newUser.avatarImage, status: newUser.status)
             }
-
-//            let viewModel = ProfileTableHeaderView.ViewModel(name: "Hipster Cat", description: "Waiting for smth...", image: nil)
-//            headerView.setup(with: viewModel)
-//            print(section)
             return headerView
         }
         return nil
@@ -107,7 +107,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
         if section == 0 {
             return 1
         } else {
-            return self.post.count
+            return PostStorage.post.count
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,7 +119,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! PostTableViewCell
-            cell.setup(with: post[indexPath.row])
+            let images = PostStorage.post[indexPath.row]
+            cell.setup(with: images)
             return cell
         }
     }

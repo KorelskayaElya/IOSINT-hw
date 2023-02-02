@@ -17,12 +17,12 @@ final class Checker {
     var user: User?
     
     func check(login: String, pass: String) -> Bool {
-                if (login == loginCheck) && (pass == passCheck) {
-                    user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
-                    return true
-                } else {
-                    return false
-                }
+        if (login == loginCheck) && (pass == passCheck) {
+            user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
+                return true
+            } else {
+                return false
+            }
     }
 }
 protocol LoginViewControllerDelegate {

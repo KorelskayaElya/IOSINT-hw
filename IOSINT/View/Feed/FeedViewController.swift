@@ -9,7 +9,7 @@ import UIKit
 
 class FeedViewController: UIViewController {
 
-    
+    weak var coordinator: FeedCoordinator?
     private lazy var button = CustomButton(customButtonTitle: "Click") {
         self.tapButton()
     }
@@ -55,8 +55,7 @@ class FeedViewController: UIViewController {
         self.setupConstraints()
     }
     private func tapButton() {
-        let postVC = PostViewController()
-        self.navigationController?.pushViewController(postVC, animated: true)
+        coordinator?.goToPostViewController()
     }
     private func setupConstraints() {
         NSLayoutConstraint.activate([

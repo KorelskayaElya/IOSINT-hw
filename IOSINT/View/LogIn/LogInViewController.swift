@@ -9,8 +9,19 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
-    var logInDelegate: LogInViewControllerDelegate?
-    static var loginFactoryDelegate: LogInFactory?
+    weak var coordinator: ProfileCoordinator?
+    // обновление информации
+    var viewModel: LogInViewModel! {
+        didSet {
+            self.viewModel.checker = { [ weak self ] viewModel in
+                guard let logInedUser = viewModel.logInedUser else {
+                    self?.showAlert()
+                    return
+                    }
+                self?.coordinator?.goToProfileViewController(with: logInedUser)
+                }
+            }
+    }
     
     private func setupView() {
         view.backgroundColor = .white
@@ -182,24 +193,14 @@ class LogInViewController: UIViewController {
     }
     
     @objc private func buttonPressLog() {
-    #if DEBUG
-            guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
-                return }
-    #else
-            guard let checkResults = LogInViewController.loginFactoryDelegate?.makeLoginInspector().check(login: loginTextField.text!, pass: passwordTextField.text!) else {
-                   return }
-    #endif
-        if checkResults {
-            guard let user = Checker.shared.user else { return }
-            let newViewController = ProfileViewController()
-            newViewController.newUser = user
-            self.navigationController?.pushViewController(newViewController, animated: true)
-        } else {
-            let alert = UIAlertController(title: "", message: "Please, enter correct login or password", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-            self.present(alert,animated: true)
-        }
-        }
+        view.endEditing(true)
+        viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+    }
+    private func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Wrong Password", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        self.present(alert, animated: true)
+    }
 }
     
     
