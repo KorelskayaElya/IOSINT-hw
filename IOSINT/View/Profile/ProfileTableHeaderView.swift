@@ -43,11 +43,16 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }()
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
+        label.text = "Hipster Cat"
+        label.font = UIFont(name: "Courier New", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
+        label.text = "Waiting for ..."
+        label.textColor = .darkGray
+        label.font = UIFont(name: "Courier New", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -75,23 +80,11 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-//    func setup(with viewModel: ViewModel) {
-//        self.avatarImageView.image = UIImage(named: "cat_image")
-//        self.nameLabel.text = viewModel.name
-//        self.nameLabel.font = UIFont(name: "Courier New", size: 18)
-//        self.nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
-//        self.descriptionLabel.text = viewModel.description
-//        self.descriptionLabel.textColor = .darkGray
-//        self.descriptionLabel.font = UIFont(name: "Courier New", size: 14)
-//    }
+    // передаем в Header название фотку и описание 
     func setup(fullName: String, avatarImage: UIImage, status: String) {
         nameLabel.text = fullName
         avatarImageView.image = avatarImage
         descriptionLabel.text = status
-        descriptionLabel.textColor = .darkGray
-        descriptionLabel.font = UIFont(name: "Courier New", size: 14)
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        nameLabel.font = UIFont(name: "Courier New", size: 18)
     }
     
     private func setupView() {

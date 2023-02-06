@@ -9,8 +9,14 @@ import UIKit
 import iOSIntPackage
 
 class PhotosViewController: UIViewController {
-    
-    //var viewPhotoModel = ViewPhotoModel.addPhotos()
+    // обновление информации
+    var viewModel: PhotoViewModel! {
+        didSet {
+            self.viewModel.photoChange = { [ weak self ] viewModel in
+                self?.setupObserver(images: viewModel.photoNames)
+            }
+        }
+        }
     // создаем пустой массив
     private var recivedImages: [UIImage] = []
     // создаем экземпляр класса ImagePublisherFacade
@@ -39,18 +45,16 @@ class PhotosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
-        // добавляем подписку на изменения
-        self.setupObserver()
         self.setupNavigationBar()
+        viewModel?.photoAdd()
         }
-    
-    private func setupObserver() {
-        var photo: [UIImage] = []
-        // подписываемся на изменения
+
+    private func setupObserver(images: [String]?) {
+        var photo = [UIImage]()
+        guard let array = images else { return }
+        array.forEach {i in photo.append(UIImage(named: i)!)}
         imageFasade.subscribe(self)
-        ViewModel.photos.forEach {i in photo.append(UIImage(named: i)!)}
-        // наполнение коллекции изображениями
-        imageFasade.addImagesWithTimer(time: 0.7, repeat: 35, userImages: photo)
+        self.imageFasade.addImagesWithTimer(time: 0.7, repeat: 35, userImages: photo)
     }
     override func viewDidDisappear(_ animated: Bool) {
         // отписываемся

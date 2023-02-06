@@ -25,6 +25,7 @@ class PhotosTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Photos"
         return label
     }()
     //кнопка перехода

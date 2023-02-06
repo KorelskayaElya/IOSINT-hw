@@ -31,10 +31,18 @@
 		6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */; };
 		6D7E5060297729A00007CF3D /* LogInFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7E505F297729A00007CF3D /* LogInFactory.swift */; };
 		6DBA908A2951552D00455F10 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBA90892951552D00455F10 /* User.swift */; };
+		6DC169A62988D564005B56C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169A52988D564005B56C2 /* Coordinator.swift */; };
+		6DC169A92988D5D3005B56C2 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169A82988D5D3005B56C2 /* FeedCoordinator.swift */; };
+		6DC169AB2988D624005B56C2 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169AA2988D624005B56C2 /* ProfileCoordinator.swift */; };
+		6DC169AD2988D6AA005B56C2 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169AC2988D6AA005B56C2 /* TabBarCoordinator.swift */; };
+		6DC169AF298A8DE2005B56C2 /* ScreenCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169AE298A8DE2005B56C2 /* ScreenCreate.swift */; };
+		6DC169B2298A9C4B005B56C2 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B1298A9C4B005B56C2 /* LogInViewModel.swift */; };
+		6DC169B4298A9CC8005B56C2 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B3298A9CC8005B56C2 /* PhotoViewModel.swift */; };
+		6DC169B6298B6742005B56C2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B5298B6742005B56C2 /* ProfileViewModel.swift */; };
 		6DFB427B297E4A5700CFCA1B /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DFB427A297E4A5700CFCA1B /* iOSIntPackage */; };
 		6DFB427E297E754C00CFCA1B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427D297E754C00CFCA1B /* CustomButton.swift */; };
 		6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427F297E783C00CFCA1B /* PostViewController.swift */; };
-		6DFB4282297E9A4200CFCA1B /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB4281297E9A4200CFCA1B /* Secret.swift */; };
+		6DFB4282297E9A4200CFCA1B /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB4281297E9A4200CFCA1B /* FeedModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,9 +109,17 @@
 		6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewControllerDelegate.swift; sourceTree = "<group>"; };
 		6D7E505F297729A00007CF3D /* LogInFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInFactory.swift; sourceTree = "<group>"; };
 		6DBA90892951552D00455F10 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6DC169A52988D564005B56C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		6DC169A82988D5D3005B56C2 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		6DC169AA2988D624005B56C2 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		6DC169AC2988D6AA005B56C2 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		6DC169AE298A8DE2005B56C2 /* ScreenCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCreate.swift; sourceTree = "<group>"; };
+		6DC169B1298A9C4B005B56C2 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
+		6DC169B3298A9CC8005B56C2 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
+		6DC169B5298B6742005B56C2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		6DFB427D297E754C00CFCA1B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6DFB427F297E783C00CFCA1B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
-		6DFB4281297E9A4200CFCA1B /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		6DFB4281297E9A4200CFCA1B /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,13 +153,11 @@
 		6D7000C8293F50EB003DFBBF = {
 			isa = PBXGroup;
 			children = (
+				6DC169B0298A9C2B005B56C2 /* ViewModel */,
+				6DC169A72988D5B7005B56C2 /* Coordinator */,
 				6DFB427C297E753300CFCA1B /* Button */,
-				6DBA90882951550A00455F10 /* User */,
-				6D7000EC293F519E003DFBBF /* Views */,
-				6D7000EB293F518F003DFBBF /* Structs */,
-				6D7000EA293F5181003DFBBF /* Table */,
-				6D7000E9293F516F003DFBBF /* Collections */,
-				6D7000E8293F515E003DFBBF /* Screens */,
+				6DBA90882951550A00455F10 /* Model User */,
+				6D7000EC293F519E003DFBBF /* View */,
 				6D7000D3293F50EB003DFBBF /* IOSINT */,
 				6D700107293FB768003DFBBF /* StorageService */,
 				6D700115293FB768003DFBBF /* StorageServiceTests */,
@@ -168,53 +182,21 @@
 				6D7000D6293F50EB003DFBBF /* SceneDelegate.swift */,
 				6D7000DD293F50EC003DFBBF /* Assets.xcassets */,
 				6D7000E2293F50EC003DFBBF /* Info.plist */,
+				6DC169AE298A8DE2005B56C2 /* ScreenCreate.swift */,
 			);
 			path = IOSINT;
 			sourceTree = "<group>";
 		};
-		6D7000E8293F515E003DFBBF /* Screens */ = {
+		6D7000EC293F519E003DFBBF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6D7000F9293F5262003DFBBF /* PhotosViewController.swift */,
-				6D7000FB293F5275003DFBBF /* ProfileViewController.swift */,
-				6D7000FD293F5287003DFBBF /* FeedViewController.swift */,
-				6D7000FF293F529B003DFBBF /* LogInViewController.swift */,
-				6DFB427F297E783C00CFCA1B /* PostViewController.swift */,
+				6DC169BB298B9199005B56C2 /* Feed */,
+				6DC169BA298B918C005B56C2 /* Post */,
+				6DC169B9298B917B005B56C2 /* Photo */,
+				6DC169B8298B915F005B56C2 /* Profile */,
+				6DC169B7298B914F005B56C2 /* LogIn */,
 			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
-		6D7000E9293F516F003DFBBF /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-				6D7000F3293F521F003DFBBF /* PhotosCollectionViewCell.swift */,
-			);
-			path = Collections;
-			sourceTree = "<group>";
-		};
-		6D7000EA293F5181003DFBBF /* Table */ = {
-			isa = PBXGroup;
-			children = (
-				6D7000F5293F5235003DFBBF /* PhotosTableViewCell.swift */,
-				6D7000F7293F524C003DFBBF /* PostTableViewCell.swift */,
-			);
-			path = Table;
-			sourceTree = "<group>";
-		};
-		6D7000EB293F518F003DFBBF /* Structs */ = {
-			isa = PBXGroup;
-			children = (
-				6D7000F1293F5207003DFBBF /* Photos.swift */,
-			);
-			path = Structs;
-			sourceTree = "<group>";
-		};
-		6D7000EC293F519E003DFBBF /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				6D7000ED293F51EA003DFBBF /* ProfileTableHeaderView.swift */,
-			);
-			path = Views;
+			path = View;
 			sourceTree = "<group>";
 		};
 		6D700107293FB768003DFBBF /* StorageService */ = {
@@ -235,7 +217,7 @@
 			path = StorageServiceTests;
 			sourceTree = "<group>";
 		};
-		6DBA90882951550A00455F10 /* User */ = {
+		6DBA90882951550A00455F10 /* Model User */ = {
 			isa = PBXGroup;
 			children = (
 				6DBA90892951552D00455F10 /* User.swift */,
@@ -243,15 +225,81 @@
 				6D7E505B2975AC940007CF3D /* LogInInspector.swift */,
 				6D7E505D297728320007CF3D /* LogInViewControllerDelegate.swift */,
 				6D7E505F297729A00007CF3D /* LogInFactory.swift */,
+				6D7000F1293F5207003DFBBF /* Photos.swift */,
 			);
-			path = User;
+			path = "Model User";
+			sourceTree = "<group>";
+		};
+		6DC169A72988D5B7005B56C2 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				6DC169A52988D564005B56C2 /* Coordinator.swift */,
+				6DC169A82988D5D3005B56C2 /* FeedCoordinator.swift */,
+				6DC169AA2988D624005B56C2 /* ProfileCoordinator.swift */,
+				6DC169AC2988D6AA005B56C2 /* TabBarCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		6DC169B0298A9C2B005B56C2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6DC169B1298A9C4B005B56C2 /* LogInViewModel.swift */,
+				6DC169B3298A9CC8005B56C2 /* PhotoViewModel.swift */,
+				6DC169B5298B6742005B56C2 /* ProfileViewModel.swift */,
+				6DFB4281297E9A4200CFCA1B /* FeedModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6DC169B7298B914F005B56C2 /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				6D7000FF293F529B003DFBBF /* LogInViewController.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		6DC169B8298B915F005B56C2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6D7000FB293F5275003DFBBF /* ProfileViewController.swift */,
+				6D7000ED293F51EA003DFBBF /* ProfileTableHeaderView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		6DC169B9298B917B005B56C2 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				6D7000F5293F5235003DFBBF /* PhotosTableViewCell.swift */,
+				6D7000F3293F521F003DFBBF /* PhotosCollectionViewCell.swift */,
+				6D7000F9293F5262003DFBBF /* PhotosViewController.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		6DC169BA298B918C005B56C2 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				6DFB427F297E783C00CFCA1B /* PostViewController.swift */,
+				6D7000F7293F524C003DFBBF /* PostTableViewCell.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		6DC169BB298B9199005B56C2 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				6D7000FD293F5287003DFBBF /* FeedViewController.swift */,
+			);
+			path = Feed;
 			sourceTree = "<group>";
 		};
 		6DFB427C297E753300CFCA1B /* Button */ = {
 			isa = PBXGroup;
 			children = (
 				6DFB427D297E754C00CFCA1B /* CustomButton.swift */,
-				6DFB4281297E9A4200CFCA1B /* Secret.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -404,23 +452,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DC169AB2988D624005B56C2 /* ProfileCoordinator.swift in Sources */,
+				6DC169AF298A8DE2005B56C2 /* ScreenCreate.swift in Sources */,
 				6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */,
+				6DC169B6298B6742005B56C2 /* ProfileViewModel.swift in Sources */,
 				6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */,
 				6D7000FA293F5262003DFBBF /* PhotosViewController.swift in Sources */,
+				6DC169AD2988D6AA005B56C2 /* TabBarCoordinator.swift in Sources */,
+				6DC169B2298A9C4B005B56C2 /* LogInViewModel.swift in Sources */,
 				6D7000D5293F50EB003DFBBF /* AppDelegate.swift in Sources */,
 				6D7000FC293F5275003DFBBF /* ProfileViewController.swift in Sources */,
 				6D7000F6293F5235003DFBBF /* PhotosTableViewCell.swift in Sources */,
 				6D7000D7293F50EB003DFBBF /* SceneDelegate.swift in Sources */,
 				6D7000F8293F524C003DFBBF /* PostTableViewCell.swift in Sources */,
 				6D7E505A2974462C0007CF3D /* Checker.swift in Sources */,
-				6DFB4282297E9A4200CFCA1B /* Secret.swift in Sources */,
+				6DFB4282297E9A4200CFCA1B /* FeedModel.swift in Sources */,
+				6DC169A92988D5D3005B56C2 /* FeedCoordinator.swift in Sources */,
 				6D7E505C2975AC940007CF3D /* LogInInspector.swift in Sources */,
 				6D7000EE293F51EA003DFBBF /* ProfileTableHeaderView.swift in Sources */,
+				6DC169A62988D564005B56C2 /* Coordinator.swift in Sources */,
 				6D7000FE293F5287003DFBBF /* FeedViewController.swift in Sources */,
 				6DBA908A2951552D00455F10 /* User.swift in Sources */,
 				6D700100293F529B003DFBBF /* LogInViewController.swift in Sources */,
 				6DFB427E297E754C00CFCA1B /* CustomButton.swift in Sources */,
 				6D7000F2293F5207003DFBBF /* Photos.swift in Sources */,
+				6DC169B4298A9CC8005B56C2 /* PhotoViewModel.swift in Sources */,
 				6D7E5060297729A00007CF3D /* LogInFactory.swift in Sources */,
 				6D7000F4293F521F003DFBBF /* PhotosCollectionViewCell.swift in Sources */,
 			);

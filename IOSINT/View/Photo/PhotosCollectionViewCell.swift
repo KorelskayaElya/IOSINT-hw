@@ -17,9 +17,6 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         return images
     }()
     
-//    func setupCell(with viewPhotoModel: ViewPhotoModel){
-//        self.photosItems.image = viewPhotoModel.imageName
-//    }
     func setupCell(with imageName: UIImage) {
         photosItems.image = imageName
     }

@@ -10,44 +10,59 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var coordinator: TabBarCoordinatorProtocol?
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+       // guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+//        self.window = UIWindow(windowScene: windowScene)
+//        //1 навигационный контроллер
+//        let secondItemController = UINavigationController(rootViewController: FeedViewController())
+//        //2 навигационный контроллер
+//        let navController = UINavigationController(rootViewController:LogInViewController())
+//        //создание панели вкладок
+//        let tabBarController = UITabBarController()
+//
+//
+//        let factory = MyLoginFactory()
+//        let logInInspector = factory.makeLoginInspector()
+//        let loginVC = LogInViewController()
+//        loginVC.logInDelegate = logInInspector
+//
+//        LogInViewController.loginFactoryDelegate = MyLoginFactory()
+//
+//        tabBarController.viewControllers = [
+//            secondItemController, navController
+//        ]
+//
+//        tabBarController.viewControllers?.enumerated().forEach {
+//            UITabBar.appearance().backgroundColor = .white
+//            UITabBar.appearance().tintColor = .systemBlue
+//            UITabBar.appearance().unselectedItemTintColor = .lightGray
+//            $1.tabBarItem.title = $0 == 0 ? "Feed" : "Profile"
+//            $1.tabBarItem.image = $0 == 0
+//            ? UIImage(systemName: "homekit")
+//            : UIImage(systemName: "person.fill")
+//
+//        }
+//
+//        self.window?.rootViewController = tabBarController
+//        self.window?.makeKeyAndVisible()
+        
+        
+        
+        let tabController = UITabBarController()
+        tabController.tabBar.barTintColor = UIColor.white
+        tabController.tabBar.isTranslucent = false
+        coordinator = TabBarCoordinator(tabBarController: tabController)
+        coordinator?.start()
+                
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        self.window = UIWindow(windowScene: windowScene)
-        //1 навигационный контроллер
-        let secondItemController = UINavigationController(rootViewController: FeedViewController())
-        //2 навигационный контроллер
-        let navController = UINavigationController(rootViewController:LogInViewController())
-        //создание панели вкладок
-        let tabBarController = UITabBarController()
-        
-        
-        let factory = MyLoginFactory()
-        let logInInspector = factory.makeLoginInspector()
-        let loginVC = LogInViewController()
-        loginVC.logInDelegate = logInInspector
-        
-        LogInViewController.loginFactoryDelegate = MyLoginFactory()
-        
-        tabBarController.viewControllers = [
-            secondItemController, navController
-        ]
-        
-        tabBarController.viewControllers?.enumerated().forEach {
-            UITabBar.appearance().backgroundColor = .white
-            UITabBar.appearance().tintColor = .systemBlue
-            UITabBar.appearance().unselectedItemTintColor = .lightGray
-            $1.tabBarItem.title = $0 == 0 ? "Feed" : "Profile"
-            $1.tabBarItem.image = $0 == 0
-            ? UIImage(systemName: "homekit")
-            : UIImage(systemName: "person.fill")
-           
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = tabController
+        window?.makeKeyAndVisible()
         }
-       
-        self.window?.rootViewController = tabBarController
-        self.window?.makeKeyAndVisible()
         
          
     }
@@ -82,5 +97,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
-}
 

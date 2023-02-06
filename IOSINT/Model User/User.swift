@@ -11,7 +11,7 @@ protocol UserService {
     func checkLogin(login: String, password: String) -> User?
 }
 
-class User {
+final class User {
     let login: String
     let fullName: String
     let avatarImage: UIImage

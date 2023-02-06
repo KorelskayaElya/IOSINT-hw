@@ -8,12 +8,12 @@
 import UIKit
 
 protocol LogInFactory {
-    func makeLoginInspector() -> LogInInspector
+    func makeLogInInspector() -> LogInInspector
 }
 
-struct MyLoginFactory: LogInFactory {
+struct MyLogInFactory: LogInFactory {
     
-    func makeLoginInspector() -> LogInInspector {
+    func makeLogInInspector() -> LogInInspector {
         return LogInInspector()
     }
 }
