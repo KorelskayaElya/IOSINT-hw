@@ -13,14 +13,14 @@ class PhotosViewController: UIViewController {
     var viewModel: PhotoViewModel! {
         didSet {
             self.viewModel.photoChange = { [ weak self ] viewModel in
-                self?.setupObserver(images: viewModel.photoNames)
+                self?.setupThread(images: viewModel.photoNames)
             }
         }
         }
     // создаем пустой массив
     private var recivedImages: [UIImage] = []
     // создаем экземпляр класса ImagePublisherFacade
-    private let imageFasade = ImagePublisherFacade()
+    //private let imageFasade = ImagePublisherFacade()
     
     private lazy var flowLayout : UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
@@ -48,18 +48,45 @@ class PhotosViewController: UIViewController {
         self.setupNavigationBar()
         viewModel?.photoAdd()
         }
-
-    private func setupObserver(images: [String]?) {
+    /*
+     Замер скорости обработки изображений
+     QoS:
+     .utility         : 1.4942
+     .userInteractive : 1.3657 - быстрее остальных
+     .userInitiated   : 1.4037
+     .default         : 1.3988
+     .background      : 5.702 - дольше остальных
+     */
+    private func setupThread(images: [String]?) {
         var photo = [UIImage]()
         guard let array = images else { return }
-        array.forEach {i in photo.append(UIImage(named: i)!)}
-        imageFasade.subscribe(self)
-        self.imageFasade.addImagesWithTimer(time: 0.7, repeat: 35, userImages: photo)
+        //        array.forEach {i in photo.append(UIImage(named: i)!)}
+        //        imageFasade.subscribe(self)
+        //        self.imageFasade.addImagesWithTimer(time: 0.7, repeat: 35, userImages: photo)
+        
+        array.forEach { photo.append(UIImage(named: $0)!) }
+        
+        let imageProcessor = ImageProcessor()
+        let start = CFAbsoluteTimeGetCurrent()
+        imageProcessor.processImagesOnThread(sourceImages: photo,
+                                             filter: .fade,
+                                             qos: .userInteractive) { cgImage in
+            let diff = CFAbsoluteTimeGetCurrent() - start
+            cgImage.forEach {
+                guard let image = $0 else {return }
+                self.recivedImages.append(UIImage(cgImage: image))
+            }
+            
+            print("Took \(diff) seconds")
+            DispatchQueue.main.async {
+                self.collection.reloadData()
+            }
+        }
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        // отписываемся
-        imageFasade.removeSubscription(for: self)
-    }
+//    override func viewDidDisappear(_ animated: Bool) {
+//        // отписываемся
+//        imageFasade.removeSubscription(for: self)
+//    }
     private func setupView() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.collection)
