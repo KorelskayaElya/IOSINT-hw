@@ -16,7 +16,7 @@ class PhotosViewController: UIViewController {
                 self?.setupThread(images: viewModel.photoNames)
             }
         }
-        }
+    }
     // создаем пустой массив
     private var recivedImages: [UIImage] = []
     // создаем экземпляр класса ImagePublisherFacade
@@ -41,13 +41,34 @@ class PhotosViewController: UIViewController {
         myCollectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: "PhotosCollectionViewCell")
         return myCollectionView
     }()
+    // индикатор загрузки изображений
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+         var activityIndicator = UIActivityIndicatorView(style: .large)
+         activityIndicator.hidesWhenStopped = true
+         activityIndicator.startAnimating()
+         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+         return activityIndicator
+     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupView()
         self.setupNavigationBar()
         viewModel?.photoAdd()
+        self.runTimer()
+    }
+    private func runTimer() {
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+            if !self.recivedImages.isEmpty {
+                // остановка индикатора
+                self.activityIndicator.stopAnimating()
+                // отключение таймера
+                timer.invalidate()
+                // обновление коллекции
+                self.collection.reloadData()
+            }
         }
+    }
     /*
      Замер скорости обработки изображений
      QoS:
@@ -70,7 +91,7 @@ class PhotosViewController: UIViewController {
         let start = CFAbsoluteTimeGetCurrent()
         imageProcessor.processImagesOnThread(sourceImages: photo,
                                              filter: .fade,
-                                             qos: .userInteractive) { cgImage in
+                                             qos: .utility) { cgImage in
             let diff = CFAbsoluteTimeGetCurrent() - start
             cgImage.forEach {
                 guard let image = $0 else {return }
@@ -78,9 +99,9 @@ class PhotosViewController: UIViewController {
             }
             
             print("Took \(diff) seconds")
-            DispatchQueue.main.async {
-                self.collection.reloadData()
-            }
+//            DispatchQueue.main.async {
+//                self.collection.reloadData()
+//            }
         }
     }
 //    override func viewDidDisappear(_ animated: Bool) {
@@ -90,12 +111,16 @@ class PhotosViewController: UIViewController {
     private func setupView() {
         self.view.backgroundColor = .systemBackground
         self.view.addSubview(self.collection)
+        self.view.addSubview(self.activityIndicator)
     
         NSLayoutConstraint.activate([
             self.collection.topAnchor.constraint(equalTo: self.view.topAnchor),
             self.collection.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.collection.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.collection.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.collection.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            
+            self.activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             ])
     }
     
@@ -126,6 +151,7 @@ extension PhotosViewController: UICollectionViewDataSource,  UICollectionViewDel
         print("User tapped on item \(indexPath.row)")
     }
 }
+    
 extension PhotosViewController: ImageLibrarySubscriber {
     func receive(images: [UIImage]) {
         recivedImages = images
