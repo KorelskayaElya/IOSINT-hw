@@ -22,11 +22,30 @@ class LogInViewController: UIViewController {
                 }
             }
     }
+    // обновление информации
+    var bruteForceViewModel: BruteForceViewModel! {
+             didSet {
+                 self.bruteForceViewModel.passwordFound = { [weak self] bruteForceViewModel in
+                     // асинхронный поток
+                     DispatchQueue.main.async {
+                         self?.bruteForceButton.isEnabled = true
+                         // скрывать загрузку
+                         self?.hideLoading()
+                         // вставлять подобранный предполагаемый пароль
+                         self?.passwordTextField.isSecureTextEntry = false
+                         self?.passwordTextField.text = bruteForceViewModel.brutedPassword
+                     }
+
+                 }
+             }
+         }
     
     private func setupView() {
         view.backgroundColor = .white
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
+        self.scrollView.addSubview(self.bruteForceButton)
+        self.bruteForceButton.addSubview(activityIndicator)
         self.contentView.addSubview(self.textFieldStackView)
         self.contentView.addSubview(self.buttonLog)
         self.contentView.addSubview(self.logView)
@@ -122,7 +141,48 @@ class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonPressLog), for: .touchUpInside)
         return button
     }()
+    // индикатор загрузки
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        var activityIndicator = UIActivityIndicatorView(style: .large)
+            activityIndicator.hidesWhenStopped = true
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            return activityIndicator
+        }()
+    // кнопка перебра паролей
+    private lazy var bruteForceButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(named: "blue_pixel")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Подобрать пароль", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.black.cgColor
+        button.addTarget(self, action: #selector(startBruteForce), for: .touchUpInside)
+        button.layer.cornerRadius = 15
+        button.clipsToBounds = true
+        button.setBackgroundImage(image,for: UIControl.State.normal)
+        return button
+    }()
     
+    
+    // начать перебор паролей
+    @objc private func startBruteForce() {
+        bruteForceButton.isEnabled = false
+        showLoading()
+        bruteForceViewModel.StartBrute()
+     }
+    // показывать загрузку
+    func showLoading() {
+        bruteForceButton.setTitle("", for: .normal)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    // скрывать загрузку
+    func hideLoading() {
+        bruteForceButton.setTitle("Подобрать пароль", for: .normal)
+        activityIndicator.stopAnimating()
+    }
+
     private func contraintsLog() {
         NSLayoutConstraint.activate([
             //логотип
@@ -152,6 +212,15 @@ class LogInViewController: UIViewController {
             buttonLog.heightAnchor.constraint(equalToConstant: 50),
             buttonLog.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 16),
             buttonLog.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            
+            bruteForceButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 80),
+            bruteForceButton.leadingAnchor.constraint(equalTo: textFieldStackView.leadingAnchor, constant: 60),
+            bruteForceButton.trailingAnchor.constraint(equalTo: textFieldStackView.trailingAnchor, constant: -60),
+            bruteForceButton.heightAnchor.constraint(equalToConstant: 40),
+            
+
+            activityIndicator.centerYAnchor.constraint(equalTo: bruteForceButton.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: bruteForceButton.centerXAnchor),
         ])
         
     }
