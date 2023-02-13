@@ -25,11 +25,24 @@ final class LogInViewModel {
         self.logInFactory = model
     }
     
-    func startChecker(login: String, pass: String) {
-        if logInFactory.makeLogInInspector().check(login: login, pass: pass) {
-            logInedUser = Checker.shared.user
-        } else {
-            logInedUser = nil
+//    func startChecker(login: String, pass: String) {
+//        if logInFactory.makeLogInInspector().check(login: login, pass: pass) {
+//            logInedUser = Checker.shared.user
+//        } else {
+//            logInedUser = nil
+//        }
+//    }
+    func startChecker(login: String, pass: String) throws {
+        if login.isEmpty {
+            throw LogInErrors.emptyLogin
         }
+        
+        if pass.isEmpty {
+            throw LogInErrors.emptyPassword
+        }
+        
+        guard let logUser = logInFactory.makeLogInInspector().check(login: login, pass: pass) else {
+            throw LogInErrors.isNotAuthorized}
+        logInedUser = logUser
     }
 }

@@ -15,12 +15,12 @@ class LogInViewController: UIViewController {
         didSet {
             self.viewModel.checker = { [ weak self ] viewModel in
                 guard let logInedUser = viewModel.logInedUser else {
-                    self?.showAlert()
-                    return
-                    }
-                self?.coordinator?.goToProfileViewController(with: logInedUser)
+                    //self?.showAlert()
+                    preconditionFailure("nil user")
                 }
+                self?.coordinator?.goToProfileViewController(with: logInedUser)
             }
+        }
     }
     // обновление информации
     var bruteForceViewModel: BruteForceViewModel! {
@@ -263,10 +263,19 @@ class LogInViewController: UIViewController {
     
     @objc private func buttonPressLog() {
         view.endEditing(true)
-        viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+        //viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+        do {
+          try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+        } catch LogInErrors.emptyLogin {
+            showAlert(message: LogInErrors.emptyLogin.description)
+        } catch LogInErrors.emptyPassword {
+            showAlert(message: LogInErrors.emptyPassword.description)
+        } catch LogInErrors.isNotAuthorized {
+            showAlert(message: LogInErrors.isNotAuthorized.description)
+        } catch {}
     }
-    private func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "Wrong Password", preferredStyle: .alert)
+    private func showAlert(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)
     }
