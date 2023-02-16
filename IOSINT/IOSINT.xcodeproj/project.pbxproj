@@ -42,6 +42,14 @@
 		6DC169B2298A9C4B005B56C2 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B1298A9C4B005B56C2 /* LogInViewModel.swift */; };
 		6DC169B4298A9CC8005B56C2 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B3298A9CC8005B56C2 /* PhotoViewModel.swift */; };
 		6DC169B6298B6742005B56C2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169B5298B6742005B56C2 /* ProfileViewModel.swift */; };
+		6DD5F91D299CAEE70024C255 /* 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F91C299CAEE70024C255 /* 1.mp3 */; };
+		6DD5F91F299CAEEE0024C255 /* 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F91E299CAEEE0024C255 /* 2.mp3 */; };
+		6DD5F921299CAEF60024C255 /* 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F920299CAEF60024C255 /* 3.mp3 */; };
+		6DD5F923299CAEFC0024C255 /* 4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F922299CAEFC0024C255 /* 4.mp3 */; };
+		6DD5F925299CAF010024C255 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F924299CAF010024C255 /* 5.mp3 */; };
+		6DD5F927299CAF280024C255 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F926299CAF280024C255 /* MusicViewController.swift */; };
+		6DD5F929299CF1670024C255 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F928299CF1670024C255 /* VideoViewController.swift */; };
+		6DD5F92B299DECD60024C255 /* RecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F92A299DECD60024C255 /* RecorderViewController.swift */; };
 		6DFB427B297E4A5700CFCA1B /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DFB427A297E4A5700CFCA1B /* iOSIntPackage */; };
 		6DFB427E297E754C00CFCA1B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427D297E754C00CFCA1B /* CustomButton.swift */; };
 		6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427F297E783C00CFCA1B /* PostViewController.swift */; };
@@ -123,6 +131,14 @@
 		6DC169B1298A9C4B005B56C2 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		6DC169B3298A9CC8005B56C2 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		6DC169B5298B6742005B56C2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		6DD5F91C299CAEE70024C255 /* 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 1.mp3; path = "../../../../../музыка для приложения/1.mp3"; sourceTree = "<group>"; };
+		6DD5F91E299CAEEE0024C255 /* 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 2.mp3; path = "../../../../../музыка для приложения/2.mp3"; sourceTree = "<group>"; };
+		6DD5F920299CAEF60024C255 /* 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 3.mp3; path = "../../../../../музыка для приложения/3.mp3"; sourceTree = "<group>"; };
+		6DD5F922299CAEFC0024C255 /* 4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 4.mp3; path = "../../../../../музыка для приложения/4.mp3"; sourceTree = "<group>"; };
+		6DD5F924299CAF010024C255 /* 5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = 5.mp3; path = "../../../../../музыка для приложения/5.mp3"; sourceTree = "<group>"; };
+		6DD5F926299CAF280024C255 /* MusicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
+		6DD5F928299CF1670024C255 /* VideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		6DD5F92A299DECD60024C255 /* RecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecorderViewController.swift; sourceTree = "<group>"; };
 		6DFB427D297E754C00CFCA1B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6DFB427F297E783C00CFCA1B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		6DFB4281297E9A4200CFCA1B /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
@@ -159,6 +175,7 @@
 		6D7000C8293F50EB003DFBBF = {
 			isa = PBXGroup;
 			children = (
+				6DD5F917299CAE010024C255 /* Player */,
 				6DC169B0298A9C2B005B56C2 /* ViewModel */,
 				6DC169A72988D5B7005B56C2 /* Coordinator */,
 				6DFB427C297E753300CFCA1B /* Button */,
@@ -305,6 +322,53 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
+		6DD5F917299CAE010024C255 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5F918299CAE1C0024C255 /* Audio */,
+				6DD5F919299CAE270024C255 /* Video */,
+				6DD5F91A299CAE480024C255 /* Record */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		6DD5F918299CAE1C0024C255 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5F91B299CAEA40024C255 /* Music */,
+				6DD5F926299CAF280024C255 /* MusicViewController.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		6DD5F919299CAE270024C255 /* Video */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5F928299CF1670024C255 /* VideoViewController.swift */,
+			);
+			path = Video;
+			sourceTree = "<group>";
+		};
+		6DD5F91A299CAE480024C255 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5F92A299DECD60024C255 /* RecorderViewController.swift */,
+			);
+			path = Record;
+			sourceTree = "<group>";
+		};
+		6DD5F91B299CAEA40024C255 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				6DD5F91C299CAEE70024C255 /* 1.mp3 */,
+				6DD5F91E299CAEEE0024C255 /* 2.mp3 */,
+				6DD5F920299CAEF60024C255 /* 3.mp3 */,
+				6DD5F922299CAEFC0024C255 /* 4.mp3 */,
+				6DD5F924299CAF010024C255 /* 5.mp3 */,
+			);
+			path = Music;
+			sourceTree = "<group>";
+		};
 		6DFB427C297E753300CFCA1B /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +500,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DD5F925299CAF010024C255 /* 5.mp3 in Resources */,
+				6DD5F91F299CAEEE0024C255 /* 2.mp3 in Resources */,
+				6DD5F91D299CAEE70024C255 /* 1.mp3 in Resources */,
+				6DD5F921299CAEF60024C255 /* 3.mp3 in Resources */,
+				6DD5F923299CAEFC0024C255 /* 4.mp3 in Resources */,
 				6D7000DE293F50EC003DFBBF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,11 +534,14 @@
 				6DC169AF298A8DE2005B56C2 /* ScreenCreate.swift in Sources */,
 				6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */,
 				6DC169B6298B6742005B56C2 /* ProfileViewModel.swift in Sources */,
+				6DD5F92B299DECD60024C255 /* RecorderViewController.swift in Sources */,
 				6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */,
 				6D7000FA293F5262003DFBBF /* PhotosViewController.swift in Sources */,
+				6DD5F927299CAF280024C255 /* MusicViewController.swift in Sources */,
 				6DC169AD2988D6AA005B56C2 /* TabBarCoordinator.swift in Sources */,
 				6DC169B2298A9C4B005B56C2 /* LogInViewModel.swift in Sources */,
 				6D82592829938E89006C0202 /* BruteForce.swift in Sources */,
+				6DD5F929299CF1670024C255 /* VideoViewController.swift in Sources */,
 				6D7000D5293F50EB003DFBBF /* AppDelegate.swift in Sources */,
 				6D82592A2993A25A006C0202 /* BruteForceViewModel.swift in Sources */,
 				6D7000FC293F5275003DFBBF /* ProfileViewController.swift in Sources */,
@@ -657,6 +729,7 @@
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOSINT/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone permission is needed to to receive voice commands.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -685,6 +758,7 @@
 				DEVELOPMENT_TEAM = 92RNZ7CX2N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = IOSINT/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The microphone permission is needed to to receive voice commands.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

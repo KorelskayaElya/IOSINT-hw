@@ -24,7 +24,9 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         let FeedController = UINavigationController()
         coordinatorFeed = FeedCoordinator(navigationController: FeedController)
         coordinatorFeed?.start()
-        UITabBar.appearance().barTintColor = UIColor.black
+        //UITabBar.appearance().barTintColor = UIColor.black
+        UITabBar.appearance().tintColor = UIColor(named: "Pink")
+        UITabBar.appearance().backgroundColor = .systemBackground
         let feed = coordinatorFeed!
         
         let ProfileController = UINavigationController()
