@@ -44,6 +44,12 @@ class FeedViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
+    private lazy var avButton = CustomButton(customButtonTitle: "AVPlayer") {
+         self.goToAVPlayer()
+     }
+    private func goToAVPlayer() {
+         coordinator?.toAVPlayer()
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Feed"
@@ -52,6 +58,7 @@ class FeedViewController: UIViewController {
         view.addSubview(self.textField)
         view.addSubview(self.checkLabel)
         view.addSubview(self.checkGuessButton)
+        view.addSubview(self.avButton)
         self.setupConstraints()
     }
     private func tapButton() {
@@ -75,7 +82,12 @@ class FeedViewController: UIViewController {
             checkGuessButton.topAnchor.constraint(equalTo: checkLabel.bottomAnchor, constant: 20),
             checkGuessButton.heightAnchor.constraint(equalToConstant: 40),
             checkGuessButton.widthAnchor.constraint(equalToConstant: 200),
-            checkGuessButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            checkGuessButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            avButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            avButton.heightAnchor.constraint(equalToConstant: 40),
+            avButton.widthAnchor.constraint(equalToConstant: 200),
+            avButton.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
                        
         ])
     }

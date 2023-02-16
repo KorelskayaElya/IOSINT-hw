@@ -29,4 +29,20 @@ class FeedCoordinator: Coordinator {
         let postVC = PostViewController()
         navigationController.pushViewController(postVC, animated: true)
     }
+    func toAVPlayer() {
+         let avPlayerVC = MusicViewController()
+         avPlayerVC.coordinator = self
+         navigationController.navigationBar.tintColor = .black
+         navigationController.pushViewController(avPlayerVC, animated: true)
+     }
+    func toVideoPlayer() {
+        let videoPlayerVC = VideoViewController()
+        videoPlayerVC.coordinator = self
+        navigationController.pushViewController(videoPlayerVC, animated: true)
+    }
+    func toRecorder() {
+        let recorderVC = RecorderViewController()
+        recorderVC.coordinator = self
+        navigationController.pushViewController(recorderVC, animated: true)
+    }
 }
