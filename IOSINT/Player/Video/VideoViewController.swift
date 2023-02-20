@@ -60,6 +60,7 @@ class VideoViewController: UIViewController {
         videoPlayer.play()
     }
     
+    
     private func addVideoItems() {
         list.append(videoItem(title: "Funny video", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/c555e8058fac3c3442ad2229783642ae/manifest/video.m3u8"))
         list.append(videoItem(title: "Super funny", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/180485a8b80743f029b184bc70f3f592/manifest/video.m3u8"))
