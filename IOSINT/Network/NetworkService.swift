@@ -24,7 +24,8 @@ struct NetworkService {
     }
     static func dataTask(_ address: URL) {
             let session = URLSession.shared
-            let task = session.dataTask(with: address) {data, response, error i
+            let task = session.dataTask(with: address) {data, response, error in
+
                 if let error = error {
                     print("error: \(error.localizedDescription)")
                     //error: The Internet connection appears to be offline.
@@ -33,7 +34,7 @@ struct NetworkService {
                     let str = String(decoding: data, as: UTF8.self)
                     print("data: \(str)")
                     if let httpResponse = response as? HTTPURLResponse {
-                    print("allHeaderFields:  \(httpResponse.allHeaderFields), statusCode: \(httpResponse.statusCode)")
+                    print("allHeaderFields: \(httpResponse.allHeaderFields), statusCode: \(httpResponse.statusCode)")
                 }
                 }
             }
