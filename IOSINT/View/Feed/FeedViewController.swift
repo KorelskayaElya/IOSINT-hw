@@ -59,7 +59,6 @@ class FeedViewController: UIViewController {
         view.addSubview(self.checkLabel)
         view.addSubview(self.checkGuessButton)
         view.addSubview(self.avButton)
-        
         NetworkService.request(for: appConfiguration!)
         self.setupConstraints()
     }
@@ -67,6 +66,7 @@ class FeedViewController: UIViewController {
         coordinator?.goToPostViewController()
     }
     private func setupConstraints() {
+        
         NSLayoutConstraint.activate([
             button.heightAnchor.constraint(equalToConstant: 40),
             button.widthAnchor.constraint(equalToConstant: 200),

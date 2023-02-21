@@ -8,6 +8,7 @@
 import UIKit
 
 var appConfiguration: AppConfiguration?
+
 struct NetworkService {
     static func request(for configuration: AppConfiguration) {
         
@@ -24,6 +25,7 @@ struct NetworkService {
         }
     }
     static func dataTask(_ address: URL) {
+        
             let session = URLSession.shared
             let task = session.dataTask(with: address) {data, response, error in
 
@@ -39,6 +41,7 @@ struct NetworkService {
                 }
                 }
             }
+        
             task.resume()
         }
 }

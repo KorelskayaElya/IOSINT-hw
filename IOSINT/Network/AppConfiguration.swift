@@ -8,7 +8,9 @@
 import UIKit
 
 enum AppConfiguration: CaseIterable {
+    
     typealias AllCases = [AppConfiguration]
+    
     case films(String)
     case species(String)
     case starships(String)
