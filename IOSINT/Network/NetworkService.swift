@@ -8,9 +8,7 @@
 import UIKit
 
 var appConfiguration: AppConfiguration?
- 
 struct NetworkService {
-    
     static func request(for configuration: AppConfiguration) {
         
         switch  configuration {
@@ -44,6 +42,8 @@ struct NetworkService {
             task.resume()
         }
 }
+
+
 
 
 

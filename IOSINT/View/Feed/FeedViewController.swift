@@ -59,6 +59,7 @@ class FeedViewController: UIViewController {
         view.addSubview(self.checkLabel)
         view.addSubview(self.checkGuessButton)
         view.addSubview(self.avButton)
+        
         NetworkService.request(for: appConfiguration!)
         self.setupConstraints()
     }
