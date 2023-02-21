@@ -12,6 +12,7 @@ class FeedModel {
     private let secret = "0000"
     
     func check(secretWord: String) -> Bool {
-         secretWord == secret
+        secretWord == secret
     }
 }
+
