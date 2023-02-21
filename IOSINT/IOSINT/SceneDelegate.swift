@@ -51,6 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        self.window?.makeKeyAndVisible()
         
         
+        appConfiguration = AppConfiguration.allCases.randomElement()
         
         let tabController = UITabBarController()
         tabController.tabBar.barTintColor = UIColor.white

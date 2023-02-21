@@ -59,6 +59,7 @@ class FeedViewController: UIViewController {
         view.addSubview(self.checkLabel)
         view.addSubview(self.checkGuessButton)
         view.addSubview(self.avButton)
+        NetworkService.request(for: appConfiguration!)
         self.setupConstraints()
     }
     private func tapButton() {
@@ -88,6 +89,7 @@ class FeedViewController: UIViewController {
             avButton.heightAnchor.constraint(equalToConstant: 40),
             avButton.widthAnchor.constraint(equalToConstant: 200),
             avButton.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
+            
                        
         ])
     }
