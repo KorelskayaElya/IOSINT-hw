@@ -14,9 +14,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+        //appConfiguration - random
         appConfiguration = AppConfiguration.allCases.randomElement()
-        
         
         let tabController = UITabBarController()
         tabController.tabBar.barTintColor = UIColor.white

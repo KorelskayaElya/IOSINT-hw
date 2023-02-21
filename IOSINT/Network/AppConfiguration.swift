@@ -8,18 +8,16 @@
 import UIKit
 
 enum AppConfiguration: CaseIterable {
-    
     typealias AllCases = [AppConfiguration]
-    
     case films(String)
-    case species(String)
     case starships(String)
+    case species(String)
     
     static var allCases: AllCases {
         return [
             .films("https://swapi.dev/api/films/1/"),
-            .species("https://swapi.dev/api/species/3/"),
-            .starships("https://swapi.dev/api/starships/5/")
+            .starships("https://swapi.dev/api/starships/3/"),
+            .species("https://swapi.dev/api/species/5/")
         ]
     }
 }
