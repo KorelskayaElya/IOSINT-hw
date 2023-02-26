@@ -50,6 +50,12 @@ class FeedViewController: UIViewController {
     private func goToAVPlayer() {
          coordinator?.toAVPlayer()
      }
+    private lazy var infoBtn = CustomButton(customButtonTitle: "Info") {
+         self.goToInfo()
+     }
+    private func goToInfo() {
+         coordinator?.toInfo()
+     }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Feed"
@@ -59,11 +65,8 @@ class FeedViewController: UIViewController {
         view.addSubview(self.checkLabel)
         view.addSubview(self.checkGuessButton)
         view.addSubview(self.avButton)
-        
-        
+        view.addSubview(self.infoBtn)
         NetworkService.request(for: appConfiguration!)
-        
-        
         self.setupConstraints()
     }
     private func tapButton() {
@@ -94,6 +97,12 @@ class FeedViewController: UIViewController {
             avButton.heightAnchor.constraint(equalToConstant: 40),
             avButton.widthAnchor.constraint(equalToConstant: 200),
             avButton.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 200),
+            
+            infoBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoBtn.heightAnchor.constraint(equalToConstant: 40),
+            infoBtn.widthAnchor.constraint(equalToConstant: 200),
+            infoBtn.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 250),
+            
             
                        
         ])

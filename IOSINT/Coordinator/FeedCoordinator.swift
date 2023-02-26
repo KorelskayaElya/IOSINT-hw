@@ -8,7 +8,7 @@
 import UIKit
 import StorageService
 // дочерный координатор
-class FeedCoordinator: Coordinator {
+final class FeedCoordinator: Coordinator {
     
     var navigationController: UINavigationController
     
@@ -44,5 +44,10 @@ class FeedCoordinator: Coordinator {
         let recorderVC = RecorderViewController()
         recorderVC.coordinator = self
         navigationController.pushViewController(recorderVC, animated: true)
+    }
+    func toInfo() {
+        let infovc = InfoViewController()
+        infovc.coordinator = self
+        navigationController.pushViewController(infovc, animated: true)
     }
 }

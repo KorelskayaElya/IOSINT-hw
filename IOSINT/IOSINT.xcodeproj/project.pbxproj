@@ -52,6 +52,7 @@
 		6DD5F935299E2CE20024C255 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F934299E2CE20024C255 /* 5.mp3 */; };
 		6DD5F93A29A335080024C255 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F93929A335080024C255 /* NetworkService.swift */; };
 		6DD5F93C29A335760024C255 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F93B29A335760024C255 /* AppConfiguration.swift */; };
+		6DE90A7929AB3FF50079BF97 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE90A7829AB3FF50079BF97 /* InfoViewController.swift */; };
 		6DFB427B297E4A5700CFCA1B /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DFB427A297E4A5700CFCA1B /* iOSIntPackage */; };
 		6DFB427E297E754C00CFCA1B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427D297E754C00CFCA1B /* CustomButton.swift */; };
 		6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427F297E783C00CFCA1B /* PostViewController.swift */; };
@@ -143,6 +144,7 @@
 		6DD5F934299E2CE20024C255 /* 5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5.mp3; sourceTree = "<group>"; };
 		6DD5F93929A335080024C255 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6DD5F93B29A335760024C255 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		6DE90A7829AB3FF50079BF97 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		6DFB427D297E754C00CFCA1B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		6DFB427F297E783C00CFCA1B /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		6DFB4281297E9A4200CFCA1B /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 		6D7000EC293F519E003DFBBF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6DE90A7729AB3FE60079BF97 /* Info */,
 				6DC169BB298B9199005B56C2 /* Feed */,
 				6DC169BA298B918C005B56C2 /* Post */,
 				6DC169B9298B917B005B56C2 /* Photo */,
@@ -381,6 +384,14 @@
 				6DD5F93B29A335760024C255 /* AppConfiguration.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		6DE90A7729AB3FE60079BF97 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				6DE90A7829AB3FF50079BF97 /* InfoViewController.swift */,
+			);
+			path = Info;
 			sourceTree = "<group>";
 		};
 		6DFB427C297E753300CFCA1B /* Button */ = {
@@ -566,6 +577,7 @@
 				6DFB4282297E9A4200CFCA1B /* FeedModel.swift in Sources */,
 				6DC169A92988D5D3005B56C2 /* FeedCoordinator.swift in Sources */,
 				6D7E505C2975AC940007CF3D /* LogInInspector.swift in Sources */,
+				6DE90A7929AB3FF50079BF97 /* InfoViewController.swift in Sources */,
 				6DD5F93A29A335080024C255 /* NetworkService.swift in Sources */,
 				6D7000EE293F51EA003DFBBF /* ProfileTableHeaderView.swift in Sources */,
 				6DC169A62988D564005B56C2 /* Coordinator.swift in Sources */,
