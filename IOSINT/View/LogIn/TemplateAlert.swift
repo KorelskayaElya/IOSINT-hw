@@ -16,7 +16,7 @@ class TemplateErrorAlert {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel)
         alert.addAction(action)
-        // не знаю будет ли работать на одном экране
+        // не работает
         LogInViewController().present(alert, animated: true, completion: nil)
     }
 }

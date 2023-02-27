@@ -13,7 +13,7 @@ final class LogInViewModel {
 
     var logInFactory: LogInFactory
     // уведомляет представление об изменениях
-    var logInedUser: Bool {
+    var logInedUser: User? {
         didSet {
             self.checker?(self)
         }
@@ -25,21 +25,17 @@ final class LogInViewModel {
         self.logInFactory = model
     }
 
-    // нужно ли отлавливать ошибку здесь ?
-    func startChecker(login: String, password: String) {
-        do {
-            // не понимаю как обратиться 
-            let logUser = try logInFactory.makeLogInInspector().check(login: login, password: password)
-            logInedUser = logUser
-        } catch LogInErrors.emptyLogin  {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Пустое поле")
-        } catch LogInErrors.emptyPassword {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Пустое поле")
-        } catch LogInErrors.isNotAuthorized {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Неверная авторизация")
-        } catch {
-            print("мы не смогли понять что не так")
+    func startChecker(login: String, pass: String) throws {
+        if login.isEmpty {
+            throw LogInErrors.emptyLogin
         }
         
+        if pass.isEmpty {
+            throw LogInErrors.emptyPassword
+        }
+        
+        guard let logUser = logInFactory.makeLogInInspector().check(login: login, password: pass) else {
+            throw LogInErrors.isNotAuthorized}
+        logInedUser = logUser
     }
 }

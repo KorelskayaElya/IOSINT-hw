@@ -110,7 +110,7 @@ class LogInViewController: UIViewController {
         textField.backgroundColor = .systemGray6
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
-        textField.text = "123"
+        textField.text = "kov@mail.ru"
         textField.placeholder = " Email of phone"
         return textField
     }()
@@ -126,7 +126,7 @@ class LogInViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
-        textField.text = "123"
+        textField.text = "1234567"
         textField.placeholder = " Password"
         return textField
     }()
@@ -265,18 +265,22 @@ class LogInViewController: UIViewController {
     // при нажатии на кнопку должны обработаться два метода
     @objc private func buttonPressLog() {
         view.endEditing(true)
-        // если не пусто 
-        guard let login = self.loginTextField.text, let pass = self.passwordTextField.text, !login.isEmpty, !pass.isEmpty else {
-            // пусто
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнение", alertMessage: "Заполните пустые поля")
-            return
-        }
-        // если авторизация прошла открываем вью
-        if self.delegate?.check(login: login, password: pass) == true {
-            self.coordinator?.start()
-        } else {
-            return
-        }
+        do {
+          try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+           
+        } catch LogInErrors.emptyLogin {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
+        } catch LogInErrors.emptyPassword {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
+        } catch LogInErrors.isNotAuthorized {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка авторизации", alertMessage: "Вы не авторизованы")
+        } catch {}
+        //если авторизация прошла открываем вью
+        if ((delegate?.check(login: loginTextField.text!, password: passwordTextField.text!)) != nil) {
+           self.coordinator?.start()
+       } else {
+           return
+       }
     }
 }
     

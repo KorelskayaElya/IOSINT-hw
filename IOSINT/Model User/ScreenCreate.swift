@@ -22,7 +22,7 @@ final class ScreenCreate: Create {
         view.viewModel = viewModel
         return view
     }
-    // не понимаю правильно ли
+
     func createLogin(coordinator: ProfileCoordinator) -> UIViewController {
        let model = MyLogInFactory()
        let viewModel = LogInViewModel(model: model)

@@ -11,14 +11,16 @@ final class Checker {
     // синглтон
     static var shared = Checker()
     // логин пароль для входа
-     private let loginCheck: String = "123"
-     private let passCheck: String = "123"
+     private let loginCheck: String = "kov@mail.ru"
+     private let passCheck: String = "1234567"
+    private let user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
 
-    func checkOfChecker(login: String, pass: String) -> Result<Bool, LogInErrors> {
+    func check(login: String, pass: String, completion: @escaping (Result<User, LogInErrors>) -> Void) {
         if (login == loginCheck) && (pass == passCheck) {
-            return .success(true)
+            completion(.success(user))
         } else {
-            return .failure(.isNotAuthorized)
+            completion(.failure(LogInErrors.isNotAuthorized))
+            return
         }
     }
 }

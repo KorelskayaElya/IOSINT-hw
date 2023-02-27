@@ -31,15 +31,17 @@ import FirebaseCore
                  print("error: \(error)")
                  let err = error as NSError
                  switch err.code {
-                 //Если пользователь не найден - предлагаем создать
+                 // Если пользователь не найден - предлагаем создать
                  case AuthErrorCode.userNotFound.rawValue:
                      let alert = UIAlertController(title: "Пользователь не найден", message: "Хотите создать аккаунт?", preferredStyle: .alert)
                      alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {_ in print("Пользователь не хочет создавать аккаунт")}))
                      alert.addAction(UIAlertAction(title: "Да", style: .default, handler: {_ in self.signUp(login: login, password: password)}))
+                     // не работает alert
                     LogInViewController().present(alert, animated: true, completion: nil)
                  // другие ошибки
                  default:
                      TemplateErrorAlert.shared.alert(alertTitle: "Ошибка входа", alertMessage: error.localizedDescription)
+                     print("другие ошибки")
                  }
              } else {
                  // успешный вход
@@ -56,7 +58,7 @@ import FirebaseCore
                      TemplateErrorAlert.shared.alert(alertTitle: "Ошибка регистрации", alertMessage: error.localizedDescription)
                  } else {
                      // нет ошибок
-                     TemplateErrorAlert.shared.alert(alertTitle: "Аккаунт создан", alertMessage: "Поздравляем! Ваш аккаунт успешно создан!")
+                     TemplateErrorAlert.shared.alert(alertTitle: "Аккаунт создан", alertMessage: "Ваш аккаунт успешно создан!")
                  }
              }
      }

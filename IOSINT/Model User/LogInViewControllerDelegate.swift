@@ -8,7 +8,7 @@
 import UIKit
 
 protocol LogInViewControllerDelegate {
-    // вызывается в LoginViewController 
-    func check(login: String, password: String) -> Bool
+
+    func check(login: String, password: String) -> User?
     
 }

@@ -8,18 +8,25 @@
 import UIKit
 
 struct LogInInspector: LogInViewControllerDelegate {
-    // вызывается в LoginViewController 
-    func check(login: String, password: String) -> Bool {
-        // проверка учетных данных
+    func check(login: String, password: String) -> User? {
+        
+        var user: User?
         CheckerService.shared.checkCredentials(login: login, password: password)
-        // флаг проверки для открытия вью
-        if CheckerService.shared.isSingIn == true {
-            return true
-        } else {
-            return false
+        
+        Checker.shared.check(login: login, pass: password) { result in
+            switch result {
+            case .success(let myUser):
+                user = myUser
+                CheckerService.shared.isSingIn = true
+            case .failure( _):
+                CheckerService.shared.isSingIn = false
+                return
+            }
         }
+        return user
     }
 }
+
     
     
 
