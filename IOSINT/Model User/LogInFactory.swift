@@ -10,9 +10,7 @@ import UIKit
 protocol LogInFactory {
     func makeLogInInspector() -> LogInInspector
 }
-
 struct MyLogInFactory: LogInFactory {
-    
     func makeLogInInspector() -> LogInInspector {
         return LogInInspector()
     }

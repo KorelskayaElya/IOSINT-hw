@@ -7,6 +7,9 @@
 
 import UIKit
 import StorageService
+import FirebaseAuth
+import FirebaseCore
+
 class ProfileViewController: UIViewController {
     let GroupSection = ["Photos","---"]
     
@@ -68,6 +71,16 @@ class ProfileViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        // разлогиниваем при уходе со страницы
+         do {
+             try Auth.auth().signOut()
+             // ставим флаг
+             CheckerService.shared.isSingIn = false
+         } catch {
+             print("is not signOut")
+         }
     }
 }
 

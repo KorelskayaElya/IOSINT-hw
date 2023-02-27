@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 // дочерний координатор
 final class ProfileCoordinator: Coordinator {
 

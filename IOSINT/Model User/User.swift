@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 protocol UserService {
     func checkLogin(login: String, password: String) -> User?
@@ -24,6 +25,7 @@ final class User {
         self.status = status
     }
 }
+
 class CurrentUserService: UserService {
     let user = User(login: "123", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
     let userPassword = "123"
@@ -35,6 +37,7 @@ class CurrentUserService: UserService {
         }
     }
 }
+
 class TestUserService: UserService {
     private let testUser = User(login: "dog", fullName: "DOGGERS", avatarImage: UIImage(named: "dog")!, status: "I'm hungry")
     private let testPassword = "dog"

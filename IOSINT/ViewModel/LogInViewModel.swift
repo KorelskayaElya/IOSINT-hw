@@ -10,39 +10,36 @@ import UIKit
 final class LogInViewModel {
     
     static var logInFactoryDelegate: LogInFactory?
-    
+
     var logInFactory: LogInFactory
     // уведомляет представление об изменениях
-    var logInedUser: User? {
+    var logInedUser: Bool {
         didSet {
             self.checker?(self)
         }
     }
-    
+
     var checker: ((LogInViewModel) -> ())?
-    
+
     init(model: LogInFactory) {
         self.logInFactory = model
     }
-    
-//    func startChecker(login: String, pass: String) {
-//        if logInFactory.makeLogInInspector().check(login: login, pass: pass) {
-//            logInedUser = Checker.shared.user
-//        } else {
-//            logInedUser = nil
-//        }
-//    }
-    func startChecker(login: String, pass: String) throws {
-        if login.isEmpty {
-            throw LogInErrors.emptyLogin
+
+    // нужно ли отлавливать ошибку здесь ?
+    func startChecker(login: String, password: String) {
+        do {
+            // не понимаю как обратиться 
+            let logUser = try logInFactory.makeLogInInspector().check(login: login, password: password)
+            logInedUser = logUser
+        } catch LogInErrors.emptyLogin  {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Пустое поле")
+        } catch LogInErrors.emptyPassword {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Пустое поле")
+        } catch LogInErrors.isNotAuthorized {
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка", alertMessage: "Неверная авторизация")
+        } catch {
+            print("мы не смогли понять что не так")
         }
         
-        if pass.isEmpty {
-            throw LogInErrors.emptyPassword
-        }
-        
-        guard let logUser = logInFactory.makeLogInInspector().check(login: login, pass: pass) else {
-            throw LogInErrors.isNotAuthorized}
-        logInedUser = logUser
     }
 }

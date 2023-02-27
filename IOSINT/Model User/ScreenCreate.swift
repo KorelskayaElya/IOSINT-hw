@@ -22,17 +22,17 @@ final class ScreenCreate: Create {
         view.viewModel = viewModel
         return view
     }
-    
+    // не понимаю правильно ли
     func createLogin(coordinator: ProfileCoordinator) -> UIViewController {
-        let model = MyLogInFactory()
-        let viewModel = LogInViewModel(model: model)
-        let generator = GeneratorPassword()
-        let bruteModel = generator.getRandomPassword(charSet: generator.letters, passwordLen: 4)
-        let bruteViewModel = BruteForceViewModel(model: bruteModel)
+       let model = MyLogInFactory()
+       let viewModel = LogInViewModel(model: model)
+       // let generator = GeneratorPassword()
+       // let bruteModel = generator.getRandomPassword(charSet: generator.letters, passwordLen: 4)
+        //let bruteViewModel = BruteForceViewModel(model: bruteModel)
         let view = LogInViewController()
         view.coordinator = coordinator
         view.viewModel = viewModel
-        view.bruteForceViewModel = bruteViewModel
+        //view.bruteForceViewModel = bruteViewModel
         return view
     }
     
