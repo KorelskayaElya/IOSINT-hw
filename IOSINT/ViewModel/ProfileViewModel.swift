@@ -8,7 +8,7 @@
 import UIKit
 import StorageService
 // создание модели для профиля
-final class ProfileViewModel {
+class ProfileViewModel {
     
     var images: [Post]?
     // уведомляет представление об изменениях

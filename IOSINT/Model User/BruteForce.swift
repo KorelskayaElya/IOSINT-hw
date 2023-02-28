@@ -4,7 +4,7 @@
 //
 //  Created by Эля Корельская on 08.02.2023.
 //
-
+// уже не надо
 import UIKit
 // структура перебора паролей
 struct GeneratorPassword {

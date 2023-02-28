@@ -10,7 +10,7 @@ import UIKit
 final class LogInViewModel {
     
     static var logInFactoryDelegate: LogInFactory?
-    
+
     var logInFactory: LogInFactory
     // уведомляет представление об изменениях
     var logInedUser: User? {
@@ -18,20 +18,13 @@ final class LogInViewModel {
             self.checker?(self)
         }
     }
-    
+
     var checker: ((LogInViewModel) -> ())?
-    
+
     init(model: LogInFactory) {
         self.logInFactory = model
     }
-    
-//    func startChecker(login: String, pass: String) {
-//        if logInFactory.makeLogInInspector().check(login: login, pass: pass) {
-//            logInedUser = Checker.shared.user
-//        } else {
-//            logInedUser = nil
-//        }
-//    }
+
     func startChecker(login: String, pass: String) throws {
         if login.isEmpty {
             throw LogInErrors.emptyLogin
@@ -41,7 +34,7 @@ final class LogInViewModel {
             throw LogInErrors.emptyPassword
         }
         
-        guard let logUser = logInFactory.makeLogInInspector().check(login: login, pass: pass) else {
+        guard let logUser = logInFactory.makeLogInInspector().check(login: login, password: pass) else {
             throw LogInErrors.isNotAuthorized}
         logInedUser = logUser
     }

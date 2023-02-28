@@ -8,27 +8,21 @@
 import UIKit
 
 final class Checker {
-    
+    // синглтон
     static var shared = Checker()
-    
-     private let loginCheck: String = "123"
-     private let passCheck: String = "123"
-     private let user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
-    //var user: User?
-    
+    // логин пароль для входа
+    private let loginCheck: String = "kov@mail.ru"
+    private let passCheck: String = "1234567"
+    private let user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
+
     func check(login: String, pass: String, completion: @escaping (Result<User, LogInErrors>) -> Void) {
         if (login == loginCheck) && (pass == passCheck) {
-//            user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
-//                return true
             completion(.success(user))
         } else {
-            //return false
             completion(.failure(LogInErrors.isNotAuthorized))
             return
         }
     }
 }
-protocol LoginViewControllerDelegate {
-    func check(login: String, pass: String) -> Bool
-}
+
 

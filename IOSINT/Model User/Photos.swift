@@ -7,17 +7,6 @@
 
 import UIKit
 
-//struct ViewPhotoModel {
-//    var imageName: UIImage?
-//    static func addPhotos() -> [ViewPhotoModel] {
-//        var photos: [ViewPhotoModel] = []
-//        for index in 0..<21 {
-//            photos.append(ViewPhotoModel(imageName: UIImage(named: "Image\(index + 1)")))
-//        }
-//        return photos
-//    }
-//}
-
 struct ViewModel {
     static let photos: [String] = [
         "person1",

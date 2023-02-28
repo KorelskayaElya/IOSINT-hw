@@ -6,46 +6,48 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LogInViewController: UIViewController {
-    
+    // LoginViewController имеет ссылку на LoginInspector в виде приватного свойства
+    private var delegate: LogInViewControllerDelegate?
     weak var coordinator: ProfileCoordinator?
-    // обновление информации
-    var viewModel: LogInViewModel! {
-        didSet {
-            self.viewModel.checker = { [ weak self ] viewModel in
-                guard let logInedUser = viewModel.logInedUser else {
-                    //self?.showAlert()
-                    preconditionFailure("nil user")
+        // обновление информации
+        var viewModel: LogInViewModel! {
+            didSet {
+                self.viewModel.checker = { [ weak self ] viewModel in
+                    guard let logInedUser = viewModel.logInedUser else {
+                        //self?.showAlert()
+                        preconditionFailure("nil user")
+                    }
+                    self?.coordinator?.goToProfileViewController(with: logInedUser)
                 }
-                self?.coordinator?.goToProfileViewController(with: logInedUser)
             }
         }
-    }
-    // обновление информации
-    var bruteForceViewModel: BruteForceViewModel! {
-             didSet {
-                 self.bruteForceViewModel.passwordFound = { [weak self] bruteForceViewModel in
-                     // асинхронный поток
-                     DispatchQueue.main.async {
-                         self?.bruteForceButton.isEnabled = true
-                         // скрывать загрузку
-                         self?.hideLoading()
-                         // вставлять подобранный предполагаемый пароль
-                         self?.passwordTextField.isSecureTextEntry = false
-                         self?.passwordTextField.text = bruteForceViewModel.brutedPassword
-                     }
-
-                 }
-             }
-         }
+    //    // обновление информации
+    //    var bruteForceViewModel: BruteForceViewModel! {
+    //             didSet {
+    //                 self.bruteForceViewModel.passwordFound = { [weak self] bruteForceViewModel in
+    //                     // асинхронный поток
+    //                     DispatchQueue.main.async {
+    //                         //self?.bruteForceButton.isEnabled = true
+    //                         // скрывать загрузку
+    //                        // self?.hideLoading()
+    //                         // вставлять подобранный предполагаемый пароль
+    //                         self?.passwordTextField.isSecureTextEntry = false
+    //                         self?.passwordTextField.text = bruteForceViewModel.brutedPassword
+    //                     }
+    //
+    //                 }
+    //             }
+    //         }
     
     private func setupView() {
         view.backgroundColor = .white
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
-        self.scrollView.addSubview(self.bruteForceButton)
-        self.bruteForceButton.addSubview(activityIndicator)
+        //self.scrollView.addSubview(self.bruteForceButton)
+        // self.bruteForceButton.addSubview(activityIndicator)
         self.contentView.addSubview(self.textFieldStackView)
         self.contentView.addSubview(self.buttonLog)
         self.contentView.addSubview(self.logView)
@@ -108,7 +110,7 @@ class LogInViewController: UIViewController {
         textField.backgroundColor = .systemGray6
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
-        textField.text = "123"
+        textField.text = "kov@mail.ru"
         textField.placeholder = " Email of phone"
         return textField
     }()
@@ -124,7 +126,7 @@ class LogInViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
-        textField.text = "123"
+        textField.text = "1234567"
         textField.placeholder = " Password"
         return textField
     }()
@@ -141,48 +143,48 @@ class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonPressLog), for: .touchUpInside)
         return button
     }()
-    // индикатор загрузки
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        var activityIndicator = UIActivityIndicatorView(style: .large)
-            activityIndicator.hidesWhenStopped = true
-            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-            return activityIndicator
-        }()
-    // кнопка перебра паролей
-    private lazy var bruteForceButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "blue_pixel")
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Подобрать пароль", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.black.cgColor
-        button.addTarget(self, action: #selector(startBruteForce), for: .touchUpInside)
-        button.layer.cornerRadius = 15
-        button.clipsToBounds = true
-        button.setBackgroundImage(image,for: UIControl.State.normal)
-        return button
-    }()
+    //    // индикатор загрузки
+    //    private lazy var activityIndicator: UIActivityIndicatorView = {
+    //        var activityIndicator = UIActivityIndicatorView(style: .large)
+    //            activityIndicator.hidesWhenStopped = true
+    //            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+    //            return activityIndicator
+    //        }()
+    //    // кнопка перебра паролей
+    //    private lazy var bruteForceButton: UIButton = {
+    //        let button = UIButton()
+    //        let image = UIImage(named: "blue_pixel")
+    //        button.translatesAutoresizingMaskIntoConstraints = false
+    //        button.setTitle("Подобрать пароль", for: .normal)
+    //        button.setTitleColor(UIColor.black, for: .normal)
+    //        button.layer.borderWidth = 2
+    //        button.layer.borderColor = UIColor.black.cgColor
+    //        button.addTarget(self, action: #selector(startBruteForce), for: .touchUpInside)
+    //        button.layer.cornerRadius = 15
+    //        button.clipsToBounds = true
+    //        button.setBackgroundImage(image,for: UIControl.State.normal)
+    //        return button
+    //    }()
     
     
-    // начать перебор паролей
-    @objc private func startBruteForce() {
-        bruteForceButton.isEnabled = false
-        showLoading()
-        bruteForceViewModel.StartBrute()
-     }
-    // показывать загрузку
-    func showLoading() {
-        bruteForceButton.setTitle("", for: .normal)
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-    }
-    // скрывать загрузку
-    func hideLoading() {
-        bruteForceButton.setTitle("Подобрать пароль", for: .normal)
-        activityIndicator.stopAnimating()
-    }
-
+    //    // начать перебор паролей
+    //    @objc private func startBruteForce() {
+    //        bruteForceButton.isEnabled = false
+    //        showLoading()
+    //        bruteForceViewModel.StartBrute()
+    //     }
+    //    // показывать загрузку
+    //    func showLoading() {
+    //        bruteForceButton.setTitle("", for: .normal)
+    //        activityIndicator.isHidden = false
+    //        activityIndicator.startAnimating()
+    //    }
+    //    // скрывать загрузку
+    //    func hideLoading() {
+    //        bruteForceButton.setTitle("Подобрать пароль", for: .normal)
+    //        activityIndicator.stopAnimating()
+    //    }
+    
     private func contraintsLog() {
         NSLayoutConstraint.activate([
             //логотип
@@ -213,14 +215,14 @@ class LogInViewController: UIViewController {
             buttonLog.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 16),
             buttonLog.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
-            bruteForceButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 80),
-            bruteForceButton.leadingAnchor.constraint(equalTo: textFieldStackView.leadingAnchor, constant: 60),
-            bruteForceButton.trailingAnchor.constraint(equalTo: textFieldStackView.trailingAnchor, constant: -60),
-            bruteForceButton.heightAnchor.constraint(equalToConstant: 40),
+            //            bruteForceButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 80),
+            //            bruteForceButton.leadingAnchor.constraint(equalTo: textFieldStackView.leadingAnchor, constant: 60),
+            //            bruteForceButton.trailingAnchor.constraint(equalTo: textFieldStackView.trailingAnchor, constant: -60),
+            //            bruteForceButton.heightAnchor.constraint(equalToConstant: 40),
             
-
-            activityIndicator.centerYAnchor.constraint(equalTo: bruteForceButton.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: bruteForceButton.centerXAnchor),
+            
+            //            activityIndicator.centerYAnchor.constraint(equalTo: bruteForceButton.centerYAnchor),
+            //            activityIndicator.centerXAnchor.constraint(equalTo: bruteForceButton.centerXAnchor),
         ])
         
     }
@@ -260,24 +262,25 @@ class LogInViewController: UIViewController {
         notification.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         notification.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+    // при нажатии на кнопку должны обработаться два метода
     @objc private func buttonPressLog() {
         view.endEditing(true)
-        //viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
         do {
-          try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
+            try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
         } catch LogInErrors.emptyLogin {
-            showAlert(message: LogInErrors.emptyLogin.description)
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
         } catch LogInErrors.emptyPassword {
-            showAlert(message: LogInErrors.emptyPassword.description)
-        } catch LogInErrors.isNotAuthorized {
-            showAlert(message: LogInErrors.isNotAuthorized.description)
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
         } catch {}
-    }
-    private func showAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
+        // когда пользователь новый создался, то пока нет для него новой страницы для профиля, поэтому кнопка не работает
+        // не работает - выпадает в else
+//        if (delegate?.check(login: login, password: password) != nil) {
+//            coordinator?.start()
+//        } else {
+//            let alert = UIAlertController(title: "dont know", message: "no", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//            self.present(alert, animated: true)
+//        }
     }
 }
     
