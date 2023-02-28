@@ -16,8 +16,8 @@ struct LogInInspector: LogInViewControllerDelegate {
         Checker.shared.check(login: login, pass: password) { result in
             switch result {
             case .success(let myUser):
-                user = myUser
                 CheckerService.shared.isSingIn = true
+                user = myUser
             case .failure( _):
                 CheckerService.shared.isSingIn = false
                 return

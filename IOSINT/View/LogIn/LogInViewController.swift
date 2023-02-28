@@ -266,21 +266,21 @@ class LogInViewController: UIViewController {
     @objc private func buttonPressLog() {
         view.endEditing(true)
         do {
-          try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
-           
+            try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
         } catch LogInErrors.emptyLogin {
             TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
         } catch LogInErrors.emptyPassword {
             TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
-        } catch LogInErrors.isNotAuthorized {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка авторизации", alertMessage: "Вы не авторизованы")
         } catch {}
-        //если авторизация прошла открываем вью
-        if ((delegate?.check(login: loginTextField.text!, password: passwordTextField.text!)) != nil) {
-           self.coordinator?.start()
-       } else {
-           return
-       }
+        // когда пользователь новый создался, то пока нет для него новой страницы для профиля, поэтому кнопка не работает
+        // не работает - выпадает в else
+//        if (delegate?.check(login: login, password: password) != nil) {
+//            coordinator?.start()
+//        } else {
+//            let alert = UIAlertController(title: "dont know", message: "no", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+//            self.present(alert, animated: true)
+//        }
     }
 }
     

@@ -36,11 +36,10 @@ import FirebaseCore
                      let alert = UIAlertController(title: "Пользователь не найден", message: "Хотите создать аккаунт?", preferredStyle: .alert)
                      alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {_ in print("Пользователь не хочет создавать аккаунт")}))
                      alert.addAction(UIAlertAction(title: "Да", style: .default, handler: {_ in self.signUp(login: login, password: password)}))
-                     // не работает alert
-                    LogInViewController().present(alert, animated: true, completion: nil)
+                     UIApplication.topViewController()!.present(alert, animated: true, completion: nil)
                  // другие ошибки
                  default:
-                     TemplateErrorAlert.shared.alert(alertTitle: "Ошибка входа", alertMessage: error.localizedDescription)
+                     TemplateErrorAlert.shared.alert(alertTitle: "Необходимо придерживаться формата kov@mail.ru", alertMessage: error.localizedDescription)
                      print("другие ошибки")
                  }
              } else {
@@ -57,7 +56,7 @@ import FirebaseCore
                      // любые ошибки
                      TemplateErrorAlert.shared.alert(alertTitle: "Ошибка регистрации", alertMessage: error.localizedDescription)
                  } else {
-                     // нет ошибок
+                     // нет ошибок и в базу записывается логин пароль от аккаунта
                      TemplateErrorAlert.shared.alert(alertTitle: "Аккаунт создан", alertMessage: "Ваш аккаунт успешно создан!")
                  }
              }

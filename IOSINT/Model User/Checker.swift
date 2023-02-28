@@ -11,8 +11,8 @@ final class Checker {
     // синглтон
     static var shared = Checker()
     // логин пароль для входа
-     private let loginCheck: String = "kov@mail.ru"
-     private let passCheck: String = "1234567"
+    private let loginCheck: String = "kov@mail.ru"
+    private let passCheck: String = "1234567"
     private let user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
 
     func check(login: String, pass: String, completion: @escaping (Result<User, LogInErrors>) -> Void) {
