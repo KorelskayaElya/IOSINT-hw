@@ -50,4 +50,9 @@ final class FeedCoordinator: Coordinator {
         infovc.coordinator = self
         navigationController.pushViewController(infovc, animated: true)
     }
+    func toImage() {
+        let imagevc = ImageViewController()
+        imagevc.coordinator = self
+        navigationController.pushViewController(imagevc, animated: true)
+    }
 }

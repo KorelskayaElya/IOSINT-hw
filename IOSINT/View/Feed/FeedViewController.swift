@@ -56,6 +56,12 @@ class FeedViewController: UIViewController {
     private func goToInfo() {
          coordinator?.toInfo()
      }
+    private lazy var imageBtn = CustomButton(customButtonTitle: "Image") {
+        self.goToImage()
+    }
+    private func goToImage() {
+        coordinator?.toImage()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Feed"
@@ -66,6 +72,7 @@ class FeedViewController: UIViewController {
         view.addSubview(self.checkGuessButton)
         view.addSubview(self.avButton)
         view.addSubview(self.infoBtn)
+        view.addSubview(self.imageBtn)
         NetworkService.request(for: appConfiguration!)
         self.setupConstraints()
     }
@@ -103,6 +110,10 @@ class FeedViewController: UIViewController {
             infoBtn.widthAnchor.constraint(equalToConstant: 200),
             infoBtn.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 250),
             
+            imageBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageBtn.heightAnchor.constraint(equalToConstant: 40),
+            imageBtn.widthAnchor.constraint(equalToConstant: 200),
+            imageBtn.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -70),
             
                        
         ])
