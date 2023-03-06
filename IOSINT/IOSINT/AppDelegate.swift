@@ -11,21 +11,30 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        FirebaseApp.configure()
+
+
+        // здесь пытаюсь подключить запуск первого launch screen - пока не работает
+        let passwordView = PasswordViewController(updatePassword: false)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = passwordView
+        window?.makeKeyAndVisible()
         return true
     }
-    // когда приложение закрывается - пользователь разлогинен
-    func applicationWillTerminate(_ application: UIApplication) {
-         do {
-             try Auth.auth().signOut()
-         } catch let signOutError as NSError {
-             print ("Error signing out: %@", signOutError)
-         }
-    }
+    
+    
+    // это не нужно
+    //        FirebaseApp.configure()
+//    // когда приложение закрывается - пользователь разлогинен
+//    func applicationWillTerminate(_ application: UIApplication) {
+//         do {
+//             try Auth.auth().signOut()
+//         } catch let signOutError as NSError {
+//             print ("Error signing out: %@", signOutError)
+//         }
+//    }
 
     // MARK: UISceneSession Lifecycle
 
