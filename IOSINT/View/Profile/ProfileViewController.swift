@@ -86,7 +86,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, ButtonDelegate {
     func didTapButton(sender: UIButton) {
-        coordinator?.goToPhotosViewController()
+       // coordinator?.goToPhotosViewController()
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {

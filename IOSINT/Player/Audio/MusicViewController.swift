@@ -213,7 +213,7 @@ class MusicViewController: UIViewController {
     @objc private func goToVideo() {
 
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-        coordinator?.toVideoPlayer()
+      //  coordinator?.toVideoPlayer()
 
 
     }

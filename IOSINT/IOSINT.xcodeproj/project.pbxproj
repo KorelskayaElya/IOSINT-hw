@@ -10,6 +10,10 @@
 		6D0067D529AC83C400B2A895 /* TemplateAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0067D429AC83C400B2A895 /* TemplateAlert.swift */; };
 		6D0067D729AF530500B2A895 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0067D629AF530500B2A895 /* ImagePicker.swift */; };
 		6D0067DA29AF546F00B2A895 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0067D929AF546F00B2A895 /* ImageViewController.swift */; };
+		6D0067DD29B09CA000B2A895 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 6D0067DC29B09CA000B2A895 /* KeychainAccess */; };
+		6D0067E029B0A45100B2A895 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0067DF29B0A45100B2A895 /* PasswordViewController.swift */; };
+		6D0067E329B0B7B100B2A895 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D0067E229B0B7B100B2A895 /* SettingsViewController.swift */; };
+		6D0067E529B5BE0300B2A895 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D0067E429B5BE0300B2A895 /* Launch Screen.storyboard */; settings = {ASSET_TAGS = (1, 2, ); }; };
 		6D7000D5293F50EB003DFBBF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000D4293F50EB003DFBBF /* AppDelegate.swift */; };
 		6D7000D7293F50EB003DFBBF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000D6293F50EB003DFBBF /* SceneDelegate.swift */; };
 		6D7000DE293F50EC003DFBBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D7000DD293F50EC003DFBBF /* Assets.xcassets */; };
@@ -114,6 +118,10 @@
 		6D0067D429AC83C400B2A895 /* TemplateAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAlert.swift; sourceTree = "<group>"; };
 		6D0067D629AF530500B2A895 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		6D0067D929AF546F00B2A895 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		6D0067DF29B0A45100B2A895 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		6D0067E229B0B7B100B2A895 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6D0067E429B5BE0300B2A895 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6D0067E629B5E35700B2A895 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6D7000D1293F50EB003DFBBF /* IOSINT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IOSINT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D7000D4293F50EB003DFBBF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6D7000D6293F50EB003DFBBF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 				6DE90A8829AB94C30079BF97 /* FirebaseAuthCombine-Community in Frameworks */,
 				6DE90A8229AB94C30079BF97 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				6DE90A8A29AB94C30079BF97 /* FirebaseStorage in Frameworks */,
+				6D0067DD29B09CA000B2A895 /* KeychainAccess in Frameworks */,
 				6DFB427B297E4A5700CFCA1B /* iOSIntPackage in Frameworks */,
 				6DE90A7C29AB94C30079BF97 /* FirebaseAnalytics in Frameworks */,
 				6DE90A8429AB94C30079BF97 /* FirebaseAppCheck in Frameworks */,
@@ -212,9 +221,28 @@
 			path = FileImage;
 			sourceTree = "<group>";
 		};
+		6D0067DE29B0A42700B2A895 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				6D0067DF29B0A45100B2A895 /* PasswordViewController.swift */,
+			);
+			path = Password;
+			sourceTree = "<group>";
+		};
+		6D0067E129B0B79B00B2A895 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6D0067E229B0B7B100B2A895 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		6D7000C8293F50EB003DFBBF = {
 			isa = PBXGroup;
 			children = (
+				6D0067E429B5BE0300B2A895 /* Launch Screen.storyboard */,
+				6D0067E129B0B79B00B2A895 /* Settings */,
+				6D0067DE29B0A42700B2A895 /* Password */,
 				6DD5F93829A334E60024C255 /* Network */,
 				6DD5F917299CAE010024C255 /* Player */,
 				6DC169B0298A9C2B005B56C2 /* ViewModel */,
@@ -269,6 +297,7 @@
 		6D700107293FB768003DFBBF /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
+				6D0067E629B5E35700B2A895 /* Info.plist */,
 				6D7000EF293F51F8003DFBBF /* Post.swift */,
 				6D700108293FB768003DFBBF /* StorageService.h */,
 				6D700109293FB768003DFBBF /* StorageService.docc */,
@@ -480,6 +509,7 @@
 				6DE90A8529AB94C30079BF97 /* FirebaseAuth */,
 				6DE90A8729AB94C30079BF97 /* FirebaseAuthCombine-Community */,
 				6DE90A8929AB94C30079BF97 /* FirebaseStorage */,
+				6D0067DC29B09CA000B2A895 /* KeychainAccess */,
 			);
 			productName = IOSINT;
 			productReference = 6D7000D1293F50EB003DFBBF /* IOSINT.app */;
@@ -529,6 +559,10 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
+				KnownAssetTags = (
+					1,
+					2,
+				);
 				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
@@ -556,6 +590,7 @@
 			packageReferences = (
 				6DFB4279297E4A5700CFCA1B /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				6DE90A7A29AB94C30079BF97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				6D0067DB29B09CA000B2A895 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 6D7000D2293F50EB003DFBBF /* Products */;
 			projectDirPath = "";
@@ -575,6 +610,7 @@
 			files = (
 				6DD5F935299E2CE20024C255 /* 5.mp3 in Resources */,
 				6DD5F931299E2CD50024C255 /* 3.mp3 in Resources */,
+				6D0067E529B5BE0300B2A895 /* Launch Screen.storyboard in Resources */,
 				6DD5F92D299E2CC50024C255 /* 1.mp3 in Resources */,
 				6DD5F933299E2CDC0024C255 /* 4.mp3 in Resources */,
 				6DD5F92F299E2CCE0024C255 /* 2.mp3 in Resources */,
@@ -612,6 +648,7 @@
 				6DC169B6298B6742005B56C2 /* ProfileViewModel.swift in Sources */,
 				6DD5F92B299DECD60024C255 /* RecorderViewController.swift in Sources */,
 				6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */,
+				6D0067E029B0A45100B2A895 /* PasswordViewController.swift in Sources */,
 				6D7000FA293F5262003DFBBF /* PhotosViewController.swift in Sources */,
 				6DD5F927299CAF280024C255 /* MusicViewController.swift in Sources */,
 				6DC169AD2988D6AA005B56C2 /* TabBarCoordinator.swift in Sources */,
@@ -626,6 +663,7 @@
 				6DE90A8E29ABBB1F0079BF97 /* CheckerService.swift in Sources */,
 				6D7000F8293F524C003DFBBF /* PostTableViewCell.swift in Sources */,
 				6D7E505A2974462C0007CF3D /* Checker.swift in Sources */,
+				6D0067E329B0B7B100B2A895 /* SettingsViewController.swift in Sources */,
 				6D0067DA29AF546F00B2A895 /* ImageViewController.swift in Sources */,
 				6DFB4282297E9A4200CFCA1B /* FeedModel.swift in Sources */,
 				6DC169A92988D5D3005B56C2 /* FeedCoordinator.swift in Sources */,
@@ -871,7 +909,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StorageService/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIMainStoryboardFile = "Launch Screen";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -909,7 +949,9 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = StorageService/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_UIMainStoryboardFile = "Launch Screen";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1023,6 +1065,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6D0067DB29B09CA000B2A895 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		6DE90A7A29AB94C30079BF97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1042,6 +1092,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6D0067DC29B09CA000B2A895 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D0067DB29B09CA000B2A895 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 		6DE90A7B29AB94C30079BF97 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6DE90A7A29AB94C30079BF97 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

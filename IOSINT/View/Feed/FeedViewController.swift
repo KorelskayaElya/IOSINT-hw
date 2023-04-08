@@ -48,19 +48,19 @@ class FeedViewController: UIViewController {
          self.goToAVPlayer()
      }
     private func goToAVPlayer() {
-         coordinator?.toAVPlayer()
+        // coordinator?.toAVPlayer()
      }
     private lazy var infoBtn = CustomButton(customButtonTitle: "Info") {
          self.goToInfo()
      }
     private func goToInfo() {
-         coordinator?.toInfo()
+        // coordinator?.toInfo()
      }
     private lazy var imageBtn = CustomButton(customButtonTitle: "Image") {
         self.goToImage()
     }
     private func goToImage() {
-        coordinator?.toImage()
+       // coordinator?.toImage()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +77,7 @@ class FeedViewController: UIViewController {
         self.setupConstraints()
     }
     private func tapButton() {
-        coordinator?.goToPostViewController()
+        //coordinator?.goToPostViewController()
     }
     private func setupConstraints() {
         

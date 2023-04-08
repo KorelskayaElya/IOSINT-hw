@@ -52,7 +52,7 @@ class VideoViewController: UIViewController {
     
     @objc private func goToRecorder() {
         videoPlayer.pause()
-        coordinator?.toRecorder()
+        //coordinator?.toRecorder()
     }
     
     private func startVideo(numberOfVideo: Int) {

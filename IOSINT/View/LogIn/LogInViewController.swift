@@ -20,7 +20,7 @@ class LogInViewController: UIViewController {
                         //self?.showAlert()
                         preconditionFailure("nil user")
                     }
-                    self?.coordinator?.goToProfileViewController(with: logInedUser)
+                   // self?.coordinator?.goToProfileViewController(with: logInedUser)
                 }
             }
         }
