@@ -33,8 +33,7 @@ final class LoginCoordinator: Coordinatble {
     // MARK: - Methods
 
     func start() -> UIViewController {
-        
-        let loginViewController = PasswordViewController(updatePassword: false)
+        let loginViewController = PasswordViewController()
         loginViewController.coordinator = self
         let navigationController = UINavigationController(rootViewController: loginViewController)
         
