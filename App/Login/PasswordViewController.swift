@@ -6,195 +6,126 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class PasswordViewController: UIViewController {
     
-    var passwordFirst: String?
-    var passwordSecond: String?
-    var savedPassword: String?
-    let passwordKeychainService = KeychainSevice()
-    var updatePassword: Bool
+    var modalFlag = false
     weak var coordinator: CoordinatbleLogin?
-    var personView: UIView!
-    var headLayer: CAShapeLayer!
-    var startTime: CFTimeInterval = 0
     
-    // пользовательский инициализатор
-    init(updatePassword: Bool) {
-        self.updatePassword = updatePassword
-       super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-
-        // Создаем UIView для смайлика
-        personView = UIView(frame: CGRect(x: 120, y: 100, width: 150, height: 150))
-        view.addSubview(personView)
-
-        // Создаем круглую форму для головы
-        let headPath = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 150, height: 150))
-
-        // Создаем CAShapeLayer для формы головы
-        let headLayer = CAShapeLayer()
-        headLayer.path = headPath.cgPath
-        headLayer.strokeColor = UIColor.black.cgColor
-        headLayer.fillColor = UIColor(red: 255/255, green: 222/255, blue: 173/255, alpha: 1.0).cgColor
-        headLayer.lineWidth = 4
-
-        // Добавляем CAShapeLayer в UIView
-        personView.layer.addSublayer(headLayer)
-
-        // Создаем глаза
-        let leftEye = UIView(frame: CGRect(x: 40, y: 45, width: 20, height: 20))
-        leftEye.backgroundColor = .white
-        leftEye.layer.cornerRadius = 10
-        leftEye.layer.borderWidth = 2
-        leftEye.layer.borderColor = UIColor.black.cgColor
-        personView.addSubview(leftEye)
-
-        let rightEye = UIView(frame: CGRect(x: 90, y: 45, width: 20, height: 20))
-        rightEye.backgroundColor = .white
-        rightEye.layer.cornerRadius = 10
-        rightEye.layer.borderWidth = 2
-        rightEye.layer.borderColor = UIColor.black.cgColor
-        personView.addSubview(rightEye)
-        
-        let leftPupil = UIView(frame: CGRect(x: 7, y: 5, width: 10, height: 10))
-        leftPupil.backgroundColor = .black
-        leftPupil.layer.cornerRadius = 5
-        leftEye.addSubview(leftPupil)
-
-        let rightPupil = UIView(frame: CGRect(x: 7, y: 5, width: 10, height: 10))
-        rightPupil.backgroundColor = .black
-        rightPupil.layer.cornerRadius = 5
-        rightEye.addSubview(rightPupil)
-
-        
-        // Создаем рот
-        let mouthPath = UIBezierPath()
-        mouthPath.move(to: CGPoint(x: 50, y: 90))
-        mouthPath.addQuadCurve(to: CGPoint(x: 100, y: 90), controlPoint: CGPoint(x: 75, y: 120))
-
-
-        let mouthLayer = CAShapeLayer()
-        mouthLayer.path = mouthPath.cgPath
-        mouthLayer.fillColor = UIColor.clear.cgColor
-        mouthLayer.strokeColor = UIColor.black.cgColor
-        mouthLayer.lineWidth = 4
-        personView.layer.addSublayer(mouthLayer)
-
-        // Создаем анимацию для рта
-        let mouthAnimation = CABasicAnimation(keyPath: "path")
-        mouthAnimation.fromValue = mouthPath.cgPath
-        mouthAnimation.duration = 2.0
-        mouthAnimation.autoreverses = true
-        mouthAnimation.repeatCount = .infinity
-
-        // Изменяем координаты точек пути для улыбки
-        let smilePath = UIBezierPath()
-        smilePath.move(to: CGPoint(x: 40, y: 100))
-        smilePath.addQuadCurve(to: CGPoint(x: 110, y: 100), controlPoint: CGPoint(x: 75, y: 80))
-
-        mouthAnimation.toValue = smilePath.cgPath
-
-        // Анимация для моргания
-        let blinkAnimation = CABasicAnimation(keyPath: "opacity")
-        blinkAnimation.fromValue = 1.0
-        blinkAnimation.toValue = 0.0
-        blinkAnimation.duration = 0.2
-        blinkAnimation.autoreverses = true
-        blinkAnimation.repeatCount = 1
-
-        // Анимация для губ
-        let poutPath = UIBezierPath()
-        poutPath.move(to: CGPoint(x: 40, y: 140))
-        poutPath.addQuadCurve(to: CGPoint(x: 160, y: 140), controlPoint: CGPoint(x: 100, y: 160))
-        mouthLayer.add(mouthAnimation, forKey: "animateMouth")
-  
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupView()
+        loginTextField.text = nil
         passwordTextField.text = nil
-        passwordFirst = nil
-        passwordSecond = nil
-        savedPassword = nil
-        
-        if passwordKeychainService.retrivePassword(credentials: Credentials.init(password: "")).status == errSecItemNotFound || updatePassword == true {
-            passwordDeleteBtn.isEnabled = false
-            passwordBtn.setTitle("Создать пароль", for: .normal)
-            passwordBtn.addTarget(self, action: #selector(firstPasswordEnter), for: .touchUpInside)
-            view.reloadInputViews()
+        // почему то это условие не работало
+//        if isModalInPresentation == true {
+//            changeBtn.isHidden = false
+//            registerBtn.isHidden = true
+//        } else {
+//            changeBtn.isHidden = true
+//            registerBtn.isHidden = false
+//        }
+
+        print("modelflag -", modalFlag)
+        if modalFlag == true {
+            changeBtn.isHidden = false
+            registerBtn.isHidden = true
+            passwordBtn.isHidden = true
+            closeBtn.isHidden = false
         } else {
-            passwordBtn.setTitle("Введите пароль", for: .normal)
-            passwordBtn.addTarget(self, action: #selector(firstPasswordEnter), for: .touchUpInside)
+            changeBtn.isHidden = true
+            registerBtn.isHidden = false
+            passwordBtn.isHidden = false
+            closeBtn.isHidden = true
         }
 
     }
-    @objc private func firstPasswordEnter() {
-        guard let text = passwordTextField.text, !text.isEmpty, text.count >= 4  else {
-            TemplateErrorAlert.shared.alert(alertTitle: "Некорректный пароль", alertMessage: "Необходимо 4 символа")
-            return
-        }
-        passwordFirst = text
-        passwordTextField.text = nil
-        passwordBtn.removeTarget(self, action: #selector(firstPasswordEnter), for: .touchUpInside)
-        passwordBtn.setTitle("Повторите пароль", for: .normal)
-        passwordBtn.addTarget(self, action: #selector(repeatPassword), for: .touchUpInside)
+    @objc func closeButtonTapped() {
+        // Закрыть модальное окно
+        dismiss(animated: true, completion: nil)
     }
-
-    @objc private func repeatPassword() {
-        guard let text = passwordTextField.text, !text.isEmpty, text.count >= 4 else {
-            TemplateErrorAlert.shared.alert(alertTitle: "Некорректный пароль", alertMessage: "Необходимо 4 символа")
-            return
-        }
-        passwordSecond = text
-        guard passwordFirst == passwordSecond else {
-            passwordBtn.removeTarget(self, action: #selector(repeatPassword), for: .touchUpInside)
-            TemplateErrorAlert.shared.alert(alertTitle: "Некорректный пароль", alertMessage: "Пароли не совпадают")
-            viewWillAppear(true)
-            return
-        }
-        switch savedPassword {
-        case nil:
-            if updatePassword == true {
-                passwordKeychainService.updatePassword(credentials: Credentials.init(password: text))
-                dismiss(animated: true, completion: {
-                    TemplateErrorAlert.shared.alert(alertTitle: "Пароль обновлён", alertMessage: "Ваш пароль обновлён в Keychain")
-                })
-
-            } else {
-            passwordKeychainService.savePassword(credentials: Credentials.init(password: text))
+    func loginUser(username: String, password: String) {
+        let realm = try! Realm()
+        let users = realm.objects(User.self).filter("username = '\(username)' AND password = '\(password)'")
+        if let user = users.first {
             coordinator?.switchToTabBarCoordinator()
-            TemplateErrorAlert.shared.alert(alertTitle: "Пароль создан", alertMessage: "Ваш пароль создан и сохранён в Keychain")
+        } else {
+            TemplateErrorAlert.shared.alert(alertTitle: "Неверный логин или пароль", alertMessage: "Попробуйте снова")
+        }
+    }
+    @objc func enterInApp(_ sender: Any) {
+        let username = loginTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+        loginUser(username: username, password: password)
+    }
+    @objc func changePassword(_ sender: Any) {
+        let username = loginTextField.text ?? ""
+        let newpassword = passwordTextField.text ?? ""
+        updatePassword(username: username, newPassword: newpassword)
+    }
+    func updatePassword(username: String, newPassword: String) {
+        let realm = try! Realm()
+        if let user = realm.objects(User.self).filter("username = '\(username)'").first {
+            try! realm.write {
+                if !user.password.isEmpty && user.password.count >= 4 {
+                    user.password = newPassword
+                    TemplateErrorAlert.shared.alert(alertTitle: "Пароль пользователя \(username) изменен", alertMessage: "Хорошего дня")
+                } else {
+                    TemplateErrorAlert.shared.alert(alertTitle: "Необходимо задать больше 4 символов", alertMessage: "Попробуйте еще раз")
+                }
             }
-        case passwordSecond:
-            coordinator?.switchToTabBarCoordinator()
-        default:
-            passwordBtn.removeTarget(self, action: #selector(repeatPassword), for: .touchUpInside)
-            TemplateErrorAlert.shared.alert(alertTitle: "Некорректный пароль", alertMessage: "Пароль не найден")
-            viewWillAppear(true)
+        } else {
+            TemplateErrorAlert.shared.alert(alertTitle: "Пользователь \(username) не найден", alertMessage: "Попробуйте еще раз")
         }
     }
-    @objc private func deletePassword() {
-        passwordKeychainService.deletePassword(credentials: Credentials.init(password: ""))
-        TemplateErrorAlert.shared.alert(alertTitle: "Пароль удалён", alertMessage: "Ваш пароль удалён из Keychain")
-        viewWillAppear(true)
+    @objc func registerUser() {
+        let realm = try! Realm()
+        let user = User()
+        user.username = loginTextField.text ?? ""
+        user.password = passwordTextField.text ?? ""
+        if user.username == "" || user.username.count < 4 {
+            TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле логина больше 4 символов")
+            
+        
+        }
+        if user.password == "" || user.password.count < 4 {
+            TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле пароля больше 4 символов")
+        }
+       
+        if !user.username.isEmpty && !user.password.isEmpty && user.username.count >= 4 && user.password.count >= 4 {
+            try! realm.write {
+                realm.add(user)
+                TemplateErrorAlert.shared.alert(alertTitle: "Вы зарегистрированы", alertMessage: "Войдите в приложение")
+            }
+        }
     }
+    // поле ввода логина
+    lazy var loginTextField: UITextField = {
+       let text = UITextField()
+        text.attributedPlaceholder = NSAttributedString(text: "Login", aligment: .center, color: .black)
+        text.font = UIFont(name:"Times New Roman", size: 25.0)
+        text.translatesAutoresizingMaskIntoConstraints = false
+        text.layer.borderWidth = 2.0
+        text.layer.cornerRadius = 10
+        text.layer.borderColor = UIColor.black.cgColor
+        text.isSecureTextEntry = true
+        return text
+    }()
 
     // поле ввода пароля
     lazy var passwordTextField: UITextField = {
        let text = UITextField()
         text.attributedPlaceholder = NSAttributedString(text: "Password", aligment: .center, color: .black)
-        text.font = UIFont(name:"Times New Roman", size: 50.0)
+        text.font = UIFont(name:"Times New Roman", size: 25.0)
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.layer.borderWidth = 4.0
-        text.layer.cornerRadius = 20
+        text.layer.borderWidth = 2.0
+        text.layer.cornerRadius = 10
         text.layer.borderColor = UIColor.black.cgColor
         text.isSecureTextEntry = true
         return text
@@ -203,28 +134,63 @@ final class PasswordViewController: UIViewController {
     lazy var passwordBtn: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .purple
+        button.backgroundColor = UIColor(named: "Pink")
         button.layer.cornerRadius = 20
+        button.setTitle("Войти", for: .normal)
+        button.addTarget(self, action: #selector(enterInApp), for: .touchUpInside)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
-    let passwordDeleteBtn: UIButton = {
+    // кнопка входа в приложение
+    lazy var closeBtn: UIButton = {
        let button = UIButton()
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.lightGray, for: .disabled)
-        button.setTitle("Удалить пароль", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(deletePassword), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        //button.backgroundColor = UIColor(named: "Pink")
+        //button.layer.cornerRadius = 20
+        button.setTitle("Done", for: .normal)
+        button.tintColor = .blue
+        button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
         return button
     }()
+    // кнопка для регистрации
+    lazy var registerBtn: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(named: "Pink")
+        button.layer.cornerRadius = 20
+        button.setTitle("Зарегистрироваться", for: .normal)
+        button.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+    // кнопка для смены пароля
+    lazy var changeBtn: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(named: "Pink")
+        button.layer.cornerRadius = 20
+        button.setTitle("Сменить пароль", for: .normal)
+        button.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
+        button.setTitleColor(.black, for: .normal)
+        return button
+    }()
+
     // настройка вью
     func setupView() {
         view.addSubview(passwordTextField)
         view.addSubview(passwordBtn)
-        //view.addSubview(imageDog)
-        view.addSubview(passwordDeleteBtn)
+        view.addSubview(loginTextField)
+        view.addSubview(registerBtn)
+        view.addSubview(changeBtn)
+        view.addSubview(closeBtn)
         NSLayoutConstraint.activate([
+            // поле для ввода логина
+            loginTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            loginTextField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -150),
+            loginTextField.widthAnchor.constraint(equalToConstant: 250),
+            loginTextField.heightAnchor.constraint(equalToConstant: 60),
+            
             // поле для ввода пароля
             passwordTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             passwordTextField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -90),
@@ -238,13 +204,21 @@ final class PasswordViewController: UIViewController {
             passwordBtn.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
             passwordBtn.heightAnchor.constraint(equalToConstant: 80),
             
+            registerBtn.topAnchor.constraint(equalTo: passwordBtn.bottomAnchor, constant: 5),
+            registerBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registerBtn.heightAnchor.constraint(equalToConstant: 50),
+            registerBtn.widthAnchor.constraint(equalToConstant: 200),
             
-            // кнопка удаления пароля
-            passwordDeleteBtn.topAnchor.constraint(equalTo: passwordBtn.bottomAnchor, constant: 5),
-            passwordDeleteBtn.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordDeleteBtn.heightAnchor.constraint(equalToConstant: 50),
-            passwordDeleteBtn.widthAnchor.constraint(equalToConstant: 200),
-    
+            changeBtn.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16),
+            changeBtn.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor),
+            changeBtn.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor),
+            changeBtn.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor),
+            changeBtn.heightAnchor.constraint(equalToConstant: 50),
+            
+            closeBtn.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            closeBtn.widthAnchor.constraint(equalToConstant: 50),
+            closeBtn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            closeBtn.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
 

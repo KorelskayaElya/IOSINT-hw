@@ -78,7 +78,8 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     }()
     @objc func buttonTap() {
         // обновляем пароль
-        let passwordVC = PasswordViewController(updatePassword: true)
+        let passwordVC = PasswordViewController()
+        passwordVC.modalFlag = true
         passwordVC.modalPresentationStyle = .automatic
         present(passwordVC, animated: true, completion: nil)
     }
