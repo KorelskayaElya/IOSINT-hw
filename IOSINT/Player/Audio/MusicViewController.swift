@@ -106,13 +106,11 @@ class MusicViewController: UIViewController {
     @objc private func repeatBtn() {
         if isTapped == true {
             isRepeat = true
-            //repeatButton.tintColor = .white
             repeatButton.setImage(UIImage(systemName: "repeat.1.ar"), for: .normal)
             isTapped = false
         } else {
             isTapped = true
             isRepeat = false
-            //repeatButton.tintColor = .black
             repeatButton.setImage(UIImage(systemName: "repeat"), for: .normal)
         }
     }
@@ -213,7 +211,7 @@ class MusicViewController: UIViewController {
     @objc private func goToVideo() {
 
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: player.currentItem)
-      //  coordinator?.toVideoPlayer()
+        coordinator?.toVideoPlayer()
 
 
     }

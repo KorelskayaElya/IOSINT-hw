@@ -29,7 +29,6 @@ class VideoViewController: UIViewController {
     
     private lazy var playerView: UIView = {
        let view = UIView()
-        view.backgroundColor = UIColor(named: "Pink")
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.addSublayer(playerLayer)
         return view
@@ -52,7 +51,7 @@ class VideoViewController: UIViewController {
     
     @objc private func goToRecorder() {
         videoPlayer.pause()
-        //coordinator?.toRecorder()
+        coordinator?.toRecorder()
     }
     
     private func startVideo(numberOfVideo: Int) {
@@ -93,6 +92,7 @@ class VideoViewController: UIViewController {
         navigationItem.title = "Video zone"
         setupViews()
         addVideoItems()
+        playerView.layoutIfNeeded()
     }
 }
 

@@ -16,15 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         //appConfiguration - random не надо
-        // appConfiguration = AppConfiguration.allCases.randomElement()
-        
-        
-        
-        
-        
-        // вот это если включить то работает бар без launch screen
-        // наверно надо это запускать конкретно в tab bar coordinator?
-        // но запуск окна там не будет работать
+        appConfiguration = AppConfiguration.allCases.randomElement()
         
         let tabController = UITabBarController()
         tabController.tabBar.barTintColor = UIColor.white
