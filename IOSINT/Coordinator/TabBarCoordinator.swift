@@ -13,6 +13,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     
     var coordinatorFeed: Coordinator?
     var coordinatorProfile: Coordinator?
+    var coordinatorSave: Coordinator?
 
     
     init(tabBarController: UITabBarController) {
@@ -33,7 +34,12 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         coordinatorProfile = ProfileCoordinator(navigationController: ProfileController)
         coordinatorProfile?.start()
         let profile = coordinatorProfile!
-        tabBarController.viewControllers = [feed.navigationController, profile.navigationController]
+        
+        let SaveController = UINavigationController()
+        coordinatorSave = SavedPostCoordinator(navigationController: SaveController)
+        coordinatorSave?.start()
+        let save = coordinatorSave!
+        tabBarController.viewControllers = [feed.navigationController, profile.navigationController, save.navigationController]
     }
         
         
