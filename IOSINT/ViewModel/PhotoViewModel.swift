@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import StorageService
 
 // создание модели для коллекции изображений
 final class PhotoViewModel {

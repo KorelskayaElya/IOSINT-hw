@@ -6,11 +6,11 @@
 //
 
 import UIKit
-import StorageService
+
 // создание модели для профиля
 class ProfileViewModel {
     
-    var images: [Post]?
+    var images: [PostStorage]?
     // уведомляет представление об изменениях
     var user: User? {
         didSet {
@@ -20,8 +20,7 @@ class ProfileViewModel {
     
     var userChange: ((ProfileViewModel) -> ())?
     
-    init(userfromLogin: User, images: [Post]) {
+    init(userfromLogin: User, images: [PostStorage]) {
         self.images = images
     }
-    
 }

@@ -39,7 +39,6 @@ class PhotosTableViewCell: UITableViewCell {
         return button
     }()
     @objc private func didTapButton() {
-        print("its click")
         delegate?.didTapButton(sender: button_photos)
     }
     
@@ -90,6 +89,7 @@ class PhotosTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupView()
     }
+
     func setup(with viewModel: ViewModel) {
         self.titleLabel.text = viewModel.title
         self.ImagePerson1.image = UIImage(named: "person1")
@@ -112,16 +112,16 @@ class PhotosTableViewCell: UITableViewCell {
         self.addSubview(self.button_photos)
         NSLayoutConstraint.activate([
             
-            self.stackWithPersons.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 12),
-            self.stackWithPersons.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
-            self.stackWithPersons.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
-            self.stackWithPersons.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
-            
             self.titleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             self.titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
             self.titleLabel.widthAnchor.constraint(equalToConstant: 80),
             self.titleLabel.heightAnchor.constraint(equalToConstant: 20),
 
+            self.stackWithPersons.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 12),
+            self.stackWithPersons.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
+            self.stackWithPersons.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
+            self.stackWithPersons.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
+            
             self.ImagePerson1.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
             self.ImagePerson2.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
             self.ImagePerson3.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
@@ -130,6 +130,9 @@ class PhotosTableViewCell: UITableViewCell {
             self.button_photos.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             self.button_photos.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
             self.button_photos.centerYAnchor.constraint(equalTo: self.stackWithPersons.centerYAnchor,constant: -70)
+
+        
+
         ])
     }
 }

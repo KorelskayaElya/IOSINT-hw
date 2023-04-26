@@ -23,16 +23,9 @@ final class PasswordViewController: UIViewController {
         setupView()
         loginTextField.text = nil
         passwordTextField.text = nil
-        // почему то это условие не работало
-//        if isModalInPresentation == true {
-//            changeBtn.isHidden = false
-//            registerBtn.isHidden = true
-//        } else {
-//            changeBtn.isHidden = true
-//            registerBtn.isHidden = false
-//        }
-
         print("modelflag -", modalFlag)
+        // если открыт модальный экран - скрыть кнопку войти и зарегистрироваться,
+        // открыть кнопку сменить пароль
         if modalFlag == true {
             changeBtn.isHidden = false
             registerBtn.isHidden = true
@@ -50,29 +43,33 @@ final class PasswordViewController: UIViewController {
         // Закрыть модальное окно
         dismiss(animated: true, completion: nil)
     }
+    /// перенести в другой файл
     func loginUser(username: String, password: String) {
-        let realm = try! Realm()
-        let users = realm.objects(User.self).filter("username = '\(username)' AND password = '\(password)'")
-        if let user = users.first {
+        let realm = try? Realm()
+        let users = realm?.objects(User.self).filter("username = '\(username)' AND password = '\(password)'")
+        if let user = users?.first {
             coordinator?.switchToTabBarCoordinator()
         } else {
             TemplateErrorAlert.shared.alert(alertTitle: "Неверный логин или пароль", alertMessage: "Попробуйте снова")
         }
     }
+    // войти в приложение
     @objc func enterInApp(_ sender: Any) {
         let username = loginTextField.text ?? ""
         let password = passwordTextField.text ?? ""
         loginUser(username: username, password: password)
     }
+    // изменить пароль
     @objc func changePassword(_ sender: Any) {
         let username = loginTextField.text ?? ""
         let newpassword = passwordTextField.text ?? ""
         updatePassword(username: username, newPassword: newpassword)
     }
+    /// перенести в другой файл
     func updatePassword(username: String, newPassword: String) {
-        let realm = try! Realm()
-        if let user = realm.objects(User.self).filter("username = '\(username)'").first {
-            try! realm.write {
+        let realm = try? Realm()
+        if let user = realm?.objects(User.self).filter("username = '\(username)'").first {
+            try? realm?.write {
                 if !user.password.isEmpty && user.password.count >= 4 {
                     user.password = newPassword
                     TemplateErrorAlert.shared.alert(alertTitle: "Пароль пользователя \(username) изменен", alertMessage: "Хорошего дня")
@@ -84,23 +81,22 @@ final class PasswordViewController: UIViewController {
             TemplateErrorAlert.shared.alert(alertTitle: "Пользователь \(username) не найден", alertMessage: "Попробуйте еще раз")
         }
     }
+    // зарегистрироаться
     @objc func registerUser() {
-        let realm = try! Realm()
+        let realm = try? Realm()
         let user = User()
         user.username = loginTextField.text ?? ""
         user.password = passwordTextField.text ?? ""
         if user.username == "" || user.username.count < 4 {
             TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле логина больше 4 символов")
-            
-        
         }
         if user.password == "" || user.password.count < 4 {
             TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле пароля больше 4 символов")
         }
        
         if !user.username.isEmpty && !user.password.isEmpty && user.username.count >= 4 && user.password.count >= 4 {
-            try! realm.write {
-                realm.add(user)
+            try? realm?.write {
+                realm?.add(user)
                 TemplateErrorAlert.shared.alert(alertTitle: "Вы зарегистрированы", alertMessage: "Войдите в приложение")
             }
         }
@@ -114,7 +110,7 @@ final class PasswordViewController: UIViewController {
         text.layer.borderWidth = 2.0
         text.layer.cornerRadius = 10
         text.layer.borderColor = UIColor.black.cgColor
-        text.isSecureTextEntry = true
+        text.isSecureTextEntry = false
         return text
     }()
 
@@ -141,12 +137,10 @@ final class PasswordViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         return button
     }()
-    // кнопка входа в приложение
+    // кнопка закрытия модального экрана
     lazy var closeBtn: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        //button.backgroundColor = UIColor(named: "Pink")
-        //button.layer.cornerRadius = 20
         button.setTitle("Done", for: .normal)
         button.tintColor = .blue
         button.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)

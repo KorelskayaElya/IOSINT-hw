@@ -9,6 +9,7 @@ import UIKit
 import StorageService
 
 class PostTableViewCell: UITableViewCell {
+    
     private lazy var myImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -29,7 +30,6 @@ class PostTableViewCell: UITableViewCell {
         decriptionLabel.lineBreakMode = .byWordWrapping
         decriptionLabel.numberOfLines = 0
         decriptionLabel.textAlignment = .justified
-        //decriptionLabel.clipsToBounds = true
         decriptionLabel.contentMode = .scaleAspectFit
         decriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         return decriptionLabel
@@ -57,18 +57,17 @@ class PostTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setup(with post: Post) {
-        self.titleLabel.text = post.author
-        self.decriptionLabel.text = post.description
-        self.labelLikes.text = String("Likes: \(post.likes)")
-        self.labelViews.text = String("Views:\(post.views)")
-        self.decriptionLabel.textColor = .darkGray
-        self.myImageView.image = UIImage(named:"\(post.image)")
-        self.titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+    var post: PostStorage? {
+        didSet {
+            self.titleLabel.text = post?.author
+            self.decriptionLabel.text = post?.descriptionPost
+            self.labelLikes.text = "Likes: \(post?.likes ?? 33)"
+            self.labelViews.text = "Views:\(post?.views ?? 33)"
+            self.decriptionLabel.textColor = .darkGray
+            self.myImageView.image = UIImage(named:"\(post?.image ?? "2"))")
+            self.titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        }
     }
-    
-    
     
     private func setupView() {
         self.contentView.addSubview(self.myImageView)

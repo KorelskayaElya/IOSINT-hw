@@ -14,27 +14,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-
-        // здесь пытаюсь подключить запуск первого launch screen - пока не работает
-        let passwordView = PasswordViewController(updatePassword: false)
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = passwordView
-        window?.makeKeyAndVisible()
-        return true
+      FirebaseApp.configure()
+      return true
     }
     
     
-    // это не нужно
-    //        FirebaseApp.configure()
-//    // когда приложение закрывается - пользователь разлогинен
-//    func applicationWillTerminate(_ application: UIApplication) {
-//         do {
-//             try Auth.auth().signOut()
-//         } catch let signOutError as NSError {
-//             print ("Error signing out: %@", signOutError)
-//         }
-//    }
+
+    
+    // когда приложение закрывается - пользователь разлогинен
+    func applicationWillTerminate(_ application: UIApplication) {
+         do {
+             try Auth.auth().signOut()
+         } catch let signOutError as NSError {
+             print ("Error signing out: %@", signOutError)
+         }
+    }
 
     // MARK: UISceneSession Lifecycle
 

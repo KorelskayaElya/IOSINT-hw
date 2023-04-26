@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import StorageService
 
 protocol Create: AnyObject {
     func createPhoto() -> UIViewController

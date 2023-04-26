@@ -13,8 +13,8 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
     
     var coordinatorFeed: Coordinator?
     var coordinatorProfile: Coordinator?
-    // не уверена нужно ли тут к окну обращаться 
-//    var window: UIWindow?
+    var coordinatorSave: Coordinator?
+
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
@@ -34,17 +34,13 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         coordinatorProfile = ProfileCoordinator(navigationController: ProfileController)
         coordinatorProfile?.start()
         let profile = coordinatorProfile!
-        tabBarController.viewControllers = [feed.navigationController, profile.navigationController]
-
         
-        
-        // вот тут я пытаюсь загрузить бар после launch screen  поэтому экран темный стал (пока не получилось)
-        // это все находилось в screen delegate и оттуда работало без launch screen
-//        tabBarController.tabBar.barTintColor = UIColor.white
-//        tabBarController.tabBar.isTranslucent = false
-//        window?.rootViewController = tabBarController
-//        window?.makeKeyAndVisible()
-        }
+        let SaveController = UINavigationController()
+        coordinatorSave = SavedPostCoordinator(navigationController: SaveController)
+        coordinatorSave?.start()
+        let save = coordinatorSave!
+        tabBarController.viewControllers = [feed.navigationController, profile.navigationController, save.navigationController]
+    }
         
         
 

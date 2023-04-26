@@ -6,22 +6,23 @@
 //
 
 import UIKit
-import StorageService
 import FirebaseAuth
 import FirebaseCore
 
 class ProfileViewController: UIViewController {
+    let coreDataService = CoreDataService()
     let GroupSection = ["Photos","---"]
     
     var newUser: User? = nil
     weak var coordinator: ProfileCoordinator?
-    private var images = [Post]()
+    private var images = [PostStorage]()
     // обновление информации
     var viewModel: ProfileViewModel! {
         didSet {
             self.viewModel.userChange = { [ weak self ] viewModel in
                 self?.newUser = viewModel.user ?? nil
                 self?.images = viewModel.images ?? []
+                viewModel.images = self?.coreDataService.getContext()
             }
         }
     }
@@ -31,8 +32,6 @@ class ProfileViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 150
         tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "HeaderView")
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: "CustomCell")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DefaultCell")
@@ -86,7 +85,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, ButtonDelegate {
     func didTapButton(sender: UIButton) {
-       // coordinator?.goToPhotosViewController()
+       coordinator?.goToPhotosViewController()
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
@@ -120,10 +119,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
         if section == 0 {
             return 1
         } else {
-            return PostStorage.post.count
+            print("viewModel.images?.count",viewModel.images?.count ?? 1)
+            return viewModel.images?.count ?? 1
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "PhotosCell", for: indexPath) as! PhotosTableViewCell
             let viewModel = PhotosTableViewCell.ViewModel(title: "Photos", image: nil)
@@ -132,11 +133,27 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! PostTableViewCell
-            let images = PostStorage.post[indexPath.row]
-            cell.setup(with: images)
+            cell.post = viewModel.images?[indexPath.row]
+            let tap = UITapGestureRecognizer(target: self, action: #selector(addPost))
+            tap.numberOfTapsRequired = 2
+            cell.addGestureRecognizer(tap)
             return cell
         }
     }
+    @objc func addPost(_ sender: UITapGestureRecognizer) {
+        guard let indexPath = tableView.indexPathForRow(at: sender.location(in: self.tableView)) else {return}
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! PostTableViewCell
+        cell.post = viewModel.images?[indexPath.row]
+        coreDataService.saveContext(
+            postModel: .init(
+                author: viewModel.images?[indexPath.row].author ?? "error",
+                descriptionPost: viewModel.images?[indexPath.row].descriptionPost ?? "error",
+                image: viewModel.images?[indexPath.row].image ?? "error",
+                likes: viewModel.images?[indexPath.row].likes ?? 0,
+                views: viewModel.images?[indexPath.row].views ?? 0)
+        )
+    }
+    
 
 }
 
