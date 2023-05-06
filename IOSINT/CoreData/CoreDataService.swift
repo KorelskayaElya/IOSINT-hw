@@ -8,7 +8,7 @@
 import CoreData
 
 class CoreDataService {
-    
+    static let shared = CoreDataService()
     // представляет контейнер, который содержит базу данных Core Data с указанным именем "PostModel". Он загружает постоянные хранилища в контейнер и проверяет наличие ошибок при загрузке.
     var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "PostModel")
@@ -17,6 +17,7 @@ class CoreDataService {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        container.viewContext.automaticallyMergesChangesFromParent = true
         return container
     }()
     
@@ -39,13 +40,13 @@ class CoreDataService {
                 } catch let error as NSError {
                     print("Unresolved error \(error), \(error.userInfo)")
                 }
-            }
+           }
         }
     }
     // поверка существования поста
     func postExists(postModel: PostStorage) -> Bool {
         let postFetch: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
-        postFetch.predicate = NSPredicate(format: "author == %@ AND descriptionPost == %@ AND image == %@", postModel.author, postModel.descriptionPost, postModel.image)
+        postFetch.predicate = NSPredicate(format: "author contains[c] %@ AND descriptionPost contains[c] %@ AND image contains[c] %@", postModel.author, postModel.descriptionPost, postModel.image)
         var isExist = false
         do {
             let results = try context.fetch(postFetch) as [NSManagedObject]
@@ -61,7 +62,7 @@ class CoreDataService {
     }
     func getContextByAuthor(author: String) -> [PostStorage]{
         let postFetch: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
-        postFetch.predicate = NSPredicate(format: "author == %@", author)
+        postFetch.predicate = NSPredicate(format: "author contains[c] %@", author)
         var savedPostsData: [PostStorage] = []
         do {
             let savedPosts = try context.fetch(postFetch)
@@ -81,7 +82,7 @@ class CoreDataService {
     
     func deleteContext(profilePostModel: PostStorage) {
         let postFetch: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
-        postFetch.predicate = NSPredicate(format: "author == %@ AND descriptionPost == %@ AND image == %@", profilePostModel.author, profilePostModel.descriptionPost, profilePostModel.image)
+        postFetch.predicate = NSPredicate(format: "author contains[c] %@ AND descriptionPost contains[c] %@ AND image contains[c] %@", profilePostModel.author, profilePostModel.descriptionPost, profilePostModel.image)
         do {
             let results = try context.fetch(postFetch) as [NSManagedObject]
             for data in results {
