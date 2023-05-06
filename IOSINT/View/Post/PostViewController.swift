@@ -6,15 +6,44 @@
 //
 
 import UIKit
+import CoreData
 
-class PostViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate {
+class PostViewController: UIViewController, UITableViewDelegate, UINavigationControllerDelegate, NSFetchedResultsControllerDelegate {
     
     weak var coordinator: SavedPostCoordinator?
     let tableView = UITableView.init(frame: .zero, style: .grouped)
     let coreDataService = CoreDataService()
-    var isSorted = false
-    var savedPosts: [PostStorage] = []
-    var filteredAuthor: String? = nil
+
+    
+    private var fetchResultsController: NSFetchedResultsController<PostEntity>!
+    func initFetchResultsController(search: String? = nil) {
+        let fetch = PostEntity.fetchRequest()
+        // сортировка по убыванию NSSortDescriptor(key: "author", ascending: false)
+        fetch.sortDescriptors = []
+        
+        if let search {
+            fetch.predicate = NSPredicate(format: "author contains[c] %@", search)
+        }
+        
+        fetchResultsController = NSFetchedResultsController<PostEntity>(fetchRequest: fetch, managedObjectContext: CoreDataService.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        fetchResultsController.delegate = self
+        try? fetchResultsController.performFetch()
+        table.reloadData()
+    }
+    
+//    let fetchResultController: NSFetchedResultsController<PostEntity> = {
+//        let fetchRequest: NSFetchRequest<PostEntity> = PostEntity.fetchRequest()
+//        // сортировка по убыванию NSSortDescriptor(key: "author", ascending: false)
+//        fetchRequest.sortDescriptors = []
+//        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataService.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+//        return frc
+//    }()
+    
+    // обновление делегат NSFetchedResultsControllerDelegate
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        table.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +51,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
         navigationController?.delegate = self
         setupTableView()
         self.title = "Saved Posts"
+        //fetchResultController.delegate = self
+        //try? fetchResultController.performFetch()
+        initFetchResultsController(search: nil)
         self.view.backgroundColor = .systemBackground
         table.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tap))
@@ -31,15 +63,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
         navigationItem.leftBarButtonItems = [authorFilterBtn, clearFilterBtn]
         navigationItem.leftBarButtonItem?.tintColor = .black
     }
-    
-    func returnPosts() -> [PostStorage] {
-        if isSorted == false {
-            savedPosts = coreDataService.getContext()
-        } else {
-            savedPosts = coreDataService.getContextByAuthor(author: filteredAuthor!)
-        }
-        return savedPosts
-    }
+
     @objc func authorSearch() {
         let alert = UIAlertController(title: "Поиск по автору", message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
@@ -48,15 +72,13 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
         alert.addAction(UIAlertAction(title: "Отменить", style: .cancel))
         alert.addAction(UIAlertAction(title: "Применить", style: .default, handler: { [self] _ in
             guard let textField = alert.textFields?[0].text else {return}
-            filteredAuthor = textField
-            isSorted = true
+            initFetchResultsController(search: textField)
             table.reloadData()
         }))
         self.present(alert, animated: true, completion: nil)
     }
     @objc func clearFilter() {
-        isSorted = false
-        filteredAuthor = nil
+        initFetchResultsController(search: nil)
         table.reloadData()
     }
     
@@ -82,24 +104,22 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
     }
     
     @objc func tap() {
-        let infoVC = InfoViewController()
-        self.present(infoVC, animated: true, completion: nil)
+//        let infoVC = InfoViewController()
+//        self.present(infoVC, animated: true, completion: nil)
     }
     
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        table.reloadData()
-    }
     
 }
 
 extension PostViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        returnPosts().count
+        return fetchResultsController.sections?[section].numberOfObjects ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PostTableViewCell", for: indexPath) as! PostTableViewCell
-        cell.post = returnPosts()[indexPath.row]
+        let post = fetchResultsController.object(at: indexPath)
+        cell.setup(with: post)
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -110,7 +130,10 @@ extension PostViewController: UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
-            self.coreDataService.deleteContext(profilePostModel: self.returnPosts()[indexPath.row])
+            //self.coreDataService.deleteContext(profilePostModel: self.returnPosts()[indexPath.row])
+            let post = self.fetchResultsController.object(at: indexPath)
+            CoreDataService.shared.context.delete(post)
+            try? CoreDataService.shared.context.save()
             tableView.reloadData()
             success(true)
         }
