@@ -12,6 +12,7 @@ final class PasswordViewController: UIViewController {
     
     var modalFlag = false
     weak var coordinator: CoordinatbleLogin?
+    var config = Realm.Configuration(encryptionKey: Encryption().getKey())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ final class PasswordViewController: UIViewController {
     }
     /// перенести в другой файл
     func loginUser(username: String, password: String) {
-        let realm = try? Realm()
+        let realm = try? Realm(configuration: config)
         let users = realm?.objects(User.self).filter("username = '\(username)' AND password = '\(password)'")
         if let user = users?.first {
             coordinator?.switchToTabBarCoordinator()
@@ -67,7 +68,7 @@ final class PasswordViewController: UIViewController {
     }
     /// перенести в другой файл
     func updatePassword(username: String, newPassword: String) {
-        let realm = try? Realm()
+        let realm = try? Realm(configuration: config)
         if let user = realm?.objects(User.self).filter("username = '\(username)'").first {
             try? realm?.write {
                 if !user.password.isEmpty && user.password.count >= 4 {
@@ -81,9 +82,10 @@ final class PasswordViewController: UIViewController {
             TemplateErrorAlert.shared.alert(alertTitle: "Пользователь \(username) не найден", alertMessage: "Попробуйте еще раз")
         }
     }
-    // зарегистрироаться
+    // зарегистрироваться
     @objc func registerUser() {
-        let realm = try? Realm()
+        // конфигурация зашифрованной realm
+        let realm = try? Realm(configuration: config)
         let user = User()
         user.username = loginTextField.text ?? ""
         user.password = passwordTextField.text ?? ""
