@@ -48,7 +48,7 @@ final class PasswordViewController: UIViewController {
     func loginUser(username: String, password: String) {
         let realm = try? Realm(configuration: config)
         let users = realm?.objects(User.self).filter("username = '\(username)' AND password = '\(password)'")
-        if let user = users?.first {
+        if (users?.first) != nil {
             coordinator?.switchToTabBarCoordinator()
         } else {
             TemplateErrorAlert.shared.alert(alertTitle: "Неверный логин или пароль", alertMessage: "Попробуйте снова")
@@ -86,21 +86,31 @@ final class PasswordViewController: UIViewController {
     @objc func registerUser() {
         // конфигурация зашифрованной realm
         let realm = try? Realm(configuration: config)
-        let user = User()
-        user.username = loginTextField.text ?? ""
-        user.password = passwordTextField.text ?? ""
-        if user.username == "" || user.username.count < 4 {
+
+        let username = loginTextField.text ?? ""
+        let password = passwordTextField.text ?? ""
+
+        if username.isEmpty || username.count < 4 {
             TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле логина больше 4 символов")
+            return
         }
-        if user.password == "" || user.password.count < 4 {
+        if password.isEmpty || password.count < 4 {
             TemplateErrorAlert.shared.alert(alertTitle: "Что-то не так...", alertMessage: "Введите в поле пароля больше 4 символов")
+            return
         }
-       
-        if !user.username.isEmpty && !user.password.isEmpty && user.username.count >= 4 && user.password.count >= 4 {
-            try? realm?.write {
-                realm?.add(user)
-                TemplateErrorAlert.shared.alert(alertTitle: "Вы зарегистрированы", alertMessage: "Войдите в приложение")
-            }
+
+        if realm?.objects(User.self).filter("username = '\(username)'").first != nil {
+            TemplateErrorAlert.shared.alert(alertTitle: "Пользователь с таким логином уже существует", alertMessage: "Попробуйте другой логин")
+            return
+        }
+
+        let user = User()
+        user.username = username
+        user.password = password
+           
+        try? realm?.write {
+            realm?.add(user)
+            TemplateErrorAlert.shared.alert(alertTitle: "Вы зарегистрированы", alertMessage: "Войдите в приложение")
         }
     }
     // поле ввода логина
