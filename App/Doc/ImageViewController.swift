@@ -217,7 +217,7 @@ class ImageViewController: UIViewController, UITableViewDataSource, UITableViewD
             table.deleteRows(at: [indexPath], with: .middle)
         }
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) -> UITableViewCell {
         let selectedPath = path + "/" + file[indexPath.row]
         var objcBool: ObjCBool = false
         FileManager.default.fileExists(atPath: path + "/" + file[indexPath.row], isDirectory: &objcBool)
@@ -236,6 +236,12 @@ class ImageViewController: UIViewController, UITableViewDataSource, UITableViewD
                    dataViewController.title = "Image Details" 
                    navigationController?.pushViewController(dataViewController, animated: true)
             }
+        }
+        // не знаю как скрывать такие файлы
+        if file[indexPath.row] == "default.re" {
+            return UITableViewCell()
+        } else {
+            return UITableViewCell()
         }
     }
 
