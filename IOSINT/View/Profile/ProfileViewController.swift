@@ -141,7 +141,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
         }
     }
     @objc func addPost(_ sender: UITapGestureRecognizer) {
-        guard let indexPath = tableView.indexPathForRow(at: sender.location(in: self.tableView)) else {return}
+        let coreDataService = CoreDataService.shared
+        guard let indexPath = tableView.indexPathForRow(at: sender.location(in: self.tableView)) else { return }
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! PostTableViewCell
         cell.post = viewModel.images?[indexPath.row]
         coreDataService.saveContext(
@@ -152,6 +153,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
                 likes: viewModel.images?[indexPath.row].likes ?? 0,
                 views: viewModel.images?[indexPath.row].views ?? 0)
         )
+        tableView.reloadData() 
     }
     
 

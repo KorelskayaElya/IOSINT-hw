@@ -12,7 +12,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
     
     weak var coordinator: SavedPostCoordinator?
     let tableView = UITableView.init(frame: .zero, style: .grouped)
-    let coreDataService = CoreDataService()
+    let coreDataService = CoreDataService.shared
+
 
     
     private var fetchResultsController: NSFetchedResultsController<PostEntity>!
@@ -132,8 +133,8 @@ extension PostViewController: UITableViewDataSource {
         let action = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
             //self.coreDataService.deleteContext(profilePostModel: self.returnPosts()[indexPath.row])
             let post = self.fetchResultsController.object(at: indexPath)
-            CoreDataService.shared.context.delete(post)
-            try? CoreDataService.shared.context.save()
+            self.coreDataService.context.delete(post)
+            try? self.coreDataService.context.save()
             tableView.reloadData()
             success(true)
         }
