@@ -47,6 +47,8 @@
 		6DD5F935299E2CE20024C255 /* 5.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6DD5F934299E2CE20024C255 /* 5.mp3 */; };
 		6DD5F93A29A335080024C255 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F93929A335080024C255 /* NetworkService.swift */; };
 		6DD5F93C29A335760024C255 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5F93B29A335760024C255 /* AppConfiguration.swift */; };
+		6DD76D9C2A1A638300E9A386 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD76D9B2A1A638300E9A386 /* MapViewController.swift */; };
+		6DD76D9E2A1A646100E9A386 /* MapCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD76D9D2A1A646100E9A386 /* MapCoordinator.swift */; };
 		6DE31F6429F562CE00B9EA1B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6329F562CE00B9EA1B /* FirebaseAuth */; };
 		6DE31F6629F562CE00B9EA1B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6529F562CE00B9EA1B /* FirebaseDatabase */; };
 		6DE31F6829F562CE00B9EA1B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6729F562CE00B9EA1B /* FirebaseStorage */; };
@@ -120,6 +122,8 @@
 		6DD5F934299E2CE20024C255 /* 5.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5.mp3; sourceTree = "<group>"; };
 		6DD5F93929A335080024C255 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		6DD5F93B29A335760024C255 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		6DD76D9B2A1A638300E9A386 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6DD76D9D2A1A646100E9A386 /* MapCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCoordinator.swift; sourceTree = "<group>"; };
 		6DE31F7F29F58DBD00B9EA1B /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		6DE31F8229F58DE800B9EA1B /* PostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostModel.xcdatamodel; sourceTree = "<group>"; };
 		6DE31F8929F59B4100B9EA1B /* SavedPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostCoordinator.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 		6D7000C8293F50EB003DFBBF = {
 			isa = PBXGroup;
 			children = (
+				6DD76D9A2A1A637300E9A386 /* Map */,
 				6DE31F7E29F58D9800B9EA1B /* CoreData */,
 				6D0067E429B5BE0300B2A895 /* Launch Screen.storyboard */,
 				6DD5F93829A334E60024C255 /* Network */,
@@ -220,6 +225,7 @@
 				6DC169AA2988D624005B56C2 /* ProfileCoordinator.swift */,
 				6DC169AC2988D6AA005B56C2 /* TabBarCoordinator.swift */,
 				6DE31F8929F59B4100B9EA1B /* SavedPostCoordinator.swift */,
+				6DD76D9D2A1A646100E9A386 /* MapCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -337,6 +343,14 @@
 				6DD5F93B29A335760024C255 /* AppConfiguration.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		6DD76D9A2A1A637300E9A386 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				6DD76D9B2A1A638300E9A386 /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		6DE31F7E29F58D9800B9EA1B /* CoreData */ = {
@@ -466,7 +480,9 @@
 				6D7E505E297728320007CF3D /* LogInViewControllerDelegate.swift in Sources */,
 				6D7000FA293F5262003DFBBF /* PhotosViewController.swift in Sources */,
 				6DD5F927299CAF280024C255 /* MusicViewController.swift in Sources */,
+				6DD76D9C2A1A638300E9A386 /* MapViewController.swift in Sources */,
 				6DC169AD2988D6AA005B56C2 /* TabBarCoordinator.swift in Sources */,
+				6DD76D9E2A1A646100E9A386 /* MapCoordinator.swift in Sources */,
 				6DC169B2298A9C4B005B56C2 /* LogInViewModel.swift in Sources */,
 				6D82592829938E89006C0202 /* BruteForce.swift in Sources */,
 				6DD5F929299CF1670024C255 /* VideoViewController.swift in Sources */,
