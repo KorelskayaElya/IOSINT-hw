@@ -18,7 +18,7 @@ final class MapCoordinator: Coordinator {
     func start() {
         let mapVC = MapViewController()
         mapVC.coordinator = self
-        mapVC.tabBarItem.title = "Map"
+        mapVC.tabBarItem.title = "Map".localized
         mapVC.tabBarItem.image = UIImage(systemName: "mappin.circle.fill")
         navigationController.pushViewController(mapVC, animated: false)
     }

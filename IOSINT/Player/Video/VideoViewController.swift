@@ -61,14 +61,14 @@ class VideoViewController: UIViewController {
     
     
     private func addVideoItems() {
-        list.append(videoItem(title: "Funny video", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/c555e8058fac3c3442ad2229783642ae/manifest/video.m3u8"))
-        list.append(videoItem(title: "Super funny", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/180485a8b80743f029b184bc70f3f592/manifest/video.m3u8"))
-        list.append(videoItem(title: "Best video", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/382d37f21eb1719f9a048e9c6329bc8c/manifest/video.m3u8"))
-        list.append(videoItem(title: "Video cool", link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/1fbbb66c0a3ee51ba6e637bc631484c0/manifest/video.m3u8"))
+        list.append(videoItem(title: "Funny video".localized, link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/c555e8058fac3c3442ad2229783642ae/manifest/video.m3u8"))
+        list.append(videoItem(title: "Super funny".localized, link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/180485a8b80743f029b184bc70f3f592/manifest/video.m3u8"))
+        list.append(videoItem(title: "Best video".localized, link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/382d37f21eb1719f9a048e9c6329bc8c/manifest/video.m3u8"))
+        list.append(videoItem(title: "Video cool".localized, link: "https://customer-t650oxmd7oj07ex3.cloudflarestream.com/1fbbb66c0a3ee51ba6e637bc631484c0/manifest/video.m3u8"))
     }
     
     private func setupViews() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Recorder", style: .plain, target: self, action: #selector(goToRecorder))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Recorder".localized, style: .plain, target: self, action: #selector(goToRecorder))
         
         view.backgroundColor = UIColor(named: "Pink")
         view.addSubview(playerView)
@@ -89,7 +89,7 @@ class VideoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Video zone"
+        navigationItem.title = "Video zone".localized
         setupViews()
         addVideoItems()
         playerView.layoutIfNeeded()

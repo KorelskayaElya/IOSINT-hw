@@ -14,7 +14,7 @@ class TemplateErrorAlert {
     
     func alert(alertTitle: String, alertMessage: String) {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .cancel)
+        let action = UIAlertAction(title: "OK".localized, style: .cancel)
         alert.addAction(action)
         // не работает
         UIApplication.topViewController()!.present(alert, animated: true)

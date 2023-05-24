@@ -119,7 +119,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate, But
         if section == 0 {
             return 1
         } else {
-            print("viewModel.images?.count",viewModel.images?.count ?? 1)
+            //print("viewModel.images?.count",viewModel.images?.count ?? 1)
             return viewModel.images?.count ?? 1
         }
     }

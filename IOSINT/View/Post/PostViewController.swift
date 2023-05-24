@@ -51,7 +51,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
         view.addSubview(table)
         navigationController?.delegate = self
         setupTableView()
-        self.title = "Saved Posts"
+        self.title = NSLocalizedString("Saved Post", comment: "")
         //fetchResultController.delegate = self
         //try? fetchResultController.performFetch()
         initFetchResultsController(search: nil)
@@ -66,12 +66,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
     }
 
     @objc func authorSearch() {
-        let alert = UIAlertController(title: "Поиск по автору", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Поиск по автору".localized, message: nil, preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Имя автора"
+            textField.placeholder = "Имя автора".localized
         }
-        alert.addAction(UIAlertAction(title: "Отменить", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Применить", style: .default, handler: { [self] _ in
+        alert.addAction(UIAlertAction(title: "Отменить".localized, style: .cancel))
+        alert.addAction(UIAlertAction(title: "Применить".localized, style: .default, handler: { [self] _ in
             guard let textField = alert.textFields?[0].text else {return}
             initFetchResultsController(search: textField)
             table.reloadData()
@@ -130,7 +130,7 @@ extension PostViewController: UITableViewDataSource {
         return 20
     }
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Delete") { (action, view, success) in
+        let action = UIContextualAction(style: .normal, title: "Delete".localized) { (action, view, success) in
             //self.coreDataService.deleteContext(profilePostModel: self.returnPosts()[indexPath.row])
             let post = self.fetchResultsController.object(at: indexPath)
             self.coreDataService.context.delete(post)

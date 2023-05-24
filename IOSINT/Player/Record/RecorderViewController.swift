@@ -39,7 +39,7 @@ class RecorderViewController: UIViewController {
     }()
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.text = "Диктофон"
+        label.text = "Bug".localized
         label.tintColor = .black
         label.font = UIFont(name: "Helvetica Neue", size: 30)
         label.translatesAutoresizingMaskIntoConstraints = false

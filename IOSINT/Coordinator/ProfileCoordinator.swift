@@ -21,7 +21,7 @@ final class ProfileCoordinator: Coordinator {
 
     func start() {
         let loginVC = screenCreate.createLogin(coordinator: self)
-        loginVC.tabBarItem.title = "Profile"
+        loginVC.tabBarItem.title = "Profile".localized
         loginVC.tabBarItem.image = UIImage(systemName: "person.fill")
         navigationController.pushViewController(loginVC, animated: false)
     }

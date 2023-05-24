@@ -16,9 +16,9 @@ enum LogInErrors: Error {
  extension LogInErrors: CustomStringConvertible {
      var description: String {
          switch self {
-         case .emptyLogin: return "Пустой логин"
-         case .emptyPassword: return "Пустой пароль"
-         case .isNotAuthorized: return "Неверная авторизация"
+         case .emptyLogin: return "Пустой логин".localized
+         case .emptyPassword: return "Пустой пароль".localized
+         case .isNotAuthorized: return "Неверная авторизация".localized
          }
      }
  }

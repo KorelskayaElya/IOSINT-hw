@@ -59,7 +59,7 @@ class PostTableViewCell: UITableViewCell {
     func setup(with post: PostEntity) {
         titleLabel.text = post.author
         decriptionLabel.text = post.descriptionPost
-        labelLikes.text = "Likes: \(post.likes)"
+        labelLikes.text = String(format: "Likes".localized)
         labelViews.text = "Views:\(post.views)"
         decriptionLabel.textColor = .darkGray
         myImageView.image = UIImage(named:"\(post.image ?? "logo.png"))")
@@ -69,7 +69,7 @@ class PostTableViewCell: UITableViewCell {
         didSet {
             titleLabel.text = post?.author
             decriptionLabel.text = post?.descriptionPost
-            labelLikes.text = "Likes: \(post?.likes ?? 33)"
+            labelLikes.text = String(format: "Likes".localized, post?.likes ?? 0)
             labelViews.text = "Views:\(post?.views ?? 33)"
             decriptionLabel.textColor = .darkGray
             myImageView.image = UIImage(named:"\(post?.image ?? "2"))")

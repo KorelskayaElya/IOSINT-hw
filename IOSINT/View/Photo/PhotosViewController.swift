@@ -125,7 +125,7 @@ class PhotosViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        self.navigationItem.title = "Photo Gallery"
+        self.navigationItem.title = "Photo Gallery".localized
     
     }
     override func viewWillAppear(_ animated: Bool) {
