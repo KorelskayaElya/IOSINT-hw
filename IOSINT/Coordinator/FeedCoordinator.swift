@@ -30,7 +30,7 @@ final class FeedCoordinator: Coordinator {
     func toAVPlayer() {
          let avPlayerVC = MusicViewController()
          avPlayerVC.coordinator = self
-         navigationController.navigationBar.tintColor = .black
+         navigationController.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .black)
          navigationController.pushViewController(avPlayerVC, animated: true)
      }
     func toVideoPlayer() {

@@ -33,7 +33,7 @@ class PhotosViewController: UIViewController {
     }()
     private lazy var collection: UICollectionView = {
         let myCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: flowLayout)
-        myCollectionView.backgroundColor = UIColor.white
+        myCollectionView.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
         myCollectionView.dataSource = self
         myCollectionView.delegate = self

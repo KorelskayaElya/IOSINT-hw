@@ -27,7 +27,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         let button = UIButton()
         button.backgroundColor = .systemBlue
         button.setTitle("Set status".localized, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+        button.setTitleColor(UIColor(named:"BlackSet"), for: .normal)
         button.titleLabel?.font = UIFont(name: "Courier New", size: 24)
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)
@@ -44,14 +44,15 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Hipster Cat".localized
-        label.font = UIFont(name: "Courier New", size: 18)
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .black)
+        label.font = UIFont(name: "Courier New", size: 25)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Waiting for smth...".localized
-        label.textColor = .darkGray
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .black)
         label.font = UIFont(name: "Courier New", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -64,11 +65,15 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.font = UIFont(name: "Courier New", size: 15)
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-        textField.placeholder = "Set your status ...".localized
+       // textField.placeholder = "Set your status ...".localized
+        let placeholderText = NSAttributedString(string: "Set your status ...".localized,attributes: [NSAttributedString.Key.foregroundColor:UIColor(named:"BlackSet") ?? UIColor.black])
+        textField.attributedPlaceholder = placeholderText
+        textField.textColor = UIColor(named:"BlackSet")
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(self.statusTextChanged(_:)), for:.editingChanged)
         return textField
     }()
+    
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

@@ -52,9 +52,9 @@ class ProfileViewController: UIViewController {
     }
     private func setupBackground() {
         #if DEBUG
-        tableView.backgroundColor = .brown
+        tableView.backgroundColor = UIColor(named: "ColorBlue")
         #else
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .blue
         #endif
     }
     

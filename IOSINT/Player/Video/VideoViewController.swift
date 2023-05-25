@@ -38,7 +38,7 @@ class VideoViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = UIColor(named: "Pink")
+        tableView.backgroundColor = UIColor(named: "ColorBlue")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "default")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
@@ -69,8 +69,9 @@ class VideoViewController: UIViewController {
     
     private func setupViews() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Recorder".localized, style: .plain, target: self, action: #selector(goToRecorder))
-        
-        view.backgroundColor = UIColor(named: "Pink")
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        navigationController?.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        view.backgroundColor = UIColor(named: "ColorBlue")
         view.addSubview(playerView)
         view.addSubview(tableView)
         
@@ -90,6 +91,7 @@ class VideoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Video zone".localized
+        navigationController?.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         setupViews()
         addVideoItems()
         playerView.layoutIfNeeded()
@@ -105,7 +107,8 @@ extension VideoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "default", for: indexPath)
         cell.textLabel?.text = list[indexPath.row].title
-        cell.backgroundColor = UIColor(named: "Pink")
+        cell.textLabel?.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        cell.backgroundColor = UIColor(named: "ColorBlue")
         return cell
     }
     

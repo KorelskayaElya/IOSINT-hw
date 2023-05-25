@@ -28,7 +28,7 @@ class RecorderViewController: UIViewController {
     private lazy var playBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .black)
         button.layer.borderColor = UIColor.systemGray5.cgColor
         button.layer.borderWidth = 0.5
         button.layer.cornerRadius = 25
@@ -40,7 +40,7 @@ class RecorderViewController: UIViewController {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Bug".localized
-        label.tintColor = .black
+        label.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.font = UIFont(name: "Helvetica Neue", size: 30)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,7 +48,7 @@ class RecorderViewController: UIViewController {
     private lazy var recordBtn: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "record.circle"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .black)
         button.layer.borderColor = UIColor.systemGray5.cgColor
         button.layer.borderWidth = 0.5
         button.layer.cornerRadius = 25
@@ -79,9 +79,10 @@ class RecorderViewController: UIViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = UIColor(named: "Pink")
+        view.backgroundColor = UIColor(named: "ColorBlue")
         view.addSubview(stackView)
         view.addSubview(label)
+        navigationController?.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         
         NSLayoutConstraint.activate([
             label.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 8),

@@ -43,7 +43,7 @@ class LogInViewController: UIViewController {
     //         }
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
         //self.scrollView.addSubview(self.bruteForceButton)
@@ -103,11 +103,10 @@ class LogInViewController: UIViewController {
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.tintColor = UIColor(named:"AccentColor")
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = .systemGray6
+        textField.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        textField.backgroundColor = UIColor.createColor(lightMode: .systemGray6, darkMode: .systemGray3)
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
         textField.text = "kov@mail.ru"
@@ -117,12 +116,12 @@ class LogInViewController: UIViewController {
     //пароль
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.textColor = .black
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
         textField.font = UIFont.systemFont(ofSize: 16)
-        textField.tintColor = UIColor(named:"AccentColor")
+        textField.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.autocapitalizationType = .none
-        textField.backgroundColor = .systemGray6
+        textField.backgroundColor = UIColor.createColor(lightMode: .systemGray6, darkMode: .systemGray3)
         textField.isSecureTextEntry = true
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
