@@ -25,7 +25,6 @@ class PhotosTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Photos"
         return label
     }()
     //кнопка перехода
@@ -91,7 +90,8 @@ class PhotosTableViewCell: UITableViewCell {
     }
 
     func setup(with viewModel: ViewModel) {
-        self.titleLabel.text = viewModel.title
+        //self.titleLabel.text = viewModel.title
+        self.titleLabel.text = "Photos".localized
         self.ImagePerson1.image = UIImage(named: "person1")
         self.ImagePerson2.image = UIImage(named: "person2")
         self.ImagePerson3.image = UIImage(named: "person3")
@@ -122,10 +122,10 @@ class PhotosTableViewCell: UITableViewCell {
             self.stackWithPersons.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -12),
             self.stackWithPersons.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
             
-            self.ImagePerson1.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-            self.ImagePerson2.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-            self.ImagePerson3.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
-            self.ImagePerson4.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
+//            self.ImagePerson1.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
+//            self.ImagePerson2.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
+//            self.ImagePerson3.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
+//            self.ImagePerson4.widthAnchor.constraint(equalTo: self.stackWithPersons.widthAnchor, multiplier: 0.234),
 
             self.button_photos.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             self.button_photos.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),

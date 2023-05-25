@@ -32,9 +32,9 @@ struct NetworkService {
                 } else {
                     guard let data = data else { return }
                     let str = String(decoding: data, as: UTF8.self)
-                    print("data: \(str)")
+                    //print("data: \(str)")
                     if let httpResponse = response as? HTTPURLResponse {
-                    print("allHeaderFields: \(httpResponse.allHeaderFields), statusCode: \(httpResponse.statusCode)")
+                    //print("allHeaderFields: \(httpResponse.allHeaderFields), statusCode: \(httpResponse.statusCode)")
                 }
                 }
             }

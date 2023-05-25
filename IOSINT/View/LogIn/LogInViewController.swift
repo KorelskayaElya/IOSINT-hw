@@ -111,7 +111,7 @@ class LogInViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
         textField.text = "kov@mail.ru"
-        textField.placeholder = " Email of phone"
+        textField.placeholder = " Email of phone".localized
         return textField
     }()
     //пароль
@@ -127,7 +127,7 @@ class LogInViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.clipsToBounds = true
         textField.text = "1234567"
-        textField.placeholder = " Password"
+        textField.placeholder = " Password".localized
         return textField
     }()
     //кнопка
@@ -136,7 +136,7 @@ class LogInViewController: UIViewController {
         let image = UIImage(named: "blue_pixel")
         button.setBackgroundImage(image,for: UIControl.State.normal)
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Log in", for: .normal)
+        button.setTitle("Log in".localized, for: .normal)
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         button.clipsToBounds = true
@@ -268,9 +268,9 @@ class LogInViewController: UIViewController {
         do {
             try viewModel.startChecker(login: loginTextField.text!, pass: passwordTextField.text!)
         } catch LogInErrors.emptyLogin {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения".localized, alertMessage: "Заполните пустые поля".localized)
         } catch LogInErrors.emptyPassword {
-            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения", alertMessage: "Заполните пустые поля")
+            TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения".localized, alertMessage: "Заполните пустые поля".localized)
         } catch {}
         // когда пользователь новый создался, то пока нет для него новой страницы для профиля, поэтому кнопка не работает
         // не работает - выпадает в else

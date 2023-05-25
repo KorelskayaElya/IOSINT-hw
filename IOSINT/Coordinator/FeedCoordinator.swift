@@ -18,7 +18,7 @@ final class FeedCoordinator: Coordinator {
     func start() {
         let feedVC = FeedViewController()
         feedVC.coordinator = self
-        feedVC.tabBarItem.title = "Feed"
+        feedVC.tabBarItem.title = "Feed".localized
         feedVC.tabBarItem.image = UIImage(systemName: "suit.heart.fill")
         navigationController.pushViewController(feedVC, animated: false)
 

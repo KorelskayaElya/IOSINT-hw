@@ -1,0 +1,49 @@
+/* 
+  Localizable (Russian).strings
+  IOSINT
+
+  Created by Эля Корельская on 24.05.2023.
+  
+*/
+"Profile" = "Профиль";
+"Route filling error" = "Ошибка при построении маршрута";
+"Double post" = "Дубль поста";
+"Post already exists" = "Такой пост уже сохранён";
+"Feed" = "Лента";
+"Saved Post" = "Посты";
+"Map" = "Карта";
+"Destination" = "Пункт назначения";
+"Photo Gallery" = "Фото Галерея";
+"Search by author" = "Поиск по автору";
+"Author name" = "Имя автора";
+"Cancel" = "Отменить";
+"Apply" = "Применить";
+ = "Delete" = "Удалить";
+"Since 2013, Netflix has produced its own films and series, including animated films and TV programs. In 2016, the company produced 126 original series and films, more than any other network or cable channel." = "С 2013 года Netflix производит собственные фильмы и сериалы, в том числе и анимационные, а также телепрограммы. В 2016 году компания выпустила 126 оригинальных сериалов и фильмов — больше, чем любой другой сетевой или кабельный канал.";
+"Photos" = "Фото";
+"User tapped on item" = "Пользователь нажал на изображение";
+"Set your status" = "Установить статус";
+"Waiting for ..." = "В ожидании ...";
+"Hipster Cat" = "Ганстер кот";
+"ОК" = "ок";
+" Email or phone" = " Email или телефон";
+" Password" = "Пароль";
+"Log in" = "Войти";
+"Fill error" = "Ошибка заполнения";
+"Fill in the empty fields" = "Заполните пустые поля";
+"User not found" = "Пользователь не найден";
+"Do you want to create account?" = "Хотите создать аккаунт?";
+"Registration error" = "Ошибка регистрации";
+"Yes" = "Да";
+"The user does not want to create an account" = "Пользователь не хочет создавать аккаунт";
+"It is necessary to adhere to the format kov@mail.ru"="Необходимо придерживаться формата kov@mail.ru";
+"Other Errors" = "другие ошибки";
+"Account created" = "Аккаунт создан";
+"Account have been created!" = "Ваш аккаунт успешно создан!";
+"Empty login" = "Пустой логин";
+"Empty password" = "Пустой пароль";
+"Invalid Authorization" = "Неверная авторизация";
+"Check" = "Проверить";
+"Click" = "Клик";
+"AVPlayer" = "Плеер";
+"Info" = "Информация";

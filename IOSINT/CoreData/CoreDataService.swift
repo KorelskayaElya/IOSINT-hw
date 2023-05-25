@@ -25,7 +25,7 @@ class CoreDataService {
     // сохраняет переданный объект модели поста в базу данных Core Data через context
     func saveContext(postModel: PostStorage) {
         if postExists(postModel: postModel) == true {
-            TemplateErrorAlert.shared.alert(alertTitle: "Дубль поста", alertMessage: "Такой пост уже сохранён")
+            TemplateErrorAlert.shared.alert(alertTitle: NSLocalizedString("Double post", comment: ""), alertMessage: NSLocalizedString("Post already exists", comment: ""))
         } else {
             persistentContainer.performBackgroundTask { context in
                 let post = PostEntity(context: context)

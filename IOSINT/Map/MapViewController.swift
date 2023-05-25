@@ -113,7 +113,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // создание булавки для отметки выбранной точки
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        annotation.title = "Destination"
+        annotation.title = "Destination".localized
         
         // добавление булавки на карту
         mapView.addAnnotation(annotation)

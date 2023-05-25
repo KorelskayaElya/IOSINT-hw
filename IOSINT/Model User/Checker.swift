@@ -13,7 +13,7 @@ final class Checker {
     // логин пароль для входа
     private let loginCheck: String = "kov@mail.ru"
     private let passCheck: String = "1234567"
-    private let user = User(login: "hipster", fullName: "Hipster Cat", avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...")
+    private let user = User(login: "hipster".localized, fullName: "Hipster Cat".localized, avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...".localized)
 
     func check(login: String, pass: String, completion: @escaping (Result<User, LogInErrors>) -> Void) {
         if (login == loginCheck) && (pass == passCheck) {

@@ -26,7 +26,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     private lazy var button: UIButton = {
         let button = UIButton()
         button.backgroundColor = .systemBlue
-        button.setTitle("Set status", for: .normal)
+        button.setTitle("Set status".localized, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "Courier New", size: 24)
         button.clipsToBounds = true
@@ -43,14 +43,14 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     }()
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hipster Cat"
+        label.text = "Hipster Cat".localized
         label.font = UIFont(name: "Courier New", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Waiting for ..."
+        label.text = "Waiting for smth...".localized
         label.textColor = .darkGray
         label.font = UIFont(name: "Courier New", size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -64,7 +64,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.font = UIFont(name: "Courier New", size: 15)
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
-        textField.placeholder = "Set your status ..."
+        textField.placeholder = "Set your status ...".localized
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(self.statusTextChanged(_:)), for:.editingChanged)
         return textField

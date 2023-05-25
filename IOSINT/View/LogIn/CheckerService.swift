@@ -33,14 +33,14 @@ import FirebaseCore
                  switch err.code {
                  // Если пользователь не найден - предлагаем создать
                  case AuthErrorCode.userNotFound.rawValue:
-                     let alert = UIAlertController(title: "Пользователь не найден", message: "Хотите создать аккаунт?", preferredStyle: .alert)
-                     alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {_ in print("Пользователь не хочет создавать аккаунт")}))
-                     alert.addAction(UIAlertAction(title: "Да", style: .default, handler: {_ in self.signUp(login: login, password: password)}))
+                     let alert = UIAlertController(title: "Пользователь не найден".localized, message: "Хотите создать аккаунт?".localized, preferredStyle: .alert)
+                     alert.addAction(UIAlertAction(title: "Нет".localized, style: .cancel, handler: {_ in print("Пользователь не хочет создавать аккаунт".localized)}))
+                     alert.addAction(UIAlertAction(title: "Да".localized, style: .default, handler: {_ in self.signUp(login: login, password: password)}))
                      UIApplication.topViewController()!.present(alert, animated: true, completion: nil)
                  // другие ошибки
                  default:
-                     TemplateErrorAlert.shared.alert(alertTitle: "Необходимо придерживаться формата kov@mail.ru", alertMessage: error.localizedDescription)
-                     print("другие ошибки")
+                     TemplateErrorAlert.shared.alert(alertTitle: "Необходимо придерживаться формата kov@mail.ru".localized, alertMessage: error.localizedDescription)
+                     print("другие ошибки".localized)
                  }
              } else {
                  // успешный вход
@@ -54,10 +54,10 @@ import FirebaseCore
              Auth.auth().createUser(withEmail: login, password: password) { result, error in
                  if let error = error {
                      // любые ошибки
-                     TemplateErrorAlert.shared.alert(alertTitle: "Ошибка регистрации", alertMessage: error.localizedDescription)
+                     TemplateErrorAlert.shared.alert(alertTitle: "Ошибка регистрации".localized, alertMessage: error.localizedDescription)
                  } else {
                      // нет ошибок и в базу записывается логин пароль от аккаунта
-                     TemplateErrorAlert.shared.alert(alertTitle: "Аккаунт создан", alertMessage: "Ваш аккаунт успешно создан!")
+                     TemplateErrorAlert.shared.alert(alertTitle: "Аккаунт создан".localized, alertMessage: "Ваш аккаунт успешно создан!".localized)
                  }
              }
      }

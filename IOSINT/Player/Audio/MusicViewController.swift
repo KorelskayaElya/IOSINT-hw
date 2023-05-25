@@ -229,8 +229,8 @@ class MusicViewController: UIViewController {
     }
     
     private func setupViews() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Video", style: .plain, target: self, action: #selector(goToVideo))
-        navigationItem.title = "Music List"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Video".localized, style: .plain, target: self, action: #selector(goToVideo))
+        navigationItem.title = "Music List".localized
         view.backgroundColor = UIColor(named: "Pink")
         
         view.addSubview(audioView)

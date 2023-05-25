@@ -10,7 +10,7 @@ import UIKit
 class FeedViewController: UIViewController {
 
     weak var coordinator: FeedCoordinator?
-    private lazy var button = CustomButton(customButtonTitle: "Click") {
+    private lazy var button = CustomButton(customButtonTitle: "Click".localized) {
         self.tapButton()
     }
     // проверка введенного слова
@@ -21,7 +21,7 @@ class FeedViewController: UIViewController {
            return label
        }()
     // проверка пароля 0000 с цветовой индикацией
-    private lazy var checkGuessButton = CustomButton(customButtonTitle: "Check") {
+    private lazy var checkGuessButton = CustomButton(customButtonTitle: "Check".localized) {
         guard let checkedSecret = self.textField.text else { return }
         if !checkedSecret.isEmpty {
             if FeedModel().check(secretWord: checkedSecret) {
@@ -29,7 +29,7 @@ class FeedViewController: UIViewController {
             self.checkLabel.textColor = .green
             } else {
                 self.checkLabel.textColor = .red
-                self.checkLabel.text = "Wrong password"
+                self.checkLabel.text = "Wrong password".localized
                     }
                 } else {
                     // проверка на пустое значение
@@ -44,13 +44,13 @@ class FeedViewController: UIViewController {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
-    private lazy var avButton = CustomButton(customButtonTitle: "AVPlayer") {
+    private lazy var avButton = CustomButton(customButtonTitle: "AVPlayer".localized) {
          self.goToAVPlayer()
      }
     private func goToAVPlayer() {
         coordinator?.toAVPlayer()
      }
-    private lazy var infoBtn = CustomButton(customButtonTitle: "Info") {
+    private lazy var infoBtn = CustomButton(customButtonTitle: "Info".localized) {
          self.goToInfo()
      }
     private func goToInfo() {
@@ -60,7 +60,7 @@ class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Feed"
+        navigationItem.title = "Feed".localized
         view.backgroundColor = .systemIndigo
         view.addSubview(self.button)
         view.addSubview(self.textField)
