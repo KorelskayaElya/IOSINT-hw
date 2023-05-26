@@ -61,7 +61,7 @@ class PostTableViewCell: UITableViewCell {
         decriptionLabel.text = post.descriptionPost
         labelLikes.text = String(format: "Likes".localized)
         labelViews.text = "Views:\(post.views)"
-        decriptionLabel.textColor = .darkGray
+        decriptionLabel.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         myImageView.image = UIImage(named:"\(post.image ?? "logo.png"))")
         titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
     }
@@ -71,7 +71,7 @@ class PostTableViewCell: UITableViewCell {
             decriptionLabel.text = post?.descriptionPost
             labelLikes.text = String(format: "Likes".localized, post?.likes ?? 0)
             labelViews.text = "Views:\(post?.views ?? 33)"
-            decriptionLabel.textColor = .darkGray
+            decriptionLabel.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
             myImageView.image = UIImage(named:"\(post?.image ?? "2"))")
             titleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         }

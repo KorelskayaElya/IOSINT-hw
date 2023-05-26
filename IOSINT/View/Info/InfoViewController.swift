@@ -12,7 +12,8 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "JSON"
-        view.backgroundColor = UIColor(named: "Pink")
+        navigationController?.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        view.backgroundColor = UIColor(named: "ColorBlue")
         view.addSubview(labelTitle)
         view.addSubview(labelPlanet)
         constraint()
@@ -37,14 +38,14 @@ class InfoViewController: UIViewController {
         let label = UILabel()
         label.font = UIFont(name: "Times New Roman", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.tintColor = .black
+        label.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         return label
     }()
     private lazy var labelPlanet: UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Times New Roman", size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.tintColor = .black
+        label.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         return label
     }()
     

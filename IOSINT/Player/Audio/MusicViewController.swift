@@ -48,7 +48,7 @@ class MusicViewController: UIViewController {
     private lazy var playButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         button.addTarget(self, action: #selector(playBtn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -57,7 +57,7 @@ class MusicViewController: UIViewController {
     private lazy var stopButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "stop.fill"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         button.addTarget(self, action: #selector(stopBtn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -66,7 +66,7 @@ class MusicViewController: UIViewController {
     private lazy var forwardButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "forward.end.fill"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         button.addTarget(self, action: #selector(nextTrack), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -75,7 +75,7 @@ class MusicViewController: UIViewController {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "backward.end.fill"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         button.addTarget(self, action: #selector(backTrack), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -83,7 +83,7 @@ class MusicViewController: UIViewController {
     private lazy var repeatButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "repeat"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         button.addTarget(self, action: #selector(repeatBtn), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -230,8 +230,10 @@ class MusicViewController: UIViewController {
     
     private func setupViews() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Video".localized, style: .plain, target: self, action: #selector(goToVideo))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        navigationController?.navigationBar.tintColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         navigationItem.title = "Music List".localized
-        view.backgroundColor = UIColor(named: "Pink")
+        view.backgroundColor = UIColor(named: "ColorBlue")
         
         view.addSubview(audioView)
         view.addSubview(stackView)

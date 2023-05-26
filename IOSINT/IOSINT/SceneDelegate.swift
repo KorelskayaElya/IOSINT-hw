@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appConfiguration = AppConfiguration.allCases.randomElement()
         
         let tabController = UITabBarController()
-        tabController.tabBar.barTintColor = UIColor.white
+        tabController.tabBar.barTintColor = UIColor.createColor(lightMode: .black, darkMode: .black)
         tabController.tabBar.isTranslucent = false
         coordinator = TabBarCoordinator(tabBarController: tabController)
         coordinator?.start()

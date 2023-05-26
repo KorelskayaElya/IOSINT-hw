@@ -58,11 +58,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UINavigationCon
         self.view.backgroundColor = .systemBackground
         table.backgroundColor = .systemBackground
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(tap))
-        navigationItem.rightBarButtonItem?.tintColor = .black
         let authorFilterBtn = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(authorSearch))
         let clearFilterBtn = UIBarButtonItem(image: UIImage(systemName: "clear"), style: .plain, target: self, action: #selector(clearFilter))
         navigationItem.leftBarButtonItems = [authorFilterBtn, clearFilterBtn]
-        navigationItem.leftBarButtonItem?.tintColor = .black
     }
 
     @objc func authorSearch() {

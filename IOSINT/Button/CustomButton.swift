@@ -18,8 +18,8 @@ class CustomButton: UIButton {
          super.init(frame: .zero)
 
          setTitle(customButtonTitle, for: .normal)
-         tintColor = .black
-         backgroundColor = UIColor(named: "Pink")
+         setTitleColor(UIColor.createColor(lightMode: .black, darkMode: .white), for: .normal)
+         backgroundColor = UIColor(named: "ColorBlue")
          translatesAutoresizingMaskIntoConstraints = false
          addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
      }
