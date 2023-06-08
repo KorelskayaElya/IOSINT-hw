@@ -53,6 +53,7 @@
 		6DD76DB32A1E1D8800E9A386 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 6DD76DB52A1E1D8800E9A386 /* Localizable.stringsdict */; };
 		6DD76DBC2A1E22F500E9A386 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD76DBB2A1E22F500E9A386 /* StringExtension.swift */; };
 		6DD76DBE2A1F784D00E9A386 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD76DBD2A1F784D00E9A386 /* ColorExtension.swift */; };
+		6DD76E3B2A2B963F00E9A386 /* IOSINTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD76E3A2A2B963F00E9A386 /* IOSINTTests.swift */; };
 		6DE31F6429F562CE00B9EA1B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6329F562CE00B9EA1B /* FirebaseAuth */; };
 		6DE31F6629F562CE00B9EA1B /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6529F562CE00B9EA1B /* FirebaseDatabase */; };
 		6DE31F6829F562CE00B9EA1B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE31F6729F562CE00B9EA1B /* FirebaseStorage */; };
@@ -60,6 +61,7 @@
 		6DE31F8329F58DE800B9EA1B /* PostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DE31F8129F58DE800B9EA1B /* PostModel.xcdatamodeld */; };
 		6DE31F8A29F59B4100B9EA1B /* SavedPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE31F8929F59B4100B9EA1B /* SavedPostCoordinator.swift */; };
 		6DE31F8D29F5A1C600B9EA1B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D7000EF293F51F8003DFBBF /* Post.swift */; };
+		6DE66A532A3098230017E3FE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6DE66A522A3098230017E3FE /* FirebaseAuth */; };
 		6DE90A7929AB3FF50079BF97 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE90A7829AB3FF50079BF97 /* InfoViewController.swift */; };
 		6DE90A8C29AB96660079BF97 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DE90A8B29AB96660079BF97 /* GoogleService-Info.plist */; };
 		6DE90A8E29ABBB1F0079BF97 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE90A8D29ABBB1F0079BF97 /* CheckerService.swift */; };
@@ -68,6 +70,16 @@
 		6DFB4280297E783C00CFCA1B /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB427F297E783C00CFCA1B /* PostViewController.swift */; };
 		6DFB4282297E9A4200CFCA1B /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DFB4281297E9A4200CFCA1B /* FeedModel.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6DD76E3C2A2B963F00E9A386 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D7000C9293F50EB003DFBBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D7000D0293F50EB003DFBBF;
+			remoteInfo = IOSINT;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		6D70011D293FB768003DFBBF /* Embed Frameworks */ = {
@@ -133,6 +145,8 @@
 		6DD76DB62A1E1D8B00E9A386 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		6DD76DBB2A1E22F500E9A386 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		6DD76DBD2A1F784D00E9A386 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		6DD76E382A2B963F00E9A386 /* IOSINTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IOSINTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DD76E3A2A2B963F00E9A386 /* IOSINTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSINTTests.swift; sourceTree = "<group>"; };
 		6DE31F7F29F58DBD00B9EA1B /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		6DE31F8229F58DE800B9EA1B /* PostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostModel.xcdatamodel; sourceTree = "<group>"; };
 		6DE31F8929F59B4100B9EA1B /* SavedPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostCoordinator.swift; sourceTree = "<group>"; };
@@ -153,6 +167,14 @@
 				6DE31F6629F562CE00B9EA1B /* FirebaseDatabase in Frameworks */,
 				6DE31F6829F562CE00B9EA1B /* FirebaseStorage in Frameworks */,
 				6DFB427B297E4A5700CFCA1B /* iOSIntPackage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DD76E352A2B963F00E9A386 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DE66A532A3098230017E3FE /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +199,9 @@
 				6DBA90882951550A00455F10 /* Model User */,
 				6D7000EC293F519E003DFBBF /* View */,
 				6D7000D3293F50EB003DFBBF /* IOSINT */,
+				6DD76E392A2B963F00E9A386 /* IOSINTTests */,
 				6D7000D2293F50EB003DFBBF /* Products */,
+				6DE66A512A3098230017E3FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				6D7000D1293F50EB003DFBBF /* IOSINT.app */,
+				6DD76E382A2B963F00E9A386 /* IOSINTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -366,6 +391,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		6DD76E392A2B963F00E9A386 /* IOSINTTests */ = {
+			isa = PBXGroup;
+			children = (
+				6DD76E3A2A2B963F00E9A386 /* IOSINTTests.swift */,
+			);
+			path = IOSINTTests;
+			sourceTree = "<group>";
+		};
 		6DE31F7E29F58D9800B9EA1B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +406,13 @@
 				6DE31F8129F58DE800B9EA1B /* PostModel.xcdatamodeld */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		6DE66A512A3098230017E3FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		6DE90A7729AB3FE60079BF97 /* Info */ = {
@@ -418,6 +458,27 @@
 			productReference = 6D7000D1293F50EB003DFBBF /* IOSINT.app */;
 			productType = "com.apple.product-type.application";
 		};
+		6DD76E372A2B963F00E9A386 /* IOSINTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6DD76E402A2B963F00E9A386 /* Build configuration list for PBXNativeTarget "IOSINTTests" */;
+			buildPhases = (
+				6DD76E342A2B963F00E9A386 /* Sources */,
+				6DD76E352A2B963F00E9A386 /* Frameworks */,
+				6DD76E362A2B963F00E9A386 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DD76E3D2A2B963F00E9A386 /* PBXTargetDependency */,
+			);
+			name = IOSINTTests;
+			packageProductDependencies = (
+				6DE66A522A3098230017E3FE /* FirebaseAuth */,
+			);
+			productName = IOSINTTests;
+			productReference = 6DD76E382A2B963F00E9A386 /* IOSINTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -429,11 +490,15 @@
 					1,
 					2,
 				);
-				LastSwiftUpdateCheck = 1410;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					6D7000D0293F50EB003DFBBF = {
 						CreatedOnToolsVersion = 14.1;
+					};
+					6DD76E372A2B963F00E9A386 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 6D7000D0293F50EB003DFBBF;
 					};
 				};
 			};
@@ -456,6 +521,7 @@
 			projectRoot = "";
 			targets = (
 				6D7000D0293F50EB003DFBBF /* IOSINT */,
+				6DD76E372A2B963F00E9A386 /* IOSINTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -475,6 +541,13 @@
 				6DD5F92F299E2CCE0024C255 /* 2.mp3 in Resources */,
 				6D7000DE293F50EC003DFBBF /* Assets.xcassets in Resources */,
 				6DE90A8C29AB96660079BF97 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6DD76E362A2B963F00E9A386 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,7 +607,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6DD76E342A2B963F00E9A386 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6DD76E3B2A2B963F00E9A386 /* IOSINTTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DD76E3D2A2B963F00E9A386 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D7000D0293F50EB003DFBBF /* IOSINT */;
+			targetProxy = 6DD76E3C2A2B963F00E9A386 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6DD76DAC2A1E1C5000E9A386 /* Localizable.strings */ = {
@@ -729,6 +818,44 @@
 			};
 			name = Release;
 		};
+		6DD76E3E2A2B963F00E9A386 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.IOSINTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSINT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IOSINT";
+			};
+			name = Debug;
+		};
+		6DD76E3F2A2B963F00E9A386 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 92RNZ7CX2N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Elya.IOSINTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/IOSINT.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/IOSINT";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -746,6 +873,15 @@
 			buildConfigurations = (
 				6D7000E6293F50EC003DFBBF /* Debug */,
 				6D7000E7293F50EC003DFBBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6DD76E402A2B963F00E9A386 /* Build configuration list for PBXNativeTarget "IOSINTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6DD76E3E2A2B963F00E9A386 /* Debug */,
+				6DD76E3F2A2B963F00E9A386 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -786,6 +922,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6DE31F6229F562CE00B9EA1B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		6DE66A522A3098230017E3FE /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DE31F6229F562CE00B9EA1B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 		6DFB427A297E4A5700CFCA1B /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;

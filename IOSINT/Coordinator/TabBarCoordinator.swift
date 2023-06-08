@@ -46,7 +46,7 @@ class TabBarCoordinator: TabBarCoordinatorProtocol {
         coordinatorMap?.start()
         let map = coordinatorMap!
         
-        tabBarController.viewControllers = [feed.navigationController, profile.navigationController, save.navigationController, map.navigationController]
+        tabBarController.viewControllers = [profile.navigationController, feed.navigationController, save.navigationController, map.navigationController]
     }
         
         
