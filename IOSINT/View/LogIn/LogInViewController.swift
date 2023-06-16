@@ -9,21 +9,16 @@ import UIKit
 import FirebaseAuth
 
 class LogInViewController: UIViewController {
-    // private var delegate: LogInViewControllerDelegate?
     weak var coordinator: ProfileCoordinator?
-    // обновление информации
-    //        var viewModel: LogInViewModel! {
-    //            didSet {
-    //                self.viewModel.checker = { [ weak self ] viewModel in
-    //                    guard let logInedUser = viewModel.logInedUser else {
-    //                        //self?.showAlert()
-    //                        preconditionFailure("nil user")
-    //                    }
-    //                   self?.coordinator?.goToProfileViewController(with: logInedUser)
-    //                }
-    //            }
-    //        }
     var checkerService: CheckerServiceProtocol?
+    init(checkerService: CheckerServiceProtocol) {
+        self.checkerService = checkerService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     @objc func buttonPressLog() {
         guard let login = loginTextField.text, let pass = passwordTextField.text, !login.isEmpty, !pass.isEmpty else {
             TemplateErrorAlert.shared.alert(alertTitle: NSLocalizedString("Ошибка заполнения", comment: ""), alertMessage: NSLocalizedString("Заполните пустые поля", comment: ""))

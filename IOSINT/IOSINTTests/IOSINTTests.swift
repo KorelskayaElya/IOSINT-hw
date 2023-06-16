@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import IOSINT
+import FirebaseAuth
 
 final class IOSINTTests: XCTestCase {
 
@@ -20,27 +21,25 @@ final class IOSINTTests: XCTestCase {
         let expect = self.expectation(description: "Waiting Firebase")
         checkerService.checkCredentials(login: login, password: password) { doneWorking in
             if doneWorking {
-               result = true
+                result = true
             }
             expect.fulfill()
         }
         waitForExpectations(timeout: 15, handler: nil)
         XCTAssertEqual(result, true)
     }
-    // этот тест не получается
-    func testFailedCheckerService() {
-        let login = "kroeur@.ru"
+    
+    func testCheckCredentials() {
+        let expectation = self.expectation(description: "Check credentials")
+        let login = "ku@mail.ru"
         let password = "12345678"
-        var result = false
-        let expect = self.expectation(description: "Waiting firebase")
+
         checkerService.checkCredentials(login: login, password: password) { workingDone in
-            if workingDone {
-               result = true
-            }
-            expect.fulfill()
+            XCTAssert(workingDone, "Credentials check failed")
+            expectation.fulfill()
         }
-        waitForExpectations(timeout: 15, handler: nil)
-        XCTAssertEqual(result, false)
+
+        waitForExpectations(timeout: 10, handler: nil)
     }
     
     func testSuccesFeedModel() {

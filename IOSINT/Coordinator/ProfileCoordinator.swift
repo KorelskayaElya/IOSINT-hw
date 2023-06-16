@@ -19,6 +19,12 @@ final class ProfileCoordinator: Coordinator {
     
     let screenCreate = ScreenCreate()
     let currentUserService = CurrentUserService()
+    let checkerService = CheckerService.shared
+    lazy var loginVC: LogInViewController = {
+        let vc = LogInViewController(checkerService: checkerService)
+        vc.coordinator = self
+        return vc
+    }()
 
     func start() {
         let loginVC = screenCreate.createLogin(coordinator: self)

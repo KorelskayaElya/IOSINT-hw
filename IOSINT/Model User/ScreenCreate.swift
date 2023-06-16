@@ -23,15 +23,8 @@ final class ScreenCreate: Create {
     }
 
     func createLogin(coordinator: ProfileCoordinator) -> UIViewController {
-       //let model = MyLogInFactory()
-       //let viewModel = LogInViewModel(model: model)
-       // let generator = GeneratorPassword()
-       // let bruteModel = generator.getRandomPassword(charSet: generator.letters, passwordLen: 4)
-        //let bruteViewModel = BruteForceViewModel(model: bruteModel)
-        let view = LogInViewController()
+        let view = LogInViewController(checkerService: CheckerService.shared)
         view.coordinator = coordinator
-        //view.viewModel = viewModel
-        //view.bruteForceViewModel = bruteViewModel
         return view
     }
     
