@@ -20,12 +20,12 @@ final class ProfileCoordinator: Coordinator {
     let screenCreate = ScreenCreate()
 
     func start() {
-        let loginVC = screenCreate.createLogin(coordinator: self)
+        let localAuthService = LocalAuthorizationService() 
+        let loginVC = screenCreate.createLogin(coordinator: self, localAuthService: localAuthService)
         loginVC.tabBarItem.title = "Profile".localized
         loginVC.tabBarItem.image = UIImage(systemName: "person.fill")
         navigationController.pushViewController(loginVC, animated: false)
     }
-    
     
     func goToProfileViewController(with user: User) {
         let profileVC = screenCreate.createProfile(user: user, coordinator: self)

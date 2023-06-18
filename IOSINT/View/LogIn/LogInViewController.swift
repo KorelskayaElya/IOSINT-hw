@@ -9,51 +9,32 @@ import UIKit
 import FirebaseAuth
 
 class LogInViewController: UIViewController {
-    // LoginViewController имеет ссылку на LoginInspector в виде приватного свойства
     private var delegate: LogInViewControllerDelegate?
     weak var coordinator: ProfileCoordinator?
-        // обновление информации
-        var viewModel: LogInViewModel! {
-            didSet {
-                self.viewModel.checker = { [ weak self ] viewModel in
-                    guard let logInedUser = viewModel.logInedUser else {
-                        //self?.showAlert()
-                        preconditionFailure("nil user")
-                    }
-                   self?.coordinator?.goToProfileViewController(with: logInedUser)
+    var localAuthService: LocalAuthorizationService?
+    var viewModel: LogInViewModel! {
+        didSet {
+            self.viewModel.checker = { [ weak self ] viewModel in
+                guard let logInedUser = viewModel.logInedUser else {
+                    preconditionFailure("nil user")
                 }
+                self?.coordinator?.goToProfileViewController(with: logInedUser)
             }
         }
-    //    // обновление информации
-    //    var bruteForceViewModel: BruteForceViewModel! {
-    //             didSet {
-    //                 self.bruteForceViewModel.passwordFound = { [weak self] bruteForceViewModel in
-    //                     // асинхронный поток
-    //                     DispatchQueue.main.async {
-    //                         //self?.bruteForceButton.isEnabled = true
-    //                         // скрывать загрузку
-    //                        // self?.hideLoading()
-    //                         // вставлять подобранный предполагаемый пароль
-    //                         self?.passwordTextField.isSecureTextEntry = false
-    //                         self?.passwordTextField.text = bruteForceViewModel.brutedPassword
-    //                     }
-    //
-    //                 }
-    //             }
-    //         }
+    }
     
     private func setupView() {
         view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
         self.view.addSubview(self.scrollView)
         self.scrollView.addSubview(self.contentView)
-        //self.scrollView.addSubview(self.bruteForceButton)
-        // self.bruteForceButton.addSubview(activityIndicator)
         self.contentView.addSubview(self.textFieldStackView)
         self.contentView.addSubview(self.buttonLog)
         self.contentView.addSubview(self.logView)
+        self.contentView.addSubview(self.faceIdButton)
         self.textFieldStackView.addArrangedSubview(self.loginTextField)
         self.textFieldStackView.addArrangedSubview(self.passwordTextField)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,20 +42,40 @@ class LogInViewController: UIViewController {
         self.contraintsLog()
         self.setupGesture()
     }
-    //скролл
+    // скролл
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    //контент
+    // кнопка face id
+    private lazy var faceIdButton: UIButton = {
+        let faceIdButton = UIButton()
+        faceIdButton.translatesAutoresizingMaskIntoConstraints = false
+        faceIdButton.addTarget(self, action: #selector(faceTap), for: .touchUpInside)
+        faceIdButton.clipsToBounds = true
+        faceIdButton.isUserInteractionEnabled = true
+        return faceIdButton
+    }()
+    
+    @objc func faceTap() {
+        localAuthService?.authorizeIfPossible() { doneWorking in
+            if doneWorking {
+                self.coordinator?.goToProfileViewController(with: self.viewModel.logInedUser ?? User(login: "kov@mail.ru", fullName: "Hipster Cat".localized, avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...".localized))
+            } else {
+                print("error log in")
+            }
+            
+        }
+    }
+    // контент
     private let contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         return contentView
     }()
     
-    //логотип
+    // логотип
     private lazy var logView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -85,7 +86,7 @@ class LogInViewController: UIViewController {
         return imageView
         
     }()
-    //стек для ввода логина пароля
+    // стек для ввода логина пароля
     private lazy var textFieldStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.layer.borderColor = UIColor.lightGray.cgColor
@@ -97,7 +98,7 @@ class LogInViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    //логин
+    // логин
     private lazy var loginTextField: UITextField = {
         let textField = UITextField()
         textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0)
@@ -113,7 +114,7 @@ class LogInViewController: UIViewController {
         textField.placeholder = " Email of phone".localized
         return textField
     }()
-    //пароль
+    // пароль
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
@@ -129,7 +130,7 @@ class LogInViewController: UIViewController {
         textField.placeholder = " Password".localized
         return textField
     }()
-    //кнопка
+    // кнопка
     private lazy var buttonLog: UIButton = {
         let button = UIButton()
         let image = UIImage(named: "blue_pixel")
@@ -142,47 +143,6 @@ class LogInViewController: UIViewController {
         button.addTarget(self, action: #selector(buttonPressLog), for: .touchUpInside)
         return button
     }()
-    //    // индикатор загрузки
-    //    private lazy var activityIndicator: UIActivityIndicatorView = {
-    //        var activityIndicator = UIActivityIndicatorView(style: .large)
-    //            activityIndicator.hidesWhenStopped = true
-    //            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-    //            return activityIndicator
-    //        }()
-    //    // кнопка перебра паролей
-    //    private lazy var bruteForceButton: UIButton = {
-    //        let button = UIButton()
-    //        let image = UIImage(named: "blue_pixel")
-    //        button.translatesAutoresizingMaskIntoConstraints = false
-    //        button.setTitle("Подобрать пароль", for: .normal)
-    //        button.setTitleColor(UIColor.black, for: .normal)
-    //        button.layer.borderWidth = 2
-    //        button.layer.borderColor = UIColor.black.cgColor
-    //        button.addTarget(self, action: #selector(startBruteForce), for: .touchUpInside)
-    //        button.layer.cornerRadius = 15
-    //        button.clipsToBounds = true
-    //        button.setBackgroundImage(image,for: UIControl.State.normal)
-    //        return button
-    //    }()
-    
-    
-    //    // начать перебор паролей
-    //    @objc private func startBruteForce() {
-    //        bruteForceButton.isEnabled = false
-    //        showLoading()
-    //        bruteForceViewModel.StartBrute()
-    //     }
-    //    // показывать загрузку
-    //    func showLoading() {
-    //        bruteForceButton.setTitle("", for: .normal)
-    //        activityIndicator.isHidden = false
-    //        activityIndicator.startAnimating()
-    //    }
-    //    // скрывать загрузку
-    //    func hideLoading() {
-    //        bruteForceButton.setTitle("Подобрать пароль", for: .normal)
-    //        activityIndicator.stopAnimating()
-    //    }
     
     private func contraintsLog() {
         NSLayoutConstraint.activate([
@@ -200,7 +160,7 @@ class LogInViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor, multiplier: 1.0),
+            contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor),
             contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
             //stack
             textFieldStackView.topAnchor.constraint(equalTo: self.logView.bottomAnchor,constant: 120),
@@ -209,20 +169,26 @@ class LogInViewController: UIViewController {
             textFieldStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 16),
             //button
             buttonLog.topAnchor.constraint(equalTo: self.textFieldStackView.bottomAnchor,constant: 16),
-            buttonLog.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,constant: -16),
+            buttonLog.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,constant: -80),
             buttonLog.heightAnchor.constraint(equalToConstant: 50),
             buttonLog.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,constant: 16),
             buttonLog.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            // face id
+
+            faceIdButton.topAnchor.constraint(equalTo: self.textFieldStackView.bottomAnchor,constant: 10),
+            faceIdButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,constant: -16),
+            faceIdButton.leadingAnchor.constraint(equalTo: self.buttonLog.trailingAnchor,constant: 16),
+            faceIdButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             
-            //            bruteForceButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 80),
-            //            bruteForceButton.leadingAnchor.constraint(equalTo: textFieldStackView.leadingAnchor, constant: 60),
-            //            bruteForceButton.trailingAnchor.constraint(equalTo: textFieldStackView.trailingAnchor, constant: -60),
-            //            bruteForceButton.heightAnchor.constraint(equalToConstant: 40),
-            
-            
-            //            activityIndicator.centerYAnchor.constraint(equalTo: bruteForceButton.centerYAnchor),
-            //            activityIndicator.centerXAnchor.constraint(equalTo: bruteForceButton.centerXAnchor),
         ])
+        switch localAuthService?.checkBiometryType() {
+        case .face:
+            faceIdButton.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
+        case .touch:
+            faceIdButton.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
+        default:
+            faceIdButton.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
+        }
         
     }
     private func setupGesture() {
@@ -236,6 +202,7 @@ class LogInViewController: UIViewController {
     }
     
     private let notification = NotificationCenter.default
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true //прячем NavigationBar
         notification.addObserver(self, selector: #selector(keyboardAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -271,15 +238,6 @@ class LogInViewController: UIViewController {
         } catch LogInErrors.emptyPassword {
             TemplateErrorAlert.shared.alert(alertTitle: "Ошибка заполнения".localized, alertMessage: "Заполните пустые поля".localized)
         } catch {}
-        // когда пользователь новый создался, то пока нет для него новой страницы для профиля, поэтому кнопка не работает
-        // не работает - выпадает в else
-//        if (delegate?.check(login: login, password: password) != nil) {
-//            coordinator?.start()
-//        } else {
-//            let alert = UIAlertController(title: "dont know", message: "no", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-//            self.present(alert, animated: true)
-//        }
     }
 }
     

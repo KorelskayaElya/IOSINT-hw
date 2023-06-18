@@ -9,9 +9,8 @@ import UIKit
 
 protocol Create: AnyObject {
     func createPhoto() -> UIViewController
-    func createLogin(coordinator: ProfileCoordinator) -> UIViewController
+    func createLogin(coordinator: ProfileCoordinator, localAuthService: LocalAuthorizationService) -> UIViewController
 }
-
 final class ScreenCreate: Create {
     func createPhoto() -> UIViewController {
         let model = ViewModel.photos
@@ -22,17 +21,14 @@ final class ScreenCreate: Create {
         return view
     }
 
-    func createLogin(coordinator: ProfileCoordinator) -> UIViewController {
-       let model = MyLogInFactory()
+    func createLogin(coordinator: ProfileCoordinator, localAuthService: LocalAuthorizationService) -> UIViewController {
+        let model = MyLogInFactory()
        let viewModel = LogInViewModel(model: model)
-       // let generator = GeneratorPassword()
-       // let bruteModel = generator.getRandomPassword(charSet: generator.letters, passwordLen: 4)
-        //let bruteViewModel = BruteForceViewModel(model: bruteModel)
-        let view = LogInViewController()
-        view.coordinator = coordinator
-        view.viewModel = viewModel
-        //view.bruteForceViewModel = bruteViewModel
-        return view
+       let view = LogInViewController()
+       view.coordinator = coordinator
+       view.viewModel = viewModel
+       view.localAuthService = localAuthService
+       return view
     }
     
     func createProfile(user: User, coordinator: ProfileCoordinator) -> UIViewController {

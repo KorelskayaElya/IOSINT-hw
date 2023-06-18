@@ -28,6 +28,7 @@
 		6D82592829938E89006C0202 /* BruteForce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82592729938E89006C0202 /* BruteForce.swift */; };
 		6D82592A2993A25A006C0202 /* BruteForceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8259292993A25A006C0202 /* BruteForceViewModel.swift */; };
 		6D82592C299A0584006C0202 /* LogInError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D82592B299A0584006C0202 /* LogInError.swift */; };
+		6D90A3192A3F6D730027C28D /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D90A3182A3F6D730027C28D /* LocalAuthorizationService.swift */; };
 		6DBA908A2951552D00455F10 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DBA90892951552D00455F10 /* User.swift */; };
 		6DC169A62988D564005B56C2 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169A52988D564005B56C2 /* Coordinator.swift */; };
 		6DC169A92988D5D3005B56C2 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DC169A82988D5D3005B56C2 /* FeedCoordinator.swift */; };
@@ -107,6 +108,7 @@
 		6D82592729938E89006C0202 /* BruteForce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForce.swift; sourceTree = "<group>"; };
 		6D8259292993A25A006C0202 /* BruteForceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BruteForceViewModel.swift; sourceTree = "<group>"; };
 		6D82592B299A0584006C0202 /* LogInError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInError.swift; sourceTree = "<group>"; };
+		6D90A3182A3F6D730027C28D /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		6DBA90892951552D00455F10 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6DC169A52988D564005B56C2 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		6DC169A82988D5D3005B56C2 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 		6D7000C8293F50EB003DFBBF = {
 			isa = PBXGroup;
 			children = (
+				6D90A3182A3F6D730027C28D /* LocalAuthorizationService.swift */,
 				6DD76DBD2A1F784D00E9A386 /* ColorExtension.swift */,
 				6DD76DBB2A1E22F500E9A386 /* StringExtension.swift */,
 				6DD76DAC2A1E1C5000E9A386 /* Localizable.strings */,
@@ -528,6 +531,7 @@
 				6DFB427E297E754C00CFCA1B /* CustomButton.swift in Sources */,
 				6D7000F2293F5207003DFBBF /* Photos.swift in Sources */,
 				6DC169B4298A9CC8005B56C2 /* PhotoViewModel.swift in Sources */,
+				6D90A3192A3F6D730027C28D /* LocalAuthorizationService.swift in Sources */,
 				6D7E5060297729A00007CF3D /* LogInFactory.swift in Sources */,
 				6D82592C299A0584006C0202 /* LogInError.swift in Sources */,
 				6D7000F4293F521F003DFBBF /* PhotosCollectionViewCell.swift in Sources */,
