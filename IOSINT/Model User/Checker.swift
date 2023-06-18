@@ -10,14 +10,19 @@ import UIKit
 final class Checker {
     // синглтон
     static var shared = Checker()
-    // логин пароль для входа
-    private let loginCheck: String = "kov@mail.ru"
-    private let passCheck: String = "1234567"
-    private let user = User(login: "hipster".localized, fullName: "Hipster Cat".localized, avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...".localized)
+    
+    private var loginCheck: String
+    private var passwordCheck: String
+    
+    private init() {
+        self.loginCheck = "kov@mail.ru"
+        self.passwordCheck = "1234567"
+    }
+    
 
-    func check(login: String, pass: String, completion: @escaping (Result<User, LogInErrors>) -> Void) {
-        if (login == loginCheck) && (pass == passCheck) {
-            completion(.success(user))
+    func check(login: String, pass: String, completion: @escaping (Result<Bool, LogInErrors>) -> Void) {
+        if (login == loginCheck) && (pass == passwordCheck) {
+            completion(.success(true))
         } else {
             completion(.failure(LogInErrors.isNotAuthorized))
             return

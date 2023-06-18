@@ -18,6 +18,13 @@ final class ProfileCoordinator: Coordinator {
     }
     
     let screenCreate = ScreenCreate()
+    let currentUserService = CurrentUserService()
+    let checkerService = CheckerService.shared
+    lazy var loginVC: LogInViewController = {
+        let vc = LogInViewController(checkerService: checkerService)
+        vc.coordinator = self
+        return vc
+    }()
 
     func start() {
         let loginVC = screenCreate.createLogin(coordinator: self)
@@ -27,8 +34,8 @@ final class ProfileCoordinator: Coordinator {
     }
     
     
-    func goToProfileViewController(with user: User) {
-        let profileVC = screenCreate.createProfile(user: user, coordinator: self)
+    func goToProfileViewController() {
+        let profileVC = screenCreate.createProfile(user: currentUserService.user, coordinator: self)
         navigationController.pushViewController(profileVC, animated: true)
     }
     

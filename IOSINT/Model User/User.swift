@@ -13,24 +13,25 @@ protocol UserService {
 }
 
 final class User {
-    let login: String
-    let fullName: String
-    let avatarImage: UIImage
-    let status: String
+    var login: String
+    var fullName: String
+    var avatarImage: UIImage
+    var status: String
+    var userPassword: String
     
-    init(login: String, fullName: String, avatarImage: UIImage, status: String) {
+    init(login: String, fullName: String, avatarImage: UIImage, status: String, userPassword: String) {
         self.login = login
         self.fullName = fullName
         self.avatarImage = avatarImage
         self.status = status
+        self.userPassword = userPassword
     }
 }
 
 class CurrentUserService: UserService {
-    let user = User(login: "kov@mail.ru", fullName: "Hipster Cat".localized, avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...".localized)
-    let userPassword = "1234567"
+    let user = User(login: "kov@mail.ru", fullName: "Hipster Cat".localized, avatarImage: UIImage(named: "cat_image")!, status: "Waiting for smth...".localized, userPassword: "1234567")
     func checkLogin(login: String, password: String) -> User? {
-        if (login == user.login) && (password == userPassword) {
+        if (login == user.login) && (password == user.userPassword) {
             return user
         } else {
             return nil
@@ -38,14 +39,14 @@ class CurrentUserService: UserService {
     }
 }
 
-class TestUserService: UserService {
-    private let testUser = User(login: "dog", fullName: "DOGGERS", avatarImage: UIImage(named: "dog")!, status: "I'm hungry")
-    private let testPassword = "dog"
-    func checkLogin(login: String, password: String) -> User? {
-        if (login == testUser.login) && (password == testPassword) {
-            return testUser
-        } else {
-            return nil
-        }
-    }
-}
+//class TestUserService: UserService {
+//    private let testUser = User(login: "dog", fullName: "DOGGERS", avatarImage: UIImage(named: "dog")!, status: "I'm hungry")
+//    private let testPassword = "dog"
+//    func checkLogin(login: String, password: String) -> User? {
+//        if (login == testUser.login) && (password == testPassword) {
+//            return testUser
+//        } else {
+//            return nil
+//        }
+//    }
+//}

@@ -3,4 +3,70 @@
    uuid = "A1B95CD7-93A3-4EFA-8708-CF2C926A0567"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6CFF591B-25E5-43AB-9CA0-A3CDA0F7FA14"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "View/LogIn/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "buttonPressLog()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F3E79511-19DF-4A42-B56F-CDA141E98F07"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "View/LogIn/LogInViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "buttonPressLog()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F3E79511-19DF-4A42-B56F-CDA141E98F07 - b9a27171130f0b7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IOSINT.LogInViewController.buttonPressLog() -&gt; ()"
+                  moduleName = "IOSINT"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eliss/Desktop/hw2/IOSINT/View/LogIn/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "588">
+               </Location>
+               <Location
+                  uuid = "F3E79511-19DF-4A42-B56F-CDA141E98F07 - e4178e67077a9999"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in IOSINT.LogInViewController.buttonPressLog() -&gt; ()"
+                  moduleName = "IOSINT"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/eliss/Desktop/hw2/IOSINT/View/LogIn/LogInViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

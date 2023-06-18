@@ -11,7 +11,7 @@ import FirebaseCore
 
  protocol CheckerServiceProtocol {
      // проверка учетных данных
-     func checkCredentials(login: String, password: String)
+     func checkCredentials(login: String, password: String, using complition: @escaping (Bool)->())
      // зарегестрироваться
      func signUp(login: String, password: String)
  }
@@ -24,7 +24,7 @@ import FirebaseCore
      var isSingIn: Bool = false
 
      // проверка учетных данных (должен вызываться при нажатии на кнопку)
-     func checkCredentials(login: String, password: String) {
+     func checkCredentials(login: String, password: String, using completionHandler: @escaping (Bool)->()) {
          // заполнение формы
          Auth.auth().signIn(withEmail: login, password: password) { [self] result, error in
              if let error = error {
@@ -45,6 +45,7 @@ import FirebaseCore
              } else {
                  // успешный вход
                  isSingIn = true
+                 completionHandler(true)
              }
          }
      }

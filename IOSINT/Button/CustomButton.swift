@@ -9,7 +9,7 @@ import UIKit
 // класс кнопки CustomButton
 class CustomButton: UIButton {
     // замыкание
-     private let tapClosure: (() -> ())
+     let tapClosure: (() -> ())
     // инициализатор кнопки
      init(customButtonTitle: String,
           closure: @escaping (() -> ())) {
